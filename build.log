@@ -1,0 +1,293 @@
+
+> ad-forge@0.1.0 build
+> next build
+
+  ▲ Next.js 14.2.35
+
+   Creating an optimized production build ...
+ ✓ Compiled successfully
+   Linting and checking validity of types ...
+   Collecting page data ...
+   Generating static pages (0/18) ...
+   Generating static pages (4/18) 
+Error: React.Children.only expected to receive a single React element child.
+    at Object.only (/mnt/Drive_01/Bhuexpert01/adManager/node_modules/next/dist/compiled/next-server/app-page.runtime.prod.js:12:106906)
+    at /mnt/Drive_01/Bhuexpert01/adManager/.next/server/chunks/929.js:1:2752
+    at nj (/mnt/Drive_01/Bhuexpert01/adManager/node_modules/next/dist/compiled/next-server/app-page.runtime.prod.js:12:46252)
+    at nM (/mnt/Drive_01/Bhuexpert01/adManager/node_modules/next/dist/compiled/next-server/app-page.runtime.prod.js:12:60840)
+    at nL (/mnt/Drive_01/Bhuexpert01/adManager/node_modules/next/dist/compiled/next-server/app-page.runtime.prod.js:12:64547)
+    at nI (/mnt/Drive_01/Bhuexpert01/adManager/node_modules/next/dist/compiled/next-server/app-page.runtime.prod.js:12:47011)
+    at nM (/mnt/Drive_01/Bhuexpert01/adManager/node_modules/next/dist/compiled/next-server/app-page.runtime.prod.js:12:60863)
+    at nL (/mnt/Drive_01/Bhuexpert01/adManager/node_modules/next/dist/compiled/next-server/app-page.runtime.prod.js:12:64547)
+    at nI (/mnt/Drive_01/Bhuexpert01/adManager/node_modules/next/dist/compiled/next-server/app-page.runtime.prod.js:12:47011)
+    at nM (/mnt/Drive_01/Bhuexpert01/adManager/node_modules/next/dist/compiled/next-server/app-page.runtime.prod.js:12:60863) {
+  digest: '3916036678'
+}
+
+Error occurred prerendering page "/saved". Read more: https://nextjs.org/docs/messages/prerender-error
+
+Error: React.Children.only expected to receive a single React element child.
+    at Object.only (/mnt/Drive_01/Bhuexpert01/adManager/node_modules/next/dist/compiled/next-server/app-page.runtime.prod.js:12:106906)
+    at /mnt/Drive_01/Bhuexpert01/adManager/.next/server/chunks/929.js:1:2752
+    at nj (/mnt/Drive_01/Bhuexpert01/adManager/node_modules/next/dist/compiled/next-server/app-page.runtime.prod.js:12:46252)
+    at nM (/mnt/Drive_01/Bhuexpert01/adManager/node_modules/next/dist/compiled/next-server/app-page.runtime.prod.js:12:60840)
+    at nL (/mnt/Drive_01/Bhuexpert01/adManager/node_modules/next/dist/compiled/next-server/app-page.runtime.prod.js:12:64547)
+    at nI (/mnt/Drive_01/Bhuexpert01/adManager/node_modules/next/dist/compiled/next-server/app-page.runtime.prod.js:12:47011)
+    at nM (/mnt/Drive_01/Bhuexpert01/adManager/node_modules/next/dist/compiled/next-server/app-page.runtime.prod.js:12:60863)
+    at nL (/mnt/Drive_01/Bhuexpert01/adManager/node_modules/next/dist/compiled/next-server/app-page.runtime.prod.js:12:64547)
+    at nI (/mnt/Drive_01/Bhuexpert01/adManager/node_modules/next/dist/compiled/next-server/app-page.runtime.prod.js:12:47011)
+    at nM (/mnt/Drive_01/Bhuexpert01/adManager/node_modules/next/dist/compiled/next-server/app-page.runtime.prod.js:12:60863)
+Error: React.Children.only expected to receive a single React element child.
+    at Object.only (/mnt/Drive_01/Bhuexpert01/adManager/node_modules/next/dist/compiled/next-server/app-page.runtime.prod.js:12:106906)
+    at /mnt/Drive_01/Bhuexpert01/adManager/.next/server/chunks/929.js:1:2752
+    at nj (/mnt/Drive_01/Bhuexpert01/adManager/node_modules/next/dist/compiled/next-server/app-page.runtime.prod.js:12:46252)
+    at nM (/mnt/Drive_01/Bhuexpert01/adManager/node_modules/next/dist/compiled/next-server/app-page.runtime.prod.js:12:60840)
+    at nL (/mnt/Drive_01/Bhuexpert01/adManager/node_modules/next/dist/compiled/next-server/app-page.runtime.prod.js:12:64547)
+    at nI (/mnt/Drive_01/Bhuexpert01/adManager/node_modules/next/dist/compiled/next-server/app-page.runtime.prod.js:12:47011)
+    at nM (/mnt/Drive_01/Bhuexpert01/adManager/node_modules/next/dist/compiled/next-server/app-page.runtime.prod.js:12:60863)
+    at nL (/mnt/Drive_01/Bhuexpert01/adManager/node_modules/next/dist/compiled/next-server/app-page.runtime.prod.js:12:64547)
+    at nI (/mnt/Drive_01/Bhuexpert01/adManager/node_modules/next/dist/compiled/next-server/app-page.runtime.prod.js:12:47011)
+    at nM (/mnt/Drive_01/Bhuexpert01/adManager/node_modules/next/dist/compiled/next-server/app-page.runtime.prod.js:12:60863) {
+  digest: '3916036678'
+}
+
+Error occurred prerendering page "/templates". Read more: https://nextjs.org/docs/messages/prerender-error
+
+Error: React.Children.only expected to receive a single React element child.
+    at Object.only (/mnt/Drive_01/Bhuexpert01/adManager/node_modules/next/dist/compiled/next-server/app-page.runtime.prod.js:12:106906)
+    at /mnt/Drive_01/Bhuexpert01/adManager/.next/server/chunks/929.js:1:2752
+    at nj (/mnt/Drive_01/Bhuexpert01/adManager/node_modules/next/dist/compiled/next-server/app-page.runtime.prod.js:12:46252)
+    at nM (/mnt/Drive_01/Bhuexpert01/adManager/node_modules/next/dist/compiled/next-server/app-page.runtime.prod.js:12:60840)
+    at nL (/mnt/Drive_01/Bhuexpert01/adManager/node_modules/next/dist/compiled/next-server/app-page.runtime.prod.js:12:64547)
+    at nI (/mnt/Drive_01/Bhuexpert01/adManager/node_modules/next/dist/compiled/next-server/app-page.runtime.prod.js:12:47011)
+    at nM (/mnt/Drive_01/Bhuexpert01/adManager/node_modules/next/dist/compiled/next-server/app-page.runtime.prod.js:12:60863)
+    at nL (/mnt/Drive_01/Bhuexpert01/adManager/node_modules/next/dist/compiled/next-server/app-page.runtime.prod.js:12:64547)
+    at nI (/mnt/Drive_01/Bhuexpert01/adManager/node_modules/next/dist/compiled/next-server/app-page.runtime.prod.js:12:47011)
+    at nM (/mnt/Drive_01/Bhuexpert01/adManager/node_modules/next/dist/compiled/next-server/app-page.runtime.prod.js:12:60863)
+   Generating static pages (8/18) 
+Error: React.Children.only expected to receive a single React element child.
+    at Object.only (/mnt/Drive_01/Bhuexpert01/adManager/node_modules/next/dist/compiled/next-server/app-page.runtime.prod.js:12:106906)
+    at /mnt/Drive_01/Bhuexpert01/adManager/.next/server/chunks/929.js:1:2752
+    at nj (/mnt/Drive_01/Bhuexpert01/adManager/node_modules/next/dist/compiled/next-server/app-page.runtime.prod.js:12:46252)
+    at nM (/mnt/Drive_01/Bhuexpert01/adManager/node_modules/next/dist/compiled/next-server/app-page.runtime.prod.js:12:60840)
+    at nL (/mnt/Drive_01/Bhuexpert01/adManager/node_modules/next/dist/compiled/next-server/app-page.runtime.prod.js:12:64547)
+    at nI (/mnt/Drive_01/Bhuexpert01/adManager/node_modules/next/dist/compiled/next-server/app-page.runtime.prod.js:12:47011)
+    at nM (/mnt/Drive_01/Bhuexpert01/adManager/node_modules/next/dist/compiled/next-server/app-page.runtime.prod.js:12:60863)
+    at nL (/mnt/Drive_01/Bhuexpert01/adManager/node_modules/next/dist/compiled/next-server/app-page.runtime.prod.js:12:64547)
+    at nI (/mnt/Drive_01/Bhuexpert01/adManager/node_modules/next/dist/compiled/next-server/app-page.runtime.prod.js:12:47011)
+    at nM (/mnt/Drive_01/Bhuexpert01/adManager/node_modules/next/dist/compiled/next-server/app-page.runtime.prod.js:12:60863) {
+  digest: '3916036678'
+}
+
+Error occurred prerendering page "/dashboard". Read more: https://nextjs.org/docs/messages/prerender-error
+
+Error: React.Children.only expected to receive a single React element child.
+    at Object.only (/mnt/Drive_01/Bhuexpert01/adManager/node_modules/next/dist/compiled/next-server/app-page.runtime.prod.js:12:106906)
+    at /mnt/Drive_01/Bhuexpert01/adManager/.next/server/chunks/929.js:1:2752
+    at nj (/mnt/Drive_01/Bhuexpert01/adManager/node_modules/next/dist/compiled/next-server/app-page.runtime.prod.js:12:46252)
+    at nM (/mnt/Drive_01/Bhuexpert01/adManager/node_modules/next/dist/compiled/next-server/app-page.runtime.prod.js:12:60840)
+    at nL (/mnt/Drive_01/Bhuexpert01/adManager/node_modules/next/dist/compiled/next-server/app-page.runtime.prod.js:12:64547)
+    at nI (/mnt/Drive_01/Bhuexpert01/adManager/node_modules/next/dist/compiled/next-server/app-page.runtime.prod.js:12:47011)
+    at nM (/mnt/Drive_01/Bhuexpert01/adManager/node_modules/next/dist/compiled/next-server/app-page.runtime.prod.js:12:60863)
+    at nL (/mnt/Drive_01/Bhuexpert01/adManager/node_modules/next/dist/compiled/next-server/app-page.runtime.prod.js:12:64547)
+    at nI (/mnt/Drive_01/Bhuexpert01/adManager/node_modules/next/dist/compiled/next-server/app-page.runtime.prod.js:12:47011)
+    at nM (/mnt/Drive_01/Bhuexpert01/adManager/node_modules/next/dist/compiled/next-server/app-page.runtime.prod.js:12:60863)
+Error: React.Children.only expected to receive a single React element child.
+    at Object.only (/mnt/Drive_01/Bhuexpert01/adManager/node_modules/next/dist/compiled/next-server/app-page.runtime.prod.js:12:106906)
+    at /mnt/Drive_01/Bhuexpert01/adManager/.next/server/chunks/929.js:1:2752
+    at nj (/mnt/Drive_01/Bhuexpert01/adManager/node_modules/next/dist/compiled/next-server/app-page.runtime.prod.js:12:46252)
+    at nM (/mnt/Drive_01/Bhuexpert01/adManager/node_modules/next/dist/compiled/next-server/app-page.runtime.prod.js:12:60840)
+    at nL (/mnt/Drive_01/Bhuexpert01/adManager/node_modules/next/dist/compiled/next-server/app-page.runtime.prod.js:12:64547)
+    at nI (/mnt/Drive_01/Bhuexpert01/adManager/node_modules/next/dist/compiled/next-server/app-page.runtime.prod.js:12:47011)
+    at nM (/mnt/Drive_01/Bhuexpert01/adManager/node_modules/next/dist/compiled/next-server/app-page.runtime.prod.js:12:60863)
+    at nL (/mnt/Drive_01/Bhuexpert01/adManager/node_modules/next/dist/compiled/next-server/app-page.runtime.prod.js:12:64547)
+    at nI (/mnt/Drive_01/Bhuexpert01/adManager/node_modules/next/dist/compiled/next-server/app-page.runtime.prod.js:12:47011)
+    at nM (/mnt/Drive_01/Bhuexpert01/adManager/node_modules/next/dist/compiled/next-server/app-page.runtime.prod.js:12:60863) {
+  digest: '3916036678'
+}
+
+Error occurred prerendering page "/settings". Read more: https://nextjs.org/docs/messages/prerender-error
+
+Error: React.Children.only expected to receive a single React element child.
+    at Object.only (/mnt/Drive_01/Bhuexpert01/adManager/node_modules/next/dist/compiled/next-server/app-page.runtime.prod.js:12:106906)
+    at /mnt/Drive_01/Bhuexpert01/adManager/.next/server/chunks/929.js:1:2752
+    at nj (/mnt/Drive_01/Bhuexpert01/adManager/node_modules/next/dist/compiled/next-server/app-page.runtime.prod.js:12:46252)
+    at nM (/mnt/Drive_01/Bhuexpert01/adManager/node_modules/next/dist/compiled/next-server/app-page.runtime.prod.js:12:60840)
+    at nL (/mnt/Drive_01/Bhuexpert01/adManager/node_modules/next/dist/compiled/next-server/app-page.runtime.prod.js:12:64547)
+    at nI (/mnt/Drive_01/Bhuexpert01/adManager/node_modules/next/dist/compiled/next-server/app-page.runtime.prod.js:12:47011)
+    at nM (/mnt/Drive_01/Bhuexpert01/adManager/node_modules/next/dist/compiled/next-server/app-page.runtime.prod.js:12:60863)
+    at nL (/mnt/Drive_01/Bhuexpert01/adManager/node_modules/next/dist/compiled/next-server/app-page.runtime.prod.js:12:64547)
+    at nI (/mnt/Drive_01/Bhuexpert01/adManager/node_modules/next/dist/compiled/next-server/app-page.runtime.prod.js:12:47011)
+    at nM (/mnt/Drive_01/Bhuexpert01/adManager/node_modules/next/dist/compiled/next-server/app-page.runtime.prod.js:12:60863)
+   Generating static pages (13/18) 
+Error: React.Children.only expected to receive a single React element child.
+    at Object.only (/mnt/Drive_01/Bhuexpert01/adManager/node_modules/next/dist/compiled/next-server/app-page.runtime.prod.js:12:106906)
+    at /mnt/Drive_01/Bhuexpert01/adManager/.next/server/chunks/929.js:1:2752
+    at nj (/mnt/Drive_01/Bhuexpert01/adManager/node_modules/next/dist/compiled/next-server/app-page.runtime.prod.js:12:46252)
+    at nM (/mnt/Drive_01/Bhuexpert01/adManager/node_modules/next/dist/compiled/next-server/app-page.runtime.prod.js:12:60840)
+    at nL (/mnt/Drive_01/Bhuexpert01/adManager/node_modules/next/dist/compiled/next-server/app-page.runtime.prod.js:12:64547)
+    at nI (/mnt/Drive_01/Bhuexpert01/adManager/node_modules/next/dist/compiled/next-server/app-page.runtime.prod.js:12:47011)
+    at nM (/mnt/Drive_01/Bhuexpert01/adManager/node_modules/next/dist/compiled/next-server/app-page.runtime.prod.js:12:60863)
+    at nL (/mnt/Drive_01/Bhuexpert01/adManager/node_modules/next/dist/compiled/next-server/app-page.runtime.prod.js:12:64547)
+    at nI (/mnt/Drive_01/Bhuexpert01/adManager/node_modules/next/dist/compiled/next-server/app-page.runtime.prod.js:12:47011)
+    at nM (/mnt/Drive_01/Bhuexpert01/adManager/node_modules/next/dist/compiled/next-server/app-page.runtime.prod.js:12:60863) {
+  digest: '3916036678'
+}
+
+Error occurred prerendering page "/campaigns". Read more: https://nextjs.org/docs/messages/prerender-error
+
+Error: React.Children.only expected to receive a single React element child.
+    at Object.only (/mnt/Drive_01/Bhuexpert01/adManager/node_modules/next/dist/compiled/next-server/app-page.runtime.prod.js:12:106906)
+    at /mnt/Drive_01/Bhuexpert01/adManager/.next/server/chunks/929.js:1:2752
+    at nj (/mnt/Drive_01/Bhuexpert01/adManager/node_modules/next/dist/compiled/next-server/app-page.runtime.prod.js:12:46252)
+    at nM (/mnt/Drive_01/Bhuexpert01/adManager/node_modules/next/dist/compiled/next-server/app-page.runtime.prod.js:12:60840)
+    at nL (/mnt/Drive_01/Bhuexpert01/adManager/node_modules/next/dist/compiled/next-server/app-page.runtime.prod.js:12:64547)
+    at nI (/mnt/Drive_01/Bhuexpert01/adManager/node_modules/next/dist/compiled/next-server/app-page.runtime.prod.js:12:47011)
+    at nM (/mnt/Drive_01/Bhuexpert01/adManager/node_modules/next/dist/compiled/next-server/app-page.runtime.prod.js:12:60863)
+    at nL (/mnt/Drive_01/Bhuexpert01/adManager/node_modules/next/dist/compiled/next-server/app-page.runtime.prod.js:12:64547)
+    at nI (/mnt/Drive_01/Bhuexpert01/adManager/node_modules/next/dist/compiled/next-server/app-page.runtime.prod.js:12:47011)
+    at nM (/mnt/Drive_01/Bhuexpert01/adManager/node_modules/next/dist/compiled/next-server/app-page.runtime.prod.js:12:60863)
+Error: Minified React error #143; visit https://react.dev/errors/143 for the full message or use the non-minified dev environment for full errors and additional helpful warnings.
+    at Object.only (/mnt/Drive_01/Bhuexpert01/adManager/node_modules/next/dist/compiled/next-server/app-page.runtime.prod.js:12:185759)
+    at /mnt/Drive_01/Bhuexpert01/adManager/.next/server/app/(marketing)/features/page.js:1:3370
+    at em (/mnt/Drive_01/Bhuexpert01/adManager/node_modules/next/dist/compiled/next-server/app-page.runtime.prod.js:12:134808)
+    at e (/mnt/Drive_01/Bhuexpert01/adManager/node_modules/next/dist/compiled/next-server/app-page.runtime.prod.js:12:138055)
+    at e_ (/mnt/Drive_01/Bhuexpert01/adManager/node_modules/next/dist/compiled/next-server/app-page.runtime.prod.js:12:138168)
+    at em (/mnt/Drive_01/Bhuexpert01/adManager/node_modules/next/dist/compiled/next-server/app-page.runtime.prod.js:12:135321)
+    at e (/mnt/Drive_01/Bhuexpert01/adManager/node_modules/next/dist/compiled/next-server/app-page.runtime.prod.js:12:138055)
+    at e_ (/mnt/Drive_01/Bhuexpert01/adManager/node_modules/next/dist/compiled/next-server/app-page.runtime.prod.js:12:138168)
+    at em (/mnt/Drive_01/Bhuexpert01/adManager/node_modules/next/dist/compiled/next-server/app-page.runtime.prod.js:12:135321)
+    at e (/mnt/Drive_01/Bhuexpert01/adManager/node_modules/next/dist/compiled/next-server/app-page.runtime.prod.js:12:138055) {
+  digest: '1087434701'
+}
+Error: Minified React error #143; visit https://react.dev/errors/143 for the full message or use the non-minified dev environment for full errors and additional helpful warnings.
+    at Object.only (/mnt/Drive_01/Bhuexpert01/adManager/node_modules/next/dist/compiled/next-server/app-page.runtime.prod.js:12:185759)
+    at /mnt/Drive_01/Bhuexpert01/adManager/.next/server/app/(marketing)/features/page.js:1:3370
+    at em (/mnt/Drive_01/Bhuexpert01/adManager/node_modules/next/dist/compiled/next-server/app-page.runtime.prod.js:12:134808)
+    at e (/mnt/Drive_01/Bhuexpert01/adManager/node_modules/next/dist/compiled/next-server/app-page.runtime.prod.js:12:138055)
+    at e_ (/mnt/Drive_01/Bhuexpert01/adManager/node_modules/next/dist/compiled/next-server/app-page.runtime.prod.js:12:138168)
+    at em (/mnt/Drive_01/Bhuexpert01/adManager/node_modules/next/dist/compiled/next-server/app-page.runtime.prod.js:12:135321)
+    at e (/mnt/Drive_01/Bhuexpert01/adManager/node_modules/next/dist/compiled/next-server/app-page.runtime.prod.js:12:138055)
+    at e_ (/mnt/Drive_01/Bhuexpert01/adManager/node_modules/next/dist/compiled/next-server/app-page.runtime.prod.js:12:138168)
+    at em (/mnt/Drive_01/Bhuexpert01/adManager/node_modules/next/dist/compiled/next-server/app-page.runtime.prod.js:12:135321)
+    at e (/mnt/Drive_01/Bhuexpert01/adManager/node_modules/next/dist/compiled/next-server/app-page.runtime.prod.js:12:138055) {
+  digest: '1087434701'
+}
+Error: Minified React error #143; visit https://react.dev/errors/143 for the full message or use the non-minified dev environment for full errors and additional helpful warnings.
+    at Object.only (/mnt/Drive_01/Bhuexpert01/adManager/node_modules/next/dist/compiled/next-server/app-page.runtime.prod.js:12:185759)
+    at /mnt/Drive_01/Bhuexpert01/adManager/.next/server/app/(marketing)/features/page.js:1:3370
+    at em (/mnt/Drive_01/Bhuexpert01/adManager/node_modules/next/dist/compiled/next-server/app-page.runtime.prod.js:12:134808)
+    at e (/mnt/Drive_01/Bhuexpert01/adManager/node_modules/next/dist/compiled/next-server/app-page.runtime.prod.js:12:138055)
+    at e_ (/mnt/Drive_01/Bhuexpert01/adManager/node_modules/next/dist/compiled/next-server/app-page.runtime.prod.js:12:138168)
+    at em (/mnt/Drive_01/Bhuexpert01/adManager/node_modules/next/dist/compiled/next-server/app-page.runtime.prod.js:12:135321)
+    at e (/mnt/Drive_01/Bhuexpert01/adManager/node_modules/next/dist/compiled/next-server/app-page.runtime.prod.js:12:138055)
+    at e_ (/mnt/Drive_01/Bhuexpert01/adManager/node_modules/next/dist/compiled/next-server/app-page.runtime.prod.js:12:138168)
+    at em (/mnt/Drive_01/Bhuexpert01/adManager/node_modules/next/dist/compiled/next-server/app-page.runtime.prod.js:12:135321)
+    at e (/mnt/Drive_01/Bhuexpert01/adManager/node_modules/next/dist/compiled/next-server/app-page.runtime.prod.js:12:138055) {
+  digest: '1087434701'
+}
+Error: Minified React error #143; visit https://react.dev/errors/143 for the full message or use the non-minified dev environment for full errors and additional helpful warnings.
+    at Object.only (/mnt/Drive_01/Bhuexpert01/adManager/node_modules/next/dist/compiled/next-server/app-page.runtime.prod.js:12:185759)
+    at /mnt/Drive_01/Bhuexpert01/adManager/.next/server/app/(marketing)/features/page.js:1:3370
+    at em (/mnt/Drive_01/Bhuexpert01/adManager/node_modules/next/dist/compiled/next-server/app-page.runtime.prod.js:12:134808)
+    at e (/mnt/Drive_01/Bhuexpert01/adManager/node_modules/next/dist/compiled/next-server/app-page.runtime.prod.js:12:138055)
+    at e_ (/mnt/Drive_01/Bhuexpert01/adManager/node_modules/next/dist/compiled/next-server/app-page.runtime.prod.js:12:138168)
+    at em (/mnt/Drive_01/Bhuexpert01/adManager/node_modules/next/dist/compiled/next-server/app-page.runtime.prod.js:12:135321)
+    at e (/mnt/Drive_01/Bhuexpert01/adManager/node_modules/next/dist/compiled/next-server/app-page.runtime.prod.js:12:138055)
+    at e_ (/mnt/Drive_01/Bhuexpert01/adManager/node_modules/next/dist/compiled/next-server/app-page.runtime.prod.js:12:138168)
+    at em (/mnt/Drive_01/Bhuexpert01/adManager/node_modules/next/dist/compiled/next-server/app-page.runtime.prod.js:12:135321)
+    at e (/mnt/Drive_01/Bhuexpert01/adManager/node_modules/next/dist/compiled/next-server/app-page.runtime.prod.js:12:138055) {
+  digest: '1087434701'
+}
+Error: React.Children.only expected to receive a single React element child.
+    at Object.only (/mnt/Drive_01/Bhuexpert01/adManager/node_modules/next/dist/compiled/next-server/app-page.runtime.prod.js:12:106906)
+    at /mnt/Drive_01/Bhuexpert01/adManager/.next/server/chunks/929.js:1:2752
+    at nj (/mnt/Drive_01/Bhuexpert01/adManager/node_modules/next/dist/compiled/next-server/app-page.runtime.prod.js:12:46252)
+    at nM (/mnt/Drive_01/Bhuexpert01/adManager/node_modules/next/dist/compiled/next-server/app-page.runtime.prod.js:12:60840)
+    at nL (/mnt/Drive_01/Bhuexpert01/adManager/node_modules/next/dist/compiled/next-server/app-page.runtime.prod.js:12:64547)
+    at nI (/mnt/Drive_01/Bhuexpert01/adManager/node_modules/next/dist/compiled/next-server/app-page.runtime.prod.js:12:47011)
+    at nM (/mnt/Drive_01/Bhuexpert01/adManager/node_modules/next/dist/compiled/next-server/app-page.runtime.prod.js:12:60863)
+    at nL (/mnt/Drive_01/Bhuexpert01/adManager/node_modules/next/dist/compiled/next-server/app-page.runtime.prod.js:12:64547)
+    at nI (/mnt/Drive_01/Bhuexpert01/adManager/node_modules/next/dist/compiled/next-server/app-page.runtime.prod.js:12:47011)
+    at nM (/mnt/Drive_01/Bhuexpert01/adManager/node_modules/next/dist/compiled/next-server/app-page.runtime.prod.js:12:60863) {
+  digest: '3916036678'
+}
+
+Error occurred prerendering page "/features". Read more: https://nextjs.org/docs/messages/prerender-error
+
+Error: Minified React error #143; visit https://react.dev/errors/143 for the full message or use the non-minified dev environment for full errors and additional helpful warnings.
+    at Object.only (/mnt/Drive_01/Bhuexpert01/adManager/node_modules/next/dist/compiled/next-server/app-page.runtime.prod.js:12:185759)
+    at /mnt/Drive_01/Bhuexpert01/adManager/.next/server/app/(marketing)/features/page.js:1:3370
+    at em (/mnt/Drive_01/Bhuexpert01/adManager/node_modules/next/dist/compiled/next-server/app-page.runtime.prod.js:12:134808)
+    at e (/mnt/Drive_01/Bhuexpert01/adManager/node_modules/next/dist/compiled/next-server/app-page.runtime.prod.js:12:138055)
+    at e_ (/mnt/Drive_01/Bhuexpert01/adManager/node_modules/next/dist/compiled/next-server/app-page.runtime.prod.js:12:138168)
+    at em (/mnt/Drive_01/Bhuexpert01/adManager/node_modules/next/dist/compiled/next-server/app-page.runtime.prod.js:12:135321)
+    at e (/mnt/Drive_01/Bhuexpert01/adManager/node_modules/next/dist/compiled/next-server/app-page.runtime.prod.js:12:138055)
+    at e_ (/mnt/Drive_01/Bhuexpert01/adManager/node_modules/next/dist/compiled/next-server/app-page.runtime.prod.js:12:138168)
+    at em (/mnt/Drive_01/Bhuexpert01/adManager/node_modules/next/dist/compiled/next-server/app-page.runtime.prod.js:12:135321)
+    at e (/mnt/Drive_01/Bhuexpert01/adManager/node_modules/next/dist/compiled/next-server/app-page.runtime.prod.js:12:138055)
+Error: React.Children.only expected to receive a single React element child.
+    at Object.only (/mnt/Drive_01/Bhuexpert01/adManager/node_modules/next/dist/compiled/next-server/app-page.runtime.prod.js:12:106906)
+    at /mnt/Drive_01/Bhuexpert01/adManager/.next/server/chunks/929.js:1:2752
+    at nj (/mnt/Drive_01/Bhuexpert01/adManager/node_modules/next/dist/compiled/next-server/app-page.runtime.prod.js:12:46252)
+    at nM (/mnt/Drive_01/Bhuexpert01/adManager/node_modules/next/dist/compiled/next-server/app-page.runtime.prod.js:12:60840)
+    at nL (/mnt/Drive_01/Bhuexpert01/adManager/node_modules/next/dist/compiled/next-server/app-page.runtime.prod.js:12:64547)
+    at nI (/mnt/Drive_01/Bhuexpert01/adManager/node_modules/next/dist/compiled/next-server/app-page.runtime.prod.js:12:47011)
+    at nM (/mnt/Drive_01/Bhuexpert01/adManager/node_modules/next/dist/compiled/next-server/app-page.runtime.prod.js:12:60863)
+    at nL (/mnt/Drive_01/Bhuexpert01/adManager/node_modules/next/dist/compiled/next-server/app-page.runtime.prod.js:12:64547)
+    at nI (/mnt/Drive_01/Bhuexpert01/adManager/node_modules/next/dist/compiled/next-server/app-page.runtime.prod.js:12:47011)
+    at nM (/mnt/Drive_01/Bhuexpert01/adManager/node_modules/next/dist/compiled/next-server/app-page.runtime.prod.js:12:60863) {
+  digest: '3916036678'
+}
+
+Error occurred prerendering page "/". Read more: https://nextjs.org/docs/messages/prerender-error
+
+Error: React.Children.only expected to receive a single React element child.
+    at Object.only (/mnt/Drive_01/Bhuexpert01/adManager/node_modules/next/dist/compiled/next-server/app-page.runtime.prod.js:12:106906)
+    at /mnt/Drive_01/Bhuexpert01/adManager/.next/server/chunks/929.js:1:2752
+    at nj (/mnt/Drive_01/Bhuexpert01/adManager/node_modules/next/dist/compiled/next-server/app-page.runtime.prod.js:12:46252)
+    at nM (/mnt/Drive_01/Bhuexpert01/adManager/node_modules/next/dist/compiled/next-server/app-page.runtime.prod.js:12:60840)
+    at nL (/mnt/Drive_01/Bhuexpert01/adManager/node_modules/next/dist/compiled/next-server/app-page.runtime.prod.js:12:64547)
+    at nI (/mnt/Drive_01/Bhuexpert01/adManager/node_modules/next/dist/compiled/next-server/app-page.runtime.prod.js:12:47011)
+    at nM (/mnt/Drive_01/Bhuexpert01/adManager/node_modules/next/dist/compiled/next-server/app-page.runtime.prod.js:12:60863)
+    at nL (/mnt/Drive_01/Bhuexpert01/adManager/node_modules/next/dist/compiled/next-server/app-page.runtime.prod.js:12:64547)
+    at nI (/mnt/Drive_01/Bhuexpert01/adManager/node_modules/next/dist/compiled/next-server/app-page.runtime.prod.js:12:47011)
+    at nM (/mnt/Drive_01/Bhuexpert01/adManager/node_modules/next/dist/compiled/next-server/app-page.runtime.prod.js:12:60863)
+Error: React.Children.only expected to receive a single React element child.
+    at Object.only (/mnt/Drive_01/Bhuexpert01/adManager/node_modules/next/dist/compiled/next-server/app-page.runtime.prod.js:12:106906)
+    at /mnt/Drive_01/Bhuexpert01/adManager/.next/server/chunks/929.js:1:2752
+    at nj (/mnt/Drive_01/Bhuexpert01/adManager/node_modules/next/dist/compiled/next-server/app-page.runtime.prod.js:12:46252)
+    at nM (/mnt/Drive_01/Bhuexpert01/adManager/node_modules/next/dist/compiled/next-server/app-page.runtime.prod.js:12:60840)
+    at nL (/mnt/Drive_01/Bhuexpert01/adManager/node_modules/next/dist/compiled/next-server/app-page.runtime.prod.js:12:64547)
+    at nI (/mnt/Drive_01/Bhuexpert01/adManager/node_modules/next/dist/compiled/next-server/app-page.runtime.prod.js:12:47011)
+    at nM (/mnt/Drive_01/Bhuexpert01/adManager/node_modules/next/dist/compiled/next-server/app-page.runtime.prod.js:12:60863)
+    at nL (/mnt/Drive_01/Bhuexpert01/adManager/node_modules/next/dist/compiled/next-server/app-page.runtime.prod.js:12:64547)
+    at nI (/mnt/Drive_01/Bhuexpert01/adManager/node_modules/next/dist/compiled/next-server/app-page.runtime.prod.js:12:47011)
+    at nM (/mnt/Drive_01/Bhuexpert01/adManager/node_modules/next/dist/compiled/next-server/app-page.runtime.prod.js:12:60863) {
+  digest: '3916036678'
+}
+
+Error occurred prerendering page "/analyse". Read more: https://nextjs.org/docs/messages/prerender-error
+
+Error: React.Children.only expected to receive a single React element child.
+    at Object.only (/mnt/Drive_01/Bhuexpert01/adManager/node_modules/next/dist/compiled/next-server/app-page.runtime.prod.js:12:106906)
+    at /mnt/Drive_01/Bhuexpert01/adManager/.next/server/chunks/929.js:1:2752
+    at nj (/mnt/Drive_01/Bhuexpert01/adManager/node_modules/next/dist/compiled/next-server/app-page.runtime.prod.js:12:46252)
+    at nM (/mnt/Drive_01/Bhuexpert01/adManager/node_modules/next/dist/compiled/next-server/app-page.runtime.prod.js:12:60840)
+    at nL (/mnt/Drive_01/Bhuexpert01/adManager/node_modules/next/dist/compiled/next-server/app-page.runtime.prod.js:12:64547)
+    at nI (/mnt/Drive_01/Bhuexpert01/adManager/node_modules/next/dist/compiled/next-server/app-page.runtime.prod.js:12:47011)
+    at nM (/mnt/Drive_01/Bhuexpert01/adManager/node_modules/next/dist/compiled/next-server/app-page.runtime.prod.js:12:60863)
+    at nL (/mnt/Drive_01/Bhuexpert01/adManager/node_modules/next/dist/compiled/next-server/app-page.runtime.prod.js:12:64547)
+    at nI (/mnt/Drive_01/Bhuexpert01/adManager/node_modules/next/dist/compiled/next-server/app-page.runtime.prod.js:12:47011)
+    at nM (/mnt/Drive_01/Bhuexpert01/adManager/node_modules/next/dist/compiled/next-server/app-page.runtime.prod.js:12:60863)
+ ✓ Generating static pages (18/18)
+
+> Export encountered errors on following paths:
+	/(dashboard)/analyse/page: /analyse
+	/(dashboard)/campaigns/page: /campaigns
+	/(dashboard)/dashboard/page: /dashboard
+	/(dashboard)/saved/page: /saved
+	/(dashboard)/settings/page: /settings
+	/(marketing)/features/page: /features
+	/(marketing)/page: /
+	/(marketing)/templates/page: /templates

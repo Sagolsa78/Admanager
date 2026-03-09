@@ -1,0 +1,427 @@
+AdForge
+Frontend Architecture & Build Blueprint
+Next.js 14 · Tailwind CSS · App Router
+Version 1.0  ·  March 2026
+1. Project Overview
+AdForge is an AI-powered Brand DNA analysis platform. Users submit a website URL and a LinkedIn profile URL; the backend scrapes and analyses both, then returns 5 distinct brand positioning contexts. Users rate, edit, provide feedback, re-analyse, export, and save their results to a personal dashboard that doubles as an ad campaign manager.
+1.1  Tech Stack
+Framework
+Next.js 14 (App Router)
+Styling
+Tailwind CSS (utility-first, no component library required)
+Language
+TypeScript
+Auth
+NextAuth.js v5 — Email/Password, Google OAuth, LinkedIn OAuth, Magic Link
+State
+Zustand for global store; React Query (TanStack) for server state / API calls
+Animations
+Framer Motion for page transitions, staggered reveals, loading states
+Forms
+React Hook Form + Zod for validation
+Icons
+Lucide React
+Fonts
+Bricolage Grotesque (display) + DM Sans (body) via next/font
+PDF Export
+react-pdf or jsPDF for context export
+API calls
+All via /app/api/** route handlers; fetch with React Query
+1.2  Design System
+Background
+#0D0D0D (near black)
+Surface
+#161616 (cards, panels)
+Surface 2
+#1F1F1F (hover, input backgrounds)
+Primary
+#E8500A (orange — all CTAs, accents, highlights)
+Primary Hover
+#FF6120
+Text Primary
+#F5F5F5
+Text Secondary
+#A0A0A0
+Border
+#2A2A2A
+Success
+#22C55E
+Warning
+#F59E0B
+Error
+#EF4444
+Radius
+8px cards, 6px inputs, 999px pills/badges
+Shadow
+0 4px 24px rgba(232, 80, 10, 0.08) for elevated cards
+Typography scale: Display 48–72px · H1 36px · H2 28px · H3 22px · Body 16px · Small 13px · All in Bricolage Grotesque for headings, DM Sans for body.
+2. File & Folder Structure
+Use Next.js 14 App Router. Every route is a folder under /app. Shared UI lives in /components, organised by category.
+Path
+Purpose
+app/
+Root layout, global metadata, providers
+app/(marketing)/
+Route group: landing, features, templates, pricing
+app/(auth)/sign-in/
+Sign in page
+app/(auth)/sign-up/
+Sign up page
+app/(auth)/verify/
+Magic link verification
+app/(dashboard)/dashboard/
+Main dashboard — ad manager home
+app/(dashboard)/analyse/
+Core analysis tool flow
+app/(dashboard)/campaigns/
+Campaign manager
+app/(dashboard)/saved/
+Saved contexts library
+app/(dashboard)/settings/
+Account & billing
+app/api/auth/[...nextauth]/
+NextAuth route handler
+app/api/analyse/
+POST: trigger analysis, GET: poll status
+app/api/contexts/
+CRUD for saved contexts
+app/api/campaigns/
+CRUD for campaigns
+components/ui/
+Base: Button, Input, Card, Badge, Modal, Tooltip
+components/layout/
+Navbar, Sidebar, Footer, PageWrapper
+components/marketing/
+Hero, FeatureGrid, HowItWorks, PricingCard, TestimonialRow
+components/analyse/
+URLForm, LoadingOrb, ContextCard, FeedbackPanel, ExportBar
+components/dashboard/
+StatsBar, AnalysisTable, CampaignBoard, QuickLaunch
+components/auth/
+AuthCard, OAuthButton, MagicLinkForm
+lib/auth.ts
+NextAuth config & providers
+lib/api.ts
+Typed fetch wrappers for all API routes
+lib/store.ts
+Zustand store (user, analysis state, campaigns)
+lib/validators.ts
+Zod schemas for all forms
+styles/globals.css
+Tailwind base, CSS vars, custom utilities
+public/
+Logo SVG, OG image, favicons
+3. Pages — Detailed Specifications
+3.1  Landing Page  /
+The landing page is the primary conversion surface. Dark background, orange accent energy matching the AdForge reference screenshot but with improved layout density and motion.
+Sections (top to bottom):
+Navbar — Logo left, links centre (Features, Templates, Pricing), Sign In + Start Free right. Sticky on scroll, background blurs via backdrop-filter. On mobile: hamburger drawer.
+Hero — Full-viewport height. Left: eyebrow badge (NOW IN PUBLIC BETA), H1 headline with orange accent words, subtext paragraph, two CTA buttons (Get Started Free → /sign-up, Watch Demo → modal). Right: animated product UI mockup (the calendar/post-queue screenshot, replicated as a live HTML/CSS component, not an image).
+Social Proof Bar — Scrolling marquee of logos or a row of 3 stat counters: 30+ Posts Generated · All Content Scheduled · 100% Automated.
+How It Works — 3-step horizontal flow: Enter URLs → AI Analyses → 5 Contexts Ready. Each step has an icon, number pill, short description. Animated connector line between steps.
+Features Grid — 2x3 card grid. Each card: icon, bold title, 2-line description. Key features: Brand DNA Analysis, 5 Context Variations, LinkedIn + Web Scraping, Rating & Feedback Loop, One-Click Export, Dashboard History.
+Context Preview — Animated carousel or tab switcher showing a sample of what a generated context card looks like. Gives users a taste of the output before signing up.
+Pricing Teaser — 3 pricing tiers side by side (Free / Pro / Agency). Highlight the Pro tier. Each card lists features as bullet points. CTA per card. Link to full /pricing page.
+Footer — Logo, nav links, social icons, copyright. Two-column layout.
+3.2  Features Page  /features
+Deeper narrative on what AdForge does. Target: users who landed on the site and want to understand capabilities before signing up.
+Hero banner — H1 + short paragraph, single CTA.
+Feature deep-dives — Full-width alternating sections (image/illustration left, text right, then flip). Cover: Analysis Engine, Context Generation, Rating & Feedback Loop, Export & Integrations, Dashboard & History.
+Tech trust section — icons/logos for LinkedIn, website scraping, AI models, encryption.
+CTA section — 'Ready to discover your Brand DNA?' with sign-up button.
+3.3  Templates Page  /templates
+A gallery of context output templates — showing users the different structural formats their Brand DNA can be presented in.
+Filter bar — tabs or pills: All / LinkedIn Post / Website Copy / Ad Creative / Email / Blog.
+Card grid — Each card shows a template preview (styled content snippet), template name, category badge, and a 'Use This Template' button.
+Clicking a card — Opens a modal with full preview and a CTA to start an analysis using that template.
+Lock state — Some templates are Pro-only, shown with a padlock badge and upgrade prompt.
+3.4  Auth Pages  /sign-in  &  /sign-up
+Minimal, centred card layout. Dark background with a subtle orange radial glow behind the card.
+Sign Up card contains:
+App logo + 'Create your account' heading
+Google OAuth button — icon + 'Continue with Google'
+LinkedIn OAuth button — icon + 'Continue with LinkedIn'
+Divider: 'or continue with email'
+Email input field
+Password input field (with show/hide toggle)
+Submit button: 'Create Account'
+Magic link option: 'Prefer a passwordless link? Send magic link' — toggles the form to just email + send button
+Footer: 'Already have an account? Sign in'
+Sign In card is identical minus name field. Add 'Forgot password?' link.
+Validation: all fields validated with Zod on submit. Inline error messages below each field. Loading spinner inside the submit button during auth.
+After successful auth: redirect to /dashboard.
+3.5  Analyse Page  /analyse
+This is the core product experience. The most complex page. It has 4 distinct phases that are rendered in place (no page navigation between phases).
+Phase 1 — Input Form
+Centred card, max-width 640px
+H2: 'Analyse Your Brand DNA'
+Input 1: Website URL — label, placeholder 'https://yourwebsite.com', validation for valid URL
+Input 2: LinkedIn Profile URL — label, placeholder 'https://linkedin.com/in/yourhandle', validation
+Large CTA button: 'Analyse Now →' — full width, orange
+On submit: validates both URLs with Zod, then fires POST /api/analyse, transitions to Phase 2
+Phase 2 — Loading / Lazy Analysis
+Replace form with a full-screen loading experience (not a spinner — make it visual)
+Animated 'orb' or pulsing ring in centre of screen
+Status messages cycle every 2–3 seconds: 'Scanning your website...' → 'Reading LinkedIn profile...' → 'Extracting brand signals...' → 'Mapping positioning angles...' → 'Generating 5 contexts...'
+Progress bar or segmented dots showing completion stages
+Poll GET /api/analyse?id={jobId} every 3 seconds until status === 'complete'
+Estimated time label: 'Usually takes 20–40 seconds'
+Phase 3 — 5 Context Cards
+On completion: transition from loading orb to card grid with staggered fade-in (Framer Motion: each card delays by 150ms * index)
+Layout: vertical stack on mobile, 2-column grid on desktop (with card 5 centred below)
+Each Context Card contains:
+Context number badge (e.g. '01') + context title
+Full context body text (collapsible — show first 4 lines, 'Read more' expands)
+Star rating row (1–5 stars) — user rates relevance of this context
+Thumbs up / Thumbs down quick feedback
+'Edit' icon button — opens inline textarea to refine the context text
+'Save' button — saves this individual context to /saved
+Phase 4 — Feedback & Actions Bar
+Sticky bottom bar that appears after cards load
+Left: 'Submit Feedback' — opens a modal with a textarea for overall feedback + submit button (POST /api/feedback)
+Centre: 'Re-analyse' — clears state, returns to Phase 1 form
+Right: 'Export PDF' — generates a PDF of all 5 contexts + ratings
+Far right: 'Save All to Dashboard' — bulk saves all contexts
+4. Dashboard  /dashboard
+The dashboard is an ad manager hub. It uses a persistent left sidebar layout (collapsible on mobile). The main content area changes based on the active nav item.
+4.1  Layout Shell
+Left Sidebar (240px wide, collapsible to 64px icon-only on mobile)
+Logo + app name at top
+Nav items with icons: Dashboard, New Analysis, My Analyses, Campaigns, Saved Contexts, Templates, Settings
+User avatar + name at bottom with dropdown (Account, Billing, Sign Out)
+Main content area fills remaining width with 24px padding
+Top bar: page title left, 'New Analysis' CTA button right, notification bell
+4.2  Dashboard Home  /dashboard
+Stats Bar (4 metric cards in a row):
+Total Analyses — count with trend arrow
+Active Campaigns — count
+Saved Contexts — count
+Credits Remaining — number with usage bar
+Quick Launch Card:
+Prominent card: 'Start a New Analysis' with website + LinkedIn URL inputs inline and an Analyse button — same as /analyse Phase 1 but embedded in dashboard
+Recent Analyses Table:
+Columns: Brand (favicon + name), Date, Status (badge: Complete / Processing / Failed), Contexts (count), Actions (View, Re-analyse, Delete)
+Pagination: show 10 per page
+Empty state: illustration + 'No analyses yet. Run your first one above.'
+Campaign Board (Kanban):
+3 columns: Draft · Active · Completed
+Each campaign card: brand name, context title, date, status badge, edit icon
+'+ New Campaign' button in each column header
+Drag-and-drop between columns (use @dnd-kit/core)
+4.3  My Analyses  /dashboard/analyses
+Full-page table of all past analyses
+Filter bar: search by brand name, filter by date range, filter by status
+Click a row: expands inline or navigates to /analyse?id={id} to view the 5 contexts again
+4.4  Saved Contexts  /dashboard/saved
+Grid of saved context cards
+Filter by star rating, by context type, by brand
+Bulk select + export, or bulk delete
+4.5  Campaigns  /dashboard/campaigns
+Full kanban board (same as dashboard widget but full-page)
+Click a campaign card: opens a slide-over panel with full context text, linked brand, notes field, status selector, and associated ad creatives (placeholder slots)
+4.6  Settings  /dashboard/settings
+Tabs: Profile · Security · Billing · Integrations · Notifications
+Profile tab: name, email, avatar upload, LinkedIn handle
+Security tab: change password, active sessions, 2FA toggle
+Billing tab: current plan, usage meter, upgrade/downgrade CTA, invoice history
+Integrations tab: connect LinkedIn (OAuth), connect Google, API key display
+5. Component Specifications
+5.1  Button Component
+Variants
+primary · secondary · ghost · destructive · icon
+Sizes
+sm (32px h) · md (40px h) · lg (48px h)
+States
+default · hover (brightness-110) · active (scale 0.97) · disabled (opacity 50%) · loading (spinner inside)
+Primary style
+bg-[#E8500A] text-white rounded-md font-semibold
+Secondary style
+border border-[#2A2A2A] text-white bg-transparent hover:bg-[#1F1F1F]
+5.2  ContextCard Component
+Props
+context: { id, number, title, body, rating, saved }
+Container
+bg-[#161616] border border-[#2A2A2A] rounded-xl p-6 space-y-4
+Number badge
+text-[#E8500A] font-mono text-sm bg-[#E8500A]/10 px-2 py-0.5 rounded
+Title
+Bricolage Grotesque, 20px, white, font-semibold
+Body
+DM Sans, 14px, #A0A0A0, line-clamp-4 with expand toggle
+Star rating
+5 clickable stars, filled = orange, empty = #2A2A2A
+Quick actions
+row of icon buttons: thumbs-up, thumbs-down, edit, save — 32px each
+Edit mode
+replaces body text with a <textarea> pre-filled with context body, Save/Cancel buttons
+Animation
+Framer Motion: initial opacity 0, y 20 → animate opacity 1, y 0, delay = index * 0.15s
+5.3  LoadingOrb Component
+Container
+Full viewport, flex-col center, bg-[#0D0D0D]
+Orb
+80px circle, radial gradient orange→transparent, 3 concentric rings pulsing outward via CSS keyframes
+Status text
+Bricolage Grotesque 18px white, animates between status messages using Framer Motion AnimatePresence
+Progress
+Thin 2px bar at bottom, orange fill, width transitions with CSS transition over 3s intervals
+Estimated time
+Small text, #A0A0A0, below progress bar
+5.4  Navbar Component
+Position
+sticky top-0, z-50
+Background
+bg-[#0D0D0D]/80 backdrop-blur-md border-b border-[#2A2A2A]
+Logo
+AdForge wordmark: 'Ad' in white, 'Forge' in #E8500A, Bricolage Grotesque bold 20px
+Nav links
+Hidden on mobile, flex gap-8 on md+. Text-[#A0A0A0] hover:text-white transition
+CTA buttons
+Sign In: ghost variant. Start Free: primary variant.
+Mobile
+Hamburger icon → full-screen drawer with nav links stacked vertically
+Scroll behaviour
+Adds shadow on scroll via scroll event listener
+6. API Integration Contracts
+All API routes are Next.js Route Handlers under /app/api/. The frontend communicates exclusively through these — never calling the Python backend directly from the client.
+Method
+Route
+Body / Params
+Response / Notes
+POST
+/api/analyse
+{ websiteUrl, linkedinUrl }
+Returns { jobId }. Queues analysis job on backend.
+GET
+/api/analyse
+?jobId=xxx
+Returns { status: 'pending'|'complete'|'failed', contexts: [] }. Poll every 3s.
+POST
+/api/contexts/save
+{ context, analysisId }
+Saves a context to user's library. Returns { savedId }.
+GET
+/api/contexts
+?page=1&limit=20
+Returns paginated saved contexts for the current user.
+DELETE
+/api/contexts/:id
+—
+Deletes a saved context.
+PATCH
+/api/contexts/:id
+{ body, rating }
+Updates context body or rating.
+POST
+/api/feedback
+{ analysisId, message, contextRatings }
+Submits overall feedback + per-context ratings.
+GET
+/api/analyses
+?page=1
+Returns all past analyses for the current user.
+POST
+/api/campaigns
+{ title, contextId, status }
+Creates a new campaign from a context.
+PATCH
+/api/campaigns/:id
+{ status, notes }
+Updates campaign (e.g. column change in kanban).
+GET
+/api/campaigns
+—
+Returns all campaigns for the user.
+DELETE
+/api/campaigns/:id
+—
+Deletes a campaign.
+7. State Management
+Use a split strategy: Zustand for local UI and app-wide client state, React Query for all server/API state.
+7.1  Zustand Store (lib/store.ts)
+analysePhase
+'input' | 'loading' | 'results' — controls which phase renders in /analyse
+currentJobId
+string | null — ID of the active analysis job
+contexts
+Context[] — the 5 returned contexts
+editingContextId
+string | null — which card is in edit mode
+sidebarCollapsed
+boolean — dashboard sidebar state
+user
+{ id, name, email, avatar } | null
+7.2  React Query Keys
+['analyses'] — all past analyses
+['analysis', jobId] — single analysis, used for polling
+['contexts'] — saved contexts
+['campaigns'] — all campaigns
+['user'] — current user profile
+8. Animation Guidelines
+All animations via Framer Motion. Keep them purposeful — every animation must communicate something.
+Page transitions
+Wrap each page in a <motion.div> with initial={{ opacity: 0, y: 8 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0, y: -8 }} transition={{ duration: 0.25 }}
+Context cards stagger
+Parent: variants with staggerChildren: 0.15. Child: variants fade+slide up.
+Loading orb rings
+3 rings: CSS keyframes scale 1→1.6 + opacity 1→0, staggered by 0.5s each.
+Status text cycle
+AnimatePresence with key={statusMessage}: exit slides up + fades, enter slides up from below.
+Sidebar collapse
+motion.div with animate={{ width: collapsed ? 64 : 240 }} transition={{ type: 'spring', stiffness: 300 }}
+Button press
+whileTap={{ scale: 0.97 }} on all interactive buttons.
+Star rating
+whileHover={{ scale: 1.2 }} on each star icon.
+Card hover
+whileHover={{ y: -2, boxShadow: '0 8px 32px rgba(232,80,10,0.12)' }}
+9. Recommended Build Order
+Build in this order to unblock backend integration as early as possible.
+Phase
+What to Build
+Details
+1
+Project Setup
+Next.js 14 init, Tailwind config, CSS vars, font setup (Bricolage Grotesque + DM Sans), globals.css, layout.tsx with providers
+2
+Design System
+Button, Input, Card, Badge, Modal base components. No logic — just styled shells with all variants.
+3
+Auth Pages
+Sign In + Sign Up pages with NextAuth. All 4 methods working. Redirect to /dashboard on success.
+4
+Landing Page
+Navbar + Hero + How It Works + Features Grid + Footer. Mock the product UI mockup with static HTML.
+5
+Analyse Page
+All 4 phases with mock data. Wire up Zustand store. Use hardcoded context objects to test rendering.
+6
+API Routes
+Build route handlers that proxy to Python backend. Add React Query hooks for each.
+7
+Dashboard Shell
+Sidebar layout, top bar, route group. Stats bar with placeholder numbers.
+8
+Dashboard Modules
+Recent Analyses table, Kanban campaign board, Saved contexts grid.
+9
+Live Integration
+Replace mock data with real API calls. Test full flow end-to-end.
+10
+Polish
+Framer Motion animations, mobile responsiveness, loading/empty/error states, SEO metadata.
+10. Key Technical Decisions & Notes
+10.1  Polling Strategy for Analysis
+The /analyse page fires a POST to start the job, receives a jobId, then polls GET /api/analyse?jobId=xxx every 3 seconds using React Query's refetchInterval. When status === 'complete', React Query stops polling and the Zustand store transitions analysePhase to 'results'. This avoids WebSocket complexity while keeping the UX responsive.
+10.2  PDF Export
+Use jsPDF + html2canvas: render all 5 context cards to canvas, then embed in a PDF with the AdForge logo header. Alternatively, use a hidden <div> styled for print and trigger window.print() with a dedicated print stylesheet. jsPDF gives more control.
+10.3  Kanban Drag & Drop
+Use @dnd-kit/core — it is accessible, performant, and has no default styling. Optimistically update the campaign status in React Query cache on drop, then PATCH /api/campaigns/:id in the background. Roll back on error.
+10.4  Mobile Responsiveness
+All pages must be fully responsive. Dashboard sidebar collapses to a bottom tab bar on mobile (5 icons: Home, Analyse, Campaigns, Saved, Settings). Context cards stack to single column. Landing page hero stacks vertically on mobile with product mockup below the text.
+10.5  Performance
+Use next/image for all images.
+All dashboard modules are loaded with dynamic(() => import(...), { ssr: false }) to keep the initial JS bundle small.
+React Query caches all GET responses — no unnecessary refetches.
+Tailwind purges unused classes — final CSS bundle under 20KB.
+AdForge Frontend Blueprint · v1.0 · March 2026
