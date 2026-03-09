@@ -1,0 +1,788 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>AdForge - Home</title>
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+      tailwind.config = {
+        theme: {
+          extend: {
+            colors: {
+              primary: "#E8500A",
+              border: "#2A2A2A",
+              surface: "#161616",
+              "surface-2": "#1F1F1F",
+              "text-secondary": "#A0A0A0",
+            },
+            fontFamily: {
+              display: ["Inter", "sans-serif"],
+              sans: ["Inter", "sans-serif"],
+            },
+          },
+        },
+      };
+    </script>
+    <!-- Lucide Icons -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <style>
+      @import url("https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap");
+      body {
+        background-color: #0d0d0d;
+        color: white;
+        font-family: "Inter", sans-serif;
+        margin: 0;
+        padding: 0;
+        overflow-x: hidden;
+      }
+      .shadow-glow {
+        box-shadow: 0 0 15px rgba(232, 80, 10, 0.15);
+      }
+      .bg-clip-text {
+        -webkit-background-clip: text;
+        background-clip: text;
+        color: transparent;
+      }
+      .container {
+        max-width: 1280px;
+      }
+    </style>
+  </head>
+  <body class="bg-[#0D0D0D] text-white antialiased">
+    <!-- Navbar -->
+    <header
+      class="fixed top-0 inset-x-0 z-50 transition-all duration-300 bg-[#0D0D0D]/80 backdrop-blur-md border-b border-[#2A2A2A] shadow-glow"
+    >
+      <div
+        class="container mx-auto px-4 md:px-8 h-16 flex items-center justify-between"
+      >
+        <a href="/" class="flex items-center gap-1 group">
+          <span
+            class="text-xl font-bold font-display text-white tracking-tight group-hover:opacity-90 transition-opacity"
+          >
+            Ad<span class="text-primary">Forge</span>
+          </span>
+        </a>
+
+        <nav class="hidden md:flex items-center gap-8">
+          <a
+            href="#features"
+            class="text-sm font-medium text-text-secondary hover:text-white transition-colors"
+            >Features</a
+          >
+          <a
+            href="#templates"
+            class="text-sm font-medium text-text-secondary hover:text-white transition-colors"
+            >Templates</a
+          >
+          <a
+            href="#pricing"
+            class="text-sm font-medium text-text-secondary hover:text-white transition-colors"
+            >Pricing</a
+          >
+        </nav>
+
+        <div class="flex items-center gap-4">
+          <a
+            href="/sign-in"
+            class="px-4 py-2 text-sm font-medium hover:bg-white/10 rounded-md transition-colors text-white"
+            >Sign In</a
+          >
+          <a
+            href="/sign-up"
+            class="px-4 py-2 text-sm font-medium bg-white text-black hover:bg-gray-200 rounded-md transition-colors"
+            >Start Free</a
+          >
+        </div>
+      </div>
+    </header>
+
+    <!-- Hero -->
+    <section
+      class="relative min-h-[calc(100vh-4rem)] flex items-center overflow-hidden pt-28 pb-24"
+    >
+      <!-- Glow background -->
+      <div
+        class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[800px] bg-primary/20 rounded-full blur-[120px] pointer-events-none opacity-50"
+      ></div>
+
+      <div class="container mx-auto px-4 md:px-8 relative z-10">
+        <div class="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
+          <!-- Text Content -->
+          <div class="flex flex-col items-start gap-6 max-w-xl">
+            <div
+              class="border border-[#E8500A]/30 text-[#E8500A] bg-transparent px-3 py-1.5 rounded-full text-xs font-semibold tracking-wide uppercase shadow-[0_0_15px_rgba(232,80,10,0.15)] inline-flex items-center"
+            >
+              <span
+                class="w-2 h-2 rounded-full bg-[#E8500A] mr-2 inline-block"
+              ></span>
+              Now in public beta
+            </div>
+
+            <h1
+              class="text-4xl md:text-5xl lg:text-6xl font-bold font-display leading-tight tracking-tight text-white mb-4"
+            >
+              Let
+              <span
+                class="bg-gradient-to-r from-[#FF8A50] to-[#E8500A] bg-clip-text"
+                >AI</span
+              >
+              create & post an <br />
+              <span
+                class="bg-gradient-to-r from-[#FF8A50] to-[#E8500A] bg-clip-text"
+                >entire month's content</span
+              ><br />
+              for you in
+              <span
+                class="bg-gradient-to-r from-[#FF8A50] to-[#E8500A] bg-clip-text"
+                >30 minutes.</span
+              >
+            </h1>
+
+            <p
+              class="text-base md:text-lg text-[#A0A0A0] leading-relaxed max-w-[95%] font-normal mb-6"
+            >
+              Simply enter your website URL, and our AI agent will generate,
+              write, and schedule all your social media creatives, blog posts,
+              and more. Just sit back and watch as your content calendar fills
+              <span class="animate-pulse">||</span>
+            </p>
+
+            <div class="flex flex-col sm:flex-row gap-4 w-full sm:w-auto mt-2">
+              <a
+                href="/sign-up"
+                class="group bg-gradient-to-r from-[#FF8A50] to-[#E8500A] hover:from-[#FF9B6A] hover:to-[#FF6120] text-white font-semibold border-none px-8 py-3 rounded-lg shadow-[0_0_20px_rgba(232,80,10,0.3)] inline-flex items-center justify-center"
+              >
+                Get Started Free
+                <i
+                  data-lucide="arrow-right"
+                  class="ml-2 h-5 w-5 group-hover:translate-x-1 transition-transform"
+                ></i>
+              </a>
+              <button
+                class="font-semibold px-8 py-3 rounded-lg border border-[#2A2A2A] hover:bg-[#1F1F1F] inline-flex items-center justify-center bg-transparent text-white"
+              >
+                <i data-lucide="play" class="mr-2 h-5 w-5"></i>
+                Watch Demo
+              </button>
+            </div>
+
+            <div
+              class="mt-8 text-[15px] text-[#E8500A] font-medium tracking-wide border-l border-transparent"
+            >
+              Automated Blogs, Social Media Posts & Scheduling
+            </div>
+          </div>
+
+          <!-- Mockup Interface (Right Side) -->
+          <div
+            class="relative lg:h-[600px] w-full flex items-center justify-center lg:justify-end"
+          >
+            <div
+              class="w-full max-w-[650px] bg-[#111111] border border-[#2A2A2A] rounded-2xl shadow-[0_0_40px_rgba(0,0,0,0.5)] overflow-hidden flex flex-col relative text-white"
+            >
+              <!-- Window Controls -->
+              <div
+                class="h-8 border-b border-[#2A2A2A] flex items-center px-4 bg-[#111111]"
+              >
+                <div class="flex gap-2">
+                  <div class="w-3 h-3 rounded-full bg-[#FF5F56]"></div>
+                  <div class="w-3 h-3 rounded-full bg-[#FFBD2E]"></div>
+                  <div class="w-3 h-3 rounded-full bg-[#27C93F]"></div>
+                </div>
+              </div>
+
+              <!-- Mockup Content Area -->
+              <div class="flex h-[420px]">
+                <!-- Sidebar -->
+                <div
+                  class="w-1/4 border-r border-[#2A2A2A] p-4 flex flex-col gap-6 bg-[#161616]"
+                >
+                  <div
+                    class="flex items-center gap-2 font-display font-bold text-lg"
+                  >
+                    <span
+                      class="w-6 h-6 rounded-full bg-gradient-to-br from-[#FF8A50] to-[#E8500A] flex items-center justify-center text-white text-xs"
+                      >👨‍🦰</span
+                    >
+                    AdForge
+                  </div>
+                  <div class="flex flex-col gap-3 text-sm text-[#A0A0A0]">
+                    <div class="flex items-center gap-2 text-white">
+                      <span>Post Queue</span>
+                    </div>
+                    <div class="flex items-center gap-2">
+                      <span>Scheduled</span>
+                    </div>
+                  </div>
+                  <div
+                    class="mt-2 p-2 rounded-lg bg-[#2A2A2A]/50 text-xs flex items-center gap-2 text-white border border-[#2A2A2A]"
+                  >
+                    <span
+                      class="text-white bg-[#E8500A] px-1 py-[1px] rounded-sm text-[10px] leading-none"
+                      >▣</span
+                    >
+                    30+ Posts Ready
+                  </div>
+                </div>
+
+                <!-- Main Content -->
+                <div class="flex-1 flex flex-col relative bg-[#1A1A1A]">
+                  <!-- Top Bar inside main -->
+                  <div
+                    class="border-b border-[#2A2A2A] p-4 flex flex-col gap-4"
+                  >
+                    <div
+                      class="flex justify-between text-xs text-[#A0A0A0] px-2 font-medium"
+                    >
+                      <span>M</span><span>T</span><span>W</span><span>T</span
+                      ><span>F</span><span>S</span><span>S</span>
+                    </div>
+                  </div>
+
+                  <!-- Calendar Grid -->
+                  <div
+                    class="flex-1 p-4 grid grid-cols-4 gap-3 relative overflow-hidden"
+                  >
+                    <!-- Column 1 -->
+                    <div class="flex flex-col gap-2">
+                      <span class="text-xs text-[#A0A0A0]">Mon</span>
+                      <div
+                        class="h-24 rounded-lg bg-[#242424] border border-[#333] flex flex-col relative shadow-sm overflow-hidden"
+                      >
+                        <div
+                          class="w-full h-1/2 bg-gradient-to-br from-blue-700 to-blue-900 border-b border-[#333] relative"
+                        >
+                          <div
+                            class="absolute top-1 left-1 bg-[#1A56DB] rounded-sm w-4 h-4 flex items-center justify-center text-[10px] font-bold"
+                          >
+                            f
+                          </div>
+                        </div>
+                        <div
+                          class="p-1 px-2 text-[10px] font-semibold leading-tight text-white mt-1"
+                        >
+                          5 Proven Home Workouts
+                        </div>
+                      </div>
+                      <div
+                        class="h-24 rounded-lg bg-[#242424] border border-[#333] flex flex-col relative shadow-sm overflow-hidden"
+                      >
+                        <div
+                          class="w-full h-1/2 bg-gradient-to-br from-sky-600 to-sky-800 border-b border-[#333] relative"
+                        >
+                          <div
+                            class="absolute top-1 left-1 bg-[#1A56DB] rounded-sm w-4 h-4 flex items-center justify-center text-[10px] font-bold"
+                          >
+                            in
+                          </div>
+                        </div>
+                        <div
+                          class="p-1 px-2 text-[10px] font-semibold leading-tight text-white mt-1"
+                        >
+                          Time to Train...
+                        </div>
+                      </div>
+                    </div>
+                    <!-- Column 2 -->
+                    <div class="flex flex-col gap-2">
+                      <span class="text-xs text-[#A0A0A0]">Tue</span>
+                      <div
+                        class="h-24 rounded-lg bg-[#242424] border border-[#333] flex flex-col relative shadow-sm overflow-hidden"
+                      >
+                        <div
+                          class="w-full h-1/2 bg-gradient-to-br from-orange-400 to-orange-600 border-b border-[#333] relative"
+                        >
+                          <div
+                            class="absolute top-1 left-1 bg-[#E8500A] rounded-sm w-4 h-4 flex items-center justify-center text-[10px] font-bold"
+                          >
+                            f
+                          </div>
+                        </div>
+                        <div
+                          class="p-1 px-2 text-[10px] font-semibold leading-tight text-white mt-1"
+                        >
+                          New Feature Drop
+                        </div>
+                      </div>
+                      <div
+                        class="h-24 rounded-lg bg-[#242424] border border-[#333] flex flex-col relative shadow-sm overflow-hidden"
+                      >
+                        <div
+                          class="w-full h-1/2 bg-[#1A1A1A] border-b border-[#333] relative"
+                        >
+                          <span
+                            class="absolute top-1 left-1 text-[10px] font-bold"
+                            >X</span
+                          >
+                        </div>
+                        <div
+                          class="p-1 px-2 text-[10px] font-semibold leading-tight text-white mt-1"
+                        >
+                          Prototyping tips
+                        </div>
+                      </div>
+                    </div>
+                    <!-- Column 3 -->
+                    <div class="flex flex-col gap-2">
+                      <span class="text-xs text-[#A0A0A0]">Wed</span>
+                      <div
+                        class="h-24 rounded-lg bg-[#242424] border border-[#333] flex flex-col relative shadow-sm overflow-hidden"
+                      >
+                        <div
+                          class="w-full h-1/2 bg-gradient-to-br from-gray-600 to-gray-800 border-b border-[#333] relative"
+                        >
+                          <div
+                            class="absolute top-1 left-1 bg-[#1A56DB] rounded-sm w-4 h-4 flex items-center justify-center text-[10px] font-bold"
+                          >
+                            in
+                          </div>
+                        </div>
+                        <div
+                          class="p-1 px-2 text-[10px] font-semibold leading-tight text-white mt-1"
+                        >
+                          Happy Friday!
+                        </div>
+                      </div>
+                    </div>
+                    <!-- Column 4 -->
+                    <div class="flex flex-col gap-2">
+                      <span class="text-xs text-[#A0A0A0]">Thur</span>
+                      <div
+                        class="h-24 rounded-lg bg-[#242424] border border-[#333] flex flex-col relative shadow-sm overflow-hidden"
+                      >
+                        <div
+                          class="w-full h-1/2 bg-gradient-to-br from-green-600 to-green-800 border-b border-[#333] relative"
+                        >
+                          <div
+                            class="absolute top-1 left-1 bg-[#1A56DB] rounded-sm w-4 h-4 flex items-center justify-center text-[10px] font-bold"
+                          >
+                            f
+                          </div>
+                        </div>
+                        <div
+                          class="p-1 px-2 text-[10px] font-semibold leading-tight text-white mt-1"
+                        >
+                          Boost Your Brand...
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+
+                  <!-- Floating Popups -->
+                  <div
+                    class="absolute bottom-24 right-4 left-4 bg-[#FFEEE1] p-4 rounded-xl shadow-[0_10px_40px_rgba(232,80,10,0.15)] flex items-start gap-4 text-black z-20"
+                  >
+                    <div
+                      class="w-12 h-12 rounded-full bg-[#E8500A] flex-shrink-0 flex items-center justify-center shadow-lg pt-1 relative overflow-hidden border-2 border-white"
+                    >
+                      <!-- Document icon abstraction -->
+                      <div
+                        class="w-7 h-5 bg-white rounded-md relative flex justify-center mt-1"
+                      >
+                        <div
+                          class="w-1.5 h-1.5 bg-[#E8500A] rounded-full absolute top-[3px] left-[5px]"
+                        ></div>
+                        <div
+                          class="w-1.5 h-1.5 bg-[#E8500A] rounded-full absolute top-[3px] right-[5px]"
+                        ></div>
+                        <div
+                          class="w-3 h-0.5 bg-[#E8500A] rounded-full absolute bottom-[3px]"
+                        ></div>
+                      </div>
+                    </div>
+                    <div class="pr-4">
+                      <div class="font-bold text-[16px] mb-1 text-[#3E1A06]">
+                        All your posts are ready!
+                      </div>
+                      <div class="text-[#6C4D3E] text-[13px] leading-relaxed">
+                        We created 30+ posts for your entire month.<br />
+                        Scheduled and ready to be posted automatically.
+                      </div>
+                    </div>
+                  </div>
+
+                  <div
+                    class="absolute bottom-6 right-8 left-12 bg-[#D19D83] p-3 px-5 rounded-2xl rounded-tr-sm shadow-xl flex items-center z-10 text-[#3E1A06] text-sm font-medium border border-[#D19D83]/20"
+                  >
+                    <div>
+                      Awesome! All my content is ready to go—time to sit back
+                      and relax!
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Post Hero Stats -->
+    <div class="container mx-auto px-4 md:px-8 pb-16">
+      <div
+        class="flex flex-wrap justify-between items-center gap-6 text-[18px] font-medium text-white max-w-6xl mx-auto"
+      >
+        <div class="flex items-center gap-3">
+          <i data-lucide="check-circle" class="w-6 h-6 text-[#E8500A]"></i>
+          <span class="tracking-wide text-white">30+ Posts Generated</span>
+        </div>
+        <div class="flex items-center gap-3">
+          <i data-lucide="calendar-check" class="w-6 h-6 text-[#E8500A]"></i>
+          <span class="tracking-wide text-white">All Content Scheduled</span>
+        </div>
+        <div class="flex items-center gap-3">
+          <i data-lucide="bot" class="w-6 h-6 text-[#E8500A]"></i>
+          <span class="tracking-wide text-white">100% Automated</span>
+        </div>
+      </div>
+
+      <div
+        class="mt-12 flex items-center justify-center gap-4 text-xs tracking-wider text-[#A0A0A0] font-medium"
+      >
+        <span class="w-4 h-[1px] bg-[#2A2A2A]"></span>
+        Automated
+        <span class="text-[#E8500A] font-semibold ml-1 mr-1"
+          >Blogs, Social Media Posts & Scheduling</span
+        >
+        <span class="w-4 h-[1px] bg-[#2A2A2A]"></span>
+      </div>
+    </div>
+
+    <!-- How It Works -->
+    <section class="py-24 bg-[#0D0D0D]">
+      <div class="container mx-auto px-4 md:px-8">
+        <div class="text-center max-w-2xl mx-auto mb-16">
+          <h2 class="text-3xl md:text-4xl font-bold font-display mb-4">
+            How It Works
+          </h2>
+          <p class="text-text-secondary">
+            From empty slate to comprehensive brand guidelines in less than a
+            minute.
+          </p>
+        </div>
+
+        <div class="relative">
+          <div
+            class="hidden md:block absolute top-[44px] left-[15%] right-[15%] h-[2px] bg-border z-0"
+          >
+            <div class="h-full bg-primary/50 w-full"></div>
+          </div>
+
+          <div class="grid grid-cols-1 md:grid-cols-3 gap-12 relative z-10">
+            <div
+              class="flex flex-col items-center text-center group bg-transparent"
+            >
+              <div
+                class="w-24 h-24 rounded-full bg-surface border border-border flex items-center justify-center mb-6 shadow-xl relative group-hover:border-primary/50 transition-colors"
+              >
+                <i data-lucide="link-2" class="h-6 w-6 text-primary"></i>
+                <div
+                  class="absolute -top-3 -right-3 w-8 h-8 rounded-full bg-primary text-white font-bold flex items-center justify-center shadow-lg"
+                >
+                  1
+                </div>
+              </div>
+              <h3 class="text-lg font-bold font-display mb-2 text-white">
+                Enter URLs
+              </h3>
+              <p class="text-text-secondary">
+                Submit your website and LinkedIn profile.
+              </p>
+            </div>
+
+            <div
+              class="flex flex-col items-center text-center group bg-transparent"
+            >
+              <div
+                class="w-24 h-24 rounded-full bg-surface border border-border flex items-center justify-center mb-6 shadow-xl relative group-hover:border-primary/50 transition-colors"
+              >
+                <i data-lucide="cpu" class="h-6 w-6 text-primary"></i>
+                <div
+                  class="absolute -top-3 -right-3 w-8 h-8 rounded-full bg-primary text-white font-bold flex items-center justify-center shadow-lg"
+                >
+                  2
+                </div>
+              </div>
+              <h3 class="text-lg font-bold font-display mb-2 text-white">
+                AI Analyses
+              </h3>
+              <p class="text-text-secondary">
+                Our engine reads and extracts your brand signals.
+              </p>
+            </div>
+
+            <div
+              class="flex flex-col items-center text-center group bg-transparent"
+            >
+              <div
+                class="w-24 h-24 rounded-full bg-surface border border-border flex items-center justify-center mb-6 shadow-xl relative group-hover:border-primary/50 transition-colors"
+              >
+                <i
+                  data-lucide="check-circle-2"
+                  class="h-6 w-6 text-primary"
+                ></i>
+                <div
+                  class="absolute -top-3 -right-3 w-8 h-8 rounded-full bg-primary text-white font-bold flex items-center justify-center shadow-lg"
+                >
+                  3
+                </div>
+              </div>
+              <h3 class="text-lg font-bold font-display mb-2 text-white">
+                5 Contexts Ready
+              </h3>
+              <p class="text-text-secondary">
+                Get five distinct positioning angles instantly.
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Core Capabilities -->
+    <section id="features" class="py-24 bg-[#161616]/50 border-t border-border">
+      <div class="container mx-auto px-4 md:px-8">
+        <div class="text-center max-w-2xl mx-auto mb-16">
+          <h2
+            class="text-3xl md:text-4xl font-bold font-display mb-4 text-white"
+          >
+            Core Capabilities
+          </h2>
+          <p class="text-text-secondary">
+            Everything you need to map out your brand's core positioning
+            entirely automatically.
+          </p>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+          <!-- Card 1 -->
+          <div
+            class="bg-[#161616] hover:bg-[#1F1F1F] transition-colors border border-[#2A2A2A] rounded-xl overflow-hidden p-6 shadow-sm"
+          >
+            <div
+              class="w-12 h-12 rounded-lg bg-primary/10 flex items-center justify-center mb-4"
+            >
+              <i data-lucide="zap" class="h-6 w-6 text-primary"></i>
+            </div>
+            <h3
+              class="text-lg font-semibold font-display tracking-tight mb-2 text-white"
+            >
+              Brand DNA Analysis
+            </h3>
+            <p class="text-base text-text-secondary">
+              AI-powered engine analyzes everything visible on your domains.
+            </p>
+          </div>
+
+          <!-- Card 2 -->
+          <div
+            class="bg-[#161616] hover:bg-[#1F1F1F] transition-colors border border-[#2A2A2A] rounded-xl overflow-hidden p-6 shadow-sm"
+          >
+            <div
+              class="w-12 h-12 rounded-lg bg-primary/10 flex items-center justify-center mb-4"
+            >
+              <i data-lucide="layout-template" class="h-6 w-6 text-primary"></i>
+            </div>
+            <h3
+              class="text-lg font-semibold font-display tracking-tight mb-2 text-white"
+            >
+              5 Context Variations
+            </h3>
+            <p class="text-base text-text-secondary">
+              We generate five distinct structural formats of your positioning.
+            </p>
+          </div>
+
+          <!-- Card 3 -->
+          <div
+            class="bg-[#161616] hover:bg-[#1F1F1F] transition-colors border border-[#2A2A2A] rounded-xl overflow-hidden p-6 shadow-sm"
+          >
+            <div
+              class="w-12 h-12 rounded-lg bg-primary/10 flex items-center justify-center mb-4"
+            >
+              <i data-lucide="search" class="h-6 w-6 text-primary"></i>
+            </div>
+            <h3
+              class="text-lg font-semibold font-display tracking-tight mb-2 text-white"
+            >
+              LinkedIn + Web Scraping
+            </h3>
+            <p class="text-base text-text-secondary">
+              Pulls the most up-to-date information directly from your presence.
+            </p>
+          </div>
+
+          <!-- Card 4 -->
+          <div
+            class="bg-[#161616] hover:bg-[#1F1F1F] transition-colors border border-[#2A2A2A] rounded-xl overflow-hidden p-6 shadow-sm"
+          >
+            <div
+              class="w-12 h-12 rounded-lg bg-primary/10 flex items-center justify-center mb-4"
+            >
+              <i data-lucide="star" class="h-6 w-6 text-primary"></i>
+            </div>
+            <h3
+              class="text-lg font-semibold font-display tracking-tight mb-2 text-white"
+            >
+              Rating & Feedback Loop
+            </h3>
+            <p class="text-base text-text-secondary">
+              Refine results interactively and give feedback for better
+              subsequent outputs.
+            </p>
+          </div>
+
+          <!-- Card 5 -->
+          <div
+            class="bg-[#161616] hover:bg-[#1F1F1F] transition-colors border border-[#2A2A2A] rounded-xl overflow-hidden p-6 shadow-sm"
+          >
+            <div
+              class="w-12 h-12 rounded-lg bg-primary/10 flex items-center justify-center mb-4"
+            >
+              <i data-lucide="download" class="h-6 w-6 text-primary"></i>
+            </div>
+            <h3
+              class="text-lg font-semibold font-display tracking-tight mb-2 text-white"
+            >
+              One-Click Export
+            </h3>
+            <p class="text-base text-text-secondary">
+              Generate beautiful PDF reports of your contexts immediately.
+            </p>
+          </div>
+
+          <!-- Card 6 -->
+          <div
+            class="bg-[#161616] hover:bg-[#1F1F1F] transition-colors border border-[#2A2A2A] rounded-xl overflow-hidden p-6 shadow-sm"
+          >
+            <div
+              class="w-12 h-12 rounded-lg bg-primary/10 flex items-center justify-center mb-4"
+            >
+              <i
+                data-lucide="layout-dashboard"
+                class="h-6 w-6 text-primary"
+              ></i>
+            </div>
+            <h3
+              class="text-lg font-semibold font-display tracking-tight mb-2 text-white"
+            >
+              Dashboard History
+            </h3>
+            <p class="text-base text-text-secondary">
+              Manage, revisit, and turn your contexts into kanban campaigns.
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="border-t border-border bg-[#0D0D0D] pt-16 pb-8">
+      <div class="container mx-auto px-4 md:px-8">
+        <div class="grid grid-cols-1 md:grid-cols-4 gap-12 md:gap-8 mb-16">
+          <div class="md:col-span-2">
+            <a href="/" class="inline-flex items-center gap-1 mb-4">
+              <span
+                class="text-xl font-bold font-display text-white tracking-tight"
+              >
+                Ad<span class="text-primary">Forge</span>
+              </span>
+            </a>
+            <p class="text-text-secondary max-w-sm">
+              AI-powered Brand DNA analysis. Extract positioning angles, context
+              strategies, and insights automatically.
+            </p>
+          </div>
+          <div>
+            <h4 class="font-semibold text-white mb-4">Product</h4>
+            <ul class="space-y-3">
+              <li>
+                <a
+                  href="#features"
+                  class="text-text-secondary hover:text-white transition-colors"
+                  >Features</a
+                >
+              </li>
+              <li>
+                <a
+                  href="#templates"
+                  class="text-text-secondary hover:text-white transition-colors"
+                  >Templates</a
+                >
+              </li>
+              <li>
+                <a
+                  href="#pricing"
+                  class="text-text-secondary hover:text-white transition-colors"
+                  >Pricing</a
+                >
+              </li>
+            </ul>
+          </div>
+          <div>
+            <h4 class="font-semibold text-white mb-4">Resources</h4>
+            <ul class="space-y-3">
+              <li>
+                <a
+                  href="/blog"
+                  class="text-text-secondary hover:text-white transition-colors"
+                  >Blog</a
+                >
+              </li>
+              <li>
+                <a
+                  href="/docs"
+                  class="text-text-secondary hover:text-white transition-colors"
+                  >Documentation</a
+                >
+              </li>
+              <li>
+                <a
+                  href="/support"
+                  class="text-text-secondary hover:text-white transition-colors"
+                  >Support</a
+                >
+              </li>
+            </ul>
+          </div>
+        </div>
+
+        <div
+          class="pt-8 border-t border-border flex flex-col md:flex-row items-center justify-between gap-4"
+        >
+          <p class="text-sm text-text-secondary">
+            © 2026 AdForge. All rights reserved.
+          </p>
+          <div class="flex items-center gap-6">
+            <a
+              href="#"
+              class="text-text-secondary hover:text-primary transition-colors"
+            >
+              <i data-lucide="twitter" class="h-5 w-5"></i>
+            </a>
+            <a
+              href="#"
+              class="text-text-secondary hover:text-primary transition-colors"
+            >
+              <i data-lucide="linkedin" class="h-5 w-5"></i>
+            </a>
+            <a
+              href="#"
+              class="text-text-secondary hover:text-primary transition-colors"
+            >
+              <i data-lucide="github" class="h-5 w-5"></i>
+            </a>
+          </div>
+        </div>
+      </div>
+    </footer>
+
+    <!-- Initialize Lucide Icons -->
+    <script>
+      lucide.createIcons();
+    </script>
+  </body>
+</html>
