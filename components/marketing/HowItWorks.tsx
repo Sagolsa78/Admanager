@@ -29,7 +29,7 @@ export function HowItWorks() {
     <section className="py-24 bg-[#0D0D0D]">
       <div className="container mx-auto px-4 md:px-8">
         <div className="text-center max-w-2xl mx-auto mb-16">
-          <h2 className="text-3xl md:text-5xl font-bold font-display mb-6">
+          <h2 className="text-3xl md:text-4xl font-bold font-display mb-4">
             How It Works
           </h2>
           <p className="text-text-secondary">
@@ -67,7 +67,7 @@ export function HowItWorks() {
                     {index + 1}
                   </div>
                 </div>
-                <h3 className="text-xl font-bold font-display mb-3">
+                <h3 className="text-lg font-bold font-display mb-2">
                   {step.title}
                 </h3>
                 <p className="text-text-secondary">{step.description}</p>

@@ -34,14 +34,14 @@ export function Hero() {
               Now in public beta
             </Badge>
 
-            <h1 className="text-5xl md:text-[5.5rem] font-bold font-display leading-[1.05] tracking-tight text-white mb-2">
+            <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold font-display leading-tight tracking-tight text-white mb-4">
               Let{" "}
               <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#FF8A50] to-[#E8500A]">
                 AI
               </span>{" "}
               create & post an <br />
               <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#FF8A50] to-[#E8500A]">
-                entire month's content
+                entire month&apos;s content
               </span>
               <br />
               for you in{" "}
@@ -50,7 +50,7 @@ export function Hero() {
               </span>
             </h1>
 
-            <p className="text-lg md:text-xl text-[#A0A0A0] leading-relaxed max-w-[95%] font-light mb-4">
+            <p className="text-base md:text-lg text-[#A0A0A0] leading-relaxed max-w-[95%] font-normal mb-6">
               Simply enter your website URL, and our AI agent will generate,
               write, and schedule all your social media creatives, blog posts,
               and more. Just sit back and watch as your content calendar fills{" "}
