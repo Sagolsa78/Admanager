@@ -9,12 +9,94 @@ export default function Home() {
     <>
       <Navbar />
       <Hero />
-      <div className="bg-primary px-4 py-3 text-center text-sm font-medium text-white flex justify-center items-center gap-6 overflow-hidden">
-        <span className="whitespace-nowrap">30+ Posts Generated</span>
-        <span className="opacity-50">•</span>
-        <span className="whitespace-nowrap">All Content Scheduled</span>
-        <span className="opacity-50">•</span>
-        <span className="whitespace-nowrap">100% Automated</span>
+      <div className="container mx-auto px-4 md:px-8 pb-16">
+        <div className="flex flex-wrap justify-between items-center gap-6 text-[18px] font-medium text-white max-w-6xl mx-auto">
+          <div className="flex items-center gap-3">
+            <svg
+              className="w-6 h-6 text-[#E8500A]"
+              fill="none"
+              viewBox="0 0 24 24"
+              stroke="currentColor"
+            >
+              <path
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                strokeWidth={2}
+                d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"
+              />
+            </svg>
+            <span className="tracking-wide">30+ Posts Generated</span>
+          </div>
+          <div className="flex items-center gap-3">
+            <svg
+              className="w-6 h-6 text-[#E8500A]"
+              fill="none"
+              viewBox="0 0 24 24"
+              stroke="currentColor"
+            >
+              <path
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                strokeWidth={2}
+                d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"
+              />
+            </svg>
+            <span className="tracking-wide">All Content Scheduled</span>
+          </div>
+          <div className="flex items-center gap-3">
+            <svg
+              className="w-6 h-6 text-[#E8500A]"
+              fill="none"
+              viewBox="0 0 24 24"
+              stroke="currentColor"
+            >
+              <path
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                strokeWidth={2}
+                d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z"
+              />
+              <path
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                strokeWidth={2}
+                d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"
+              />
+            </svg>
+            <span className="tracking-wide">100% Automated</span>
+          </div>
+          <div className="flex items-center gap-3">
+            <svg
+              className="w-6 h-6 text-[#E8500A]"
+              fill="none"
+              viewBox="0 0 24 24"
+              stroke="currentColor"
+            >
+              <path
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                strokeWidth={2}
+                d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z"
+              />
+              <path
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                strokeWidth={2}
+                d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"
+              />
+            </svg>
+            <span className="tracking-wide">100% Automated</span>
+          </div>
+        </div>
+
+        <div className="mt-12 flex items-center justify-center gap-4 text-xs tracking-wider text-[#A0A0A0] font-medium">
+          <span className="w-4 h-[1px] bg-[#2A2A2A]"></span>
+          Automated{" "}
+          <span className="text-[#E8500A] font-semibold">
+            Blogs, Social Media Posts & Scheduling
+          </span>
+          <span className="w-4 h-[1px] bg-[#2A2A2A]"></span>
+        </div>
       </div>
       <HowItWorks />
       <FeaturesGrid />

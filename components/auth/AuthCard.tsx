@@ -50,8 +50,23 @@ export function AuthCard({ type }: AuthCardProps) {
   const onSubmit = async (data: AuthValues) => {
     setIsLoading(true);
     try {
-      // Temporarily bypass auth and go straight to dashboard
-      router.push("/dashboard");
+      if (isMagicLink) {
+        // Handle Magic Link (Mocked)
+        await new Promise((r) => setTimeout(r, 1000));
+        alert(`Magic link sent to ${data.email}`);
+      } else {
+        // Handle Credentials
+        const res = await signIn("credentials", {
+          email: data.email,
+          password: data.password,
+          redirect: false,
+        });
+        if (res?.ok) {
+          router.push("/dashboard");
+        } else {
+          alert("Invalid credentials. Try demo@adforge.com / password");
+        }
+      }
     } finally {
       setIsLoading(false);
     }
@@ -59,8 +74,7 @@ export function AuthCard({ type }: AuthCardProps) {
 
   const handleOAuth = (provider: string) => {
     setIsLoading(true);
-    // Temporarily bypass auth and go straight to dashboard
-    router.push("/dashboard");
+    signIn(provider, { callbackUrl: "/dashboard" });
   };
 
   return (
