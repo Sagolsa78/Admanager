@@ -58,7 +58,7 @@ export function Hero() {
             </p>
 
             <div className="flex flex-col sm:flex-row gap-4 w-full sm:w-auto mt-2">
-              <Link href="/sign-up">
+              <Link href="/wizard">
                 <Button
                   size="lg"
                   className="group bg-gradient-to-r from-[#FF8A50] to-[#E8500A] hover:from-[#FF9B6A] hover:to-[#FF6120] text-white font-semibold border-none px-8 rounded-lg shadow-[0_0_20px_rgba(232,80,10,0.3)]"

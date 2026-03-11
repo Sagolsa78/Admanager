@@ -1,23 +1,27 @@
 import type { Metadata } from "next";
-import { Bricolage_Grotesque, DM_Sans } from "next/font/google";
+import { Sora, Inter, JetBrains_Mono } from "next/font/google";
 import "./globals.css";
 
-const bricolageGrotesque = Bricolage_Grotesque({
+const sora = Sora({
   subsets: ["latin"],
-  variable: "--font-bricolage-grotesque",
-  display: "swap",
+  variable: "--font-sora",
+  weight: ["400", "500", "600", "700", "800"],
 });
 
-const dmSans = DM_Sans({
+const inter = Inter({
   subsets: ["latin"],
-  variable: "--font-dm-sans",
-  weight: ["400", "500", "700"],
-  display: "swap",
+  variable: "--font-inter",
+  weight: ["400", "500"],
+});
+
+const jetbrainsMono = JetBrains_Mono({
+  subsets: ["latin"],
+  variable: "--font-jetbrains-mono",
 });
 
 export const metadata: Metadata = {
-  title: "AdForge - AI-powered Brand DNA Analysis",
-  description: "Extract and analyze brand DNA and positioning contexts.",
+  title: "AdForge - AI-Powered Brand DNA & Content Automation",
+  description: "Automate your entire content pipeline in 30 minutes with AI.",
 };
 
 export default function RootLayout({
@@ -26,12 +30,11 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" className="dark">
-      <body
-        className={`${bricolageGrotesque.variable} ${dmSans.variable} font-sans min-h-screen bg-background text-text-primary antialiased selection:bg-primary/20 selection:text-primary`}
-      >
+    <html lang="en" className={`${sora.variable} ${inter.variable} ${jetbrainsMono.variable}`}>
+      <body className="font-inter bg-background text-text-primary antialiased">
         {children}
       </body>
     </html>
   );
 }
+

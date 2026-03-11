@@ -1,0 +1,1344 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1.0"/>
+<title>AdForge — Brand DNA to Content</title>
+
+<!-- Fonts -->
+<link rel="preconnect" href="https://fonts.googleapis.com"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700;0,9..40,800;1,9..40,400&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet"/>
+
+<!-- Tailwind -->
+<script src="https://cdn.tailwindcss.com"></script>
+<script>
+  tailwind.config={theme:{extend:{colors:{primary:'#2E7EF5',border:'#E5E7EB',surface:'#F9FAFB','surface-2':'#F3F4F6','text-secondary':'#6B7280'},fontFamily:{display:['Inter','sans-serif'],sans:['Inter','sans-serif']}}}};
+</script>
+
+<!-- Lucide (used in p0) -->
+<script src="https://unpkg.com/lucide@latest"></script>
+
+<style>
+/* ═══════════════════════════════════════
+   GLOBAL RESET + PAGE SYSTEM
+═══════════════════════════════════════ */
+*{box-sizing:border-box;margin:0;padding:0;}
+html{scroll-behavior:smooth;}
+::-webkit-scrollbar{width:4px}::-webkit-scrollbar-track{background:#F3F4F6}::-webkit-scrollbar-thumb{background:#D1D5DB;border-radius:2px}
+.page{display:none;min-height:100vh;}
+.page.active{display:block;}
+
+/* ═══════════════════════════════════════
+   P0 — HOMEPAGE (LIGHT THEME)
+═══════════════════════════════════════ */
+#p0{background:#FFFFFF;color:#111827;font-family:'Inter',sans-serif;overflow-x:hidden;}
+
+/* gradient text */
+.grad-text{background:linear-gradient(135deg,#2E7EF5,#2E7EF5);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;}
+@keyframes pdot{0%,100%{opacity:1;transform:scale(1)}50%{opacity:.4;transform:scale(.75)}}
+
+/* ═══════════════════════════════════════
+   CSS VARIABLES — LIGHT THEME (all pages)
+═══════════════════════════════════════ */
+:root{
+  --bg:#F5F6FA;--canvas:#FFFFFF;--surf:#F0F1F8;--surf2:#E8EAF6;
+  --border:#E2E4EF;--border-m:#C8CBE3;
+  --ink:#0D0F1C;--ink2:#4B5068;--ink3:#9196B0;
+  --violet:#2E7EF5;--violet2:#FF6120;--violet3:#2E7EF5;
+  --vsoft:rgba(232,80,10,.07);--vmid:rgba(232,80,10,.2);
+  --emerald:#059669;--rose:#DC2626;--amber:#B45309;
+  --sh0:0 1px 2px rgba(13,15,28,.05);
+  --sh1:0 2px 8px rgba(13,15,28,.07),0 1px 2px rgba(13,15,28,.04);
+  --sh2:0 6px 24px rgba(13,15,28,.09),0 2px 6px rgba(13,15,28,.05);
+  --sh3:0 16px 48px rgba(13,15,28,.11),0 4px 12px rgba(13,15,28,.05);
+  --shv:0 4px 18px rgba(232,80,10,.28);
+  --r8:8px;--r12:12px;--r16:16px;--r20:20px;
+}
+
+/* app shell */
+#app-shell{display:none;}
+#app-shell.active{display:block;}
+
+/* NAV */
+.nav{position:fixed;top:0;left:0;right:0;z-index:300;height:60px;background:rgba(255,255,255,.92);backdrop-filter:blur(20px);-webkit-backdrop-filter:blur(20px);border-bottom:1px solid var(--border);display:flex;align-items:center;justify-content:space-between;padding:0 32px;box-shadow:var(--sh0);}
+.logo{font-size:18px;font-weight:800;letter-spacing:-.6px;text-decoration:none;color:var(--ink);}
+.logo em{color:var(--violet);font-style:normal;}
+.nav-r{display:flex;align-items:center;gap:8px;}
+.nv{padding:7px 16px;border-radius:var(--r8);font-size:13px;font-weight:600;cursor:pointer;border:none;font-family:'DM Sans',sans-serif;transition:all .18s;letter-spacing:-.1px;}
+.nv-ghost{background:transparent;color:var(--ink2);border:1px solid var(--border);}
+.nv-ghost:hover{background:var(--surf);border-color:var(--border-m);color:var(--ink);}
+.nv-solid{background:var(--violet);color:#fff;box-shadow:var(--shv);}
+.nv-solid:hover{background:var(--violet2);transform:translateY(-1px);box-shadow:0 8px 28px rgba(79,63,237,.38);}
+.nv-home{background:rgba(232,80,10,.08);color:#2E7EF5;border:1px solid rgba(232,80,10,.2);}
+.nv-home:hover{background:rgba(232,80,10,.15);border-color:rgba(232,80,10,.4);}
+
+/* STEPBAR */
+.stepbar{position:fixed;top:60px;left:0;right:0;z-index:200;background:#fff;border-bottom:1px solid var(--border);padding:0 32px;}
+.stepbar-in{display:flex;align-items:center;max-width:1080px;margin:0 auto;height:44px;overflow:hidden;}
+.sp{display:flex;align-items:center;gap:5px;font-size:11.5px;font-weight:600;color:var(--ink3);white-space:nowrap;border-radius:6px;padding:3px 7px;margin:-3px -7px;transition:all .18s;cursor:default;user-select:none;letter-spacing:.01em;}
+.sp.active{color:var(--violet);}
+.sp.done{color:var(--emerald);cursor:pointer;}
+.sp.done:hover{background:rgba(5,150,105,.06);}
+.sp.reach{color:var(--ink2);cursor:pointer;}
+.sp.reach:hover{color:var(--violet);background:var(--vsoft);}
+.sp-n{width:20px;height:20px;border-radius:50%;border:1.5px solid var(--border-m);display:flex;align-items:center;justify-content:center;font-size:9px;font-weight:700;flex-shrink:0;transition:all .22s;background:#fff;color:var(--ink3);}
+.sp.active .sp-n{background:var(--violet);border-color:var(--violet);color:#fff;box-shadow:0 0 0 3px var(--vsoft);}
+.sp.done .sp-n{background:rgba(5,150,105,.1);border-color:rgba(5,150,105,.3);color:var(--emerald);}
+.sp.done:hover .sp-n{background:var(--emerald);border-color:var(--emerald);color:#fff;}
+.sp.reach:hover .sp-n{background:var(--violet);border-color:var(--violet);color:#fff;}
+.sline{flex:1;height:1.5px;background:var(--border);min-width:6px;margin:0 4px;transition:background .25s;}
+.sline.done{background:rgba(5,150,105,.22);}
+@media(max-width:700px){.sp-lbl{display:none;}}
+
+/* LAYOUT */
+.wrap{padding:120px 32px 80px;max-width:1080px;margin:0 auto;}
+.wrap.sm{max-width:560px;}.wrap.md{max-width:800px;}.wrap.lg{max-width:1080px;}
+
+/* COMMON COMPONENTS */
+.badge{display:inline-flex;align-items:center;gap:6px;background:var(--vsoft);border:1px solid var(--vmid);color:var(--violet);padding:4px 12px;border-radius:20px;font-size:10.5px;font-weight:700;letter-spacing:.07em;text-transform:uppercase;margin-bottom:16px;}
+.pulse{width:6px;height:6px;border-radius:50%;background:var(--violet);animation:pulse 1.7s ease-in-out infinite;}
+@keyframes pulse{0%,100%{opacity:1;transform:scale(1)}50%{opacity:.35;transform:scale(.75)}}
+h1.ht{font-size:clamp(24px,3.2vw,40px);font-weight:800;line-height:1.1;letter-spacing:-.7px;margin-bottom:10px;}
+.ht .gr{background:linear-gradient(135deg,var(--violet) 0%,var(--violet3) 100%);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;}
+.sub{color:var(--ink2);font-size:15px;line-height:1.65;margin-bottom:26px;}
+.lbl{font-size:12.5px;font-weight:600;color:var(--ink);margin-bottom:6px;display:block;letter-spacing:-.1px;}
+.opt{color:var(--ink3);font-weight:400;margin-left:4px;font-size:11.5px;}
+.inp{background:#fff;border:1.5px solid var(--border);color:var(--ink);border-radius:var(--r8);padding:10px 13px;font-size:14px;width:100%;outline:none;font-family:'DM Sans',sans-serif;transition:border .18s,box-shadow .18s;box-shadow:var(--sh0);}
+.inp::placeholder{color:var(--ink3);}
+.inp:focus{border-color:var(--violet);box-shadow:0 0 0 3px var(--vsoft);}
+.iw{position:relative;}.iw .inp{padding-left:36px;}.iw .ii{position:absolute;left:11px;top:50%;transform:translateY(-50%);width:14px;height:14px;color:var(--ink3);pointer-events:none;}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:6px;padding:10px 20px;border-radius:var(--r8);font-size:13.5px;font-weight:700;cursor:pointer;border:none;transition:all .18s;font-family:'DM Sans',sans-serif;white-space:nowrap;letter-spacing:-.15px;}
+.btn-v{background:var(--violet);color:#fff;box-shadow:var(--shv);}
+.btn-v:hover{background:var(--violet2);transform:translateY(-1px);box-shadow:0 10px 28px rgba(232,80,10,.32);}
+.btn-v:active{transform:scale(.99);}
+.btn-v:disabled{opacity:.32;cursor:not-allowed;transform:none;box-shadow:none;}
+.btn-o{background:#fff;color:var(--ink2);border:1.5px solid var(--border);box-shadow:var(--sh0);}
+.btn-o:hover{background:var(--surf);color:var(--ink);border-color:var(--border-m);}
+.bw{width:100%;}
+.sc{background:#fff;border:1.5px solid var(--border);border-radius:var(--r16);padding:24px;box-shadow:var(--sh1);transition:all .18s;}
+.sc:hover{box-shadow:var(--sh2);border-color:var(--border-m);}
+.spin{width:40px;height:40px;border:2.5px solid var(--border);border-top-color:var(--violet);border-radius:50%;animation:spin .7s linear infinite;}
+@keyframes spin{to{transform:rotate(360deg)}}
+.pb{height:2px;background:var(--border);border-radius:1px;overflow:hidden;margin:12px 0 20px;}
+.pbf{height:100%;background:linear-gradient(90deg,var(--violet),var(--violet3));border-radius:1px;width:0%;transition:width .45s ease;}
+.lstep{display:flex;align-items:center;gap:11px;padding:8px 0;color:var(--ink3);font-size:13.5px;transition:color .25s;border-bottom:1px solid var(--border);font-weight:500;}
+.lstep:last-child{border-bottom:none;}
+.lstep.act{color:var(--ink);}
+.lstep.dn{color:var(--ink2);}
+.lnum{width:22px;height:22px;border-radius:50%;background:var(--surf);border:1.5px solid var(--border);flex-shrink:0;display:flex;align-items:center;justify-content:center;font-size:10px;font-weight:700;transition:all .25s;color:var(--ink3);}
+.lstep.act .lnum{background:var(--violet);border-color:var(--violet);color:#fff;box-shadow:0 0 0 3px var(--vsoft);}
+.lstep.dn .lnum{background:rgba(5,150,105,.1);border-color:rgba(5,150,105,.22);color:var(--emerald);}
+.ftab{padding:5px 14px;border-radius:20px;border:1.5px solid var(--border);background:transparent;color:var(--ink2);font-size:12.5px;font-weight:600;cursor:pointer;transition:all .18s;font-family:'DM Sans',sans-serif;}
+.ftab:hover{border-color:var(--violet);color:var(--violet);background:var(--vsoft);}
+.ftab.on{background:var(--violet);border-color:var(--violet);color:#fff;box-shadow:var(--shv);}
+.ctx-num{font-size:10px;font-weight:700;letter-spacing:.09em;color:var(--violet);background:var(--vsoft);border:1px solid var(--vmid);border-radius:4px;padding:2px 7px;display:inline-block;margin-bottom:9px;}
+.ctx-body{color:var(--ink2);font-size:13px;line-height:1.72;max-height:92px;overflow:hidden;position:relative;transition:max-height .4s;}
+.ctx-body.exp{max-height:2000px;}
+.ctx-body:not(.exp)::after{content:'';position:absolute;bottom:0;left:0;right:0;height:34px;background:linear-gradient(transparent,#ffffff);}
+.rmb{background:none;border:none;color:var(--violet);font-size:12.5px;font-weight:600;cursor:pointer;padding:4px 0 0;transition:opacity .15s;font-family:'DM Sans',sans-serif;}
+.rmb:hover{opacity:.65;}
+.star{cursor:pointer;color:var(--border-m);font-size:16px;transition:all .12s;line-height:1;}
+.star.on{color:#F59E0B;}
+.star:hover{transform:scale(1.25);}
+.iabtn{background:none;border:none;color:var(--ink3);cursor:pointer;padding:4px;border-radius:5px;display:flex;align-items:center;justify-content:center;transition:all .15s;}
+.iabtn:hover{color:var(--violet);background:var(--vsoft);}
+.iabtn.on{color:var(--violet);}
+.csc{background:#fff;border:2px solid var(--border);border-radius:var(--r16);padding:20px;cursor:pointer;transition:all .18s;position:relative;box-shadow:var(--sh1);}
+.csc:hover{border-color:var(--vmid);box-shadow:var(--sh2);transform:translateY(-1px);}
+.csc.sel{border-color:var(--violet);box-shadow:0 0 0 1px var(--vmid),var(--sh2);}
+.csc .ck{position:absolute;top:12px;right:12px;width:22px;height:22px;background:var(--violet);border-radius:50%;display:none;align-items:center;justify-content:center;font-size:11px;color:#fff;box-shadow:var(--shv);}
+.csc.sel .ck{display:flex;}
+.tpl-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(148px,1fr));gap:10px;}
+.tc{background:#fff;border:2px solid var(--border);border-radius:var(--r12);padding:0 0 13px;cursor:pointer;transition:all .18s;position:relative;overflow:hidden;box-shadow:var(--sh1);}
+.tc:hover{border-color:var(--vmid);box-shadow:var(--sh2);transform:translateY(-1px);}
+.tc.sel{border-color:var(--violet);box-shadow:0 0 0 1px var(--vmid),var(--sh2);}
+.tc .ck2{position:absolute;top:8px;right:8px;width:18px;height:18px;background:var(--violet);border-radius:50%;display:none;align-items:center;justify-content:center;font-size:8px;color:#fff;z-index:2;box-shadow:var(--shv);}
+.tc.sel .ck2{display:flex;}
+.tc-prev{width:100%;aspect-ratio:16/9;display:flex;flex-direction:column;padding:11px;overflow:hidden;position:relative;margin-bottom:10px;}
+.tc-body{padding:0 11px;}
+.tc-name{font-size:12.5px;font-weight:700;color:var(--ink);margin-bottom:2px;letter-spacing:-.1px;}
+.tc-desc{font-size:11px;color:var(--ink3);line-height:1.35;}
+.tp-cu{background:linear-gradient(135deg,#100D2E,#1B155A);}
+.tp-my{background:linear-gradient(135deg,#0E1A2E,#0F2248);}
+.tp-pr{background:linear-gradient(135deg,#1C0D0D,#2E1111);}
+.tp-st{background:linear-gradient(135deg,#0C1C10,#10281A);}
+.tp-sp{background:linear-gradient(135deg,#1C1608,#2E2310);}
+.tp-dy{background:linear-gradient(135deg,#140A1E,#200F30);}
+.tp-vi{background:linear-gradient(150deg,#090D20,#0E1234,#1A0A28);}
+.tp-bh{background:linear-gradient(135deg,#1C0A0A,#2A1010);}
+.tp-cm{background:linear-gradient(90deg,#0C1C0C,#101010,#1C0C0C);}
+.tp-co{background:radial-gradient(ellipse at 50% 0%,#1C1608,#0D0D0D);}
+.mb{display:inline-block;padding:2px 6px;border-radius:3px;font-size:7.5px;font-weight:700;letter-spacing:.05em;margin-bottom:5px;}
+.mh{font-size:8.5px;font-weight:700;line-height:1.3;margin-bottom:4px;color:rgba(255,255,255,.9);}
+.ml{height:1.5px;border-radius:1px;margin-bottom:3px;background:rgba(255,255,255,.1);}
+.mp{font-size:7px;line-height:1.4;color:rgba(255,255,255,.3);}
+.mrow{display:flex;gap:5px;height:100%;}
+.mcol{flex:1;border-radius:4px;padding:6px;}
+.og{margin-bottom:22px;}
+.tog-wrap{display:flex;flex-wrap:wrap;gap:7px;}
+.tog{display:inline-flex;align-items:center;gap:7px;padding:8px 14px;border-radius:var(--r8);border:1.5px solid var(--border);background:#fff;color:var(--ink2);font-size:12.5px;font-weight:600;cursor:pointer;transition:all .18s;font-family:'DM Sans',sans-serif;box-shadow:var(--sh0);letter-spacing:-.1px;}
+.tog:hover{border-color:var(--vmid);color:var(--violet);background:var(--vsoft);}
+.tog.on{border-color:var(--violet);background:var(--vsoft);color:var(--violet);box-shadow:0 0 0 1px var(--vmid);}
+.etog{display:inline-flex;flex-direction:column;align-items:center;gap:3px;padding:10px 12px;border-radius:var(--r8);border:1.5px solid var(--border);background:#fff;color:var(--ink2);font-size:11px;font-weight:600;cursor:pointer;transition:all .18s;font-family:'DM Sans',sans-serif;min-width:78px;box-shadow:var(--sh0);}
+.etog:hover{border-color:var(--vmid);color:var(--violet);background:var(--vsoft);}
+.etog.on{border-color:var(--violet);background:var(--vsoft);color:var(--violet);}
+.esamp{font-size:20px;line-height:1;margin-bottom:1px;}
+.sdiv{height:1px;background:var(--border);margin:22px 0;}
+.sumbox{background:var(--surf);border:1.5px solid var(--border);border-radius:var(--r12);padding:14px 18px;display:flex;align-items:center;gap:18px;flex-wrap:wrap;box-shadow:var(--sh0);}
+.si p:first-child{font-size:9.5px;font-weight:700;letter-spacing:.08em;color:var(--ink3);text-transform:uppercase;margin-bottom:2px;}
+.si p:last-child{font-size:13.5px;font-weight:700;color:var(--ink);}
+.sdivv{width:1px;height:28px;background:var(--border);}
+.dynpanel{background:var(--surf);border:1.5px solid var(--border);border-radius:var(--r12);padding:18px 20px;margin-top:20px;display:none;}
+.dynpanel.show{display:block;}
+.dynpanel-title{font-size:11px;font-weight:700;letter-spacing:.08em;color:var(--ink3);text-transform:uppercase;margin-bottom:14px;display:flex;align-items:center;gap:7px;}
+.dynpanel-title::before{content:'';display:inline-block;width:3px;height:12px;background:var(--violet);border-radius:2px;}
+.osec{background:#fff;border:1.5px solid var(--border);border-radius:var(--r16);padding:24px;margin-bottom:16px;box-shadow:var(--sh1);}
+.oh{font-size:14.5px;font-weight:700;color:var(--ink);display:flex;align-items:center;gap:8px;margin-bottom:16px;}
+.slide-card{background:var(--bg);border:1.5px solid var(--border);border-radius:10px;aspect-ratio:1;display:flex;flex-direction:column;justify-content:space-between;padding:14px;cursor:pointer;transition:all .18s;position:relative;overflow:hidden;}
+.slide-card:hover{border-color:var(--violet);box-shadow:var(--sh2);}
+.slide-card.cov{background:linear-gradient(135deg,rgba(232,80,10,.06),rgba(255,138,80,.03));}
+.sn{position:absolute;top:7px;right:7px;background:var(--violet);color:#fff;font-size:9px;font-weight:700;padding:2px 6px;border-radius:6px;letter-spacing:.04em;}
+.sh{font-size:12.5px;font-weight:700;line-height:1.3;margin-bottom:5px;color:var(--ink);}
+.slide-card.cov .sh{font-size:14px;}
+.sb{font-size:11px;color:var(--ink2);line-height:1.55;flex:1;}
+.sf{font-size:9.5px;color:var(--violet);font-weight:700;margin-top:7px;letter-spacing:.04em;}
+.capbox{background:var(--surf);border:1.5px solid var(--border);border-radius:var(--r8);padding:16px;font-size:13px;color:var(--ink2);line-height:1.78;white-space:pre-line;font-family:'DM Mono',monospace;}
+.htag{display:inline-block;background:var(--vsoft);border:1px solid var(--vmid);color:var(--violet);font-size:11.5px;font-weight:600;padding:4px 10px;border-radius:16px;margin:3px;letter-spacing:-.1px;}
+.pcard{background:var(--surf);border:1.5px solid var(--border);border-radius:var(--r8);padding:14px;margin-bottom:8px;}
+.plbl{font-size:9.5px;font-weight:700;letter-spacing:.08em;color:var(--ink3);text-transform:uppercase;margin-bottom:6px;}
+.ptxt{font-size:12.5px;color:var(--ink2);line-height:1.6;}
+.cpsm{background:#fff;border:1.5px solid var(--border);color:var(--ink2);font-size:11px;font-weight:600;padding:4px 10px;border-radius:6px;cursor:pointer;display:inline-flex;align-items:center;gap:4px;transition:all .18s;font-family:'DM Sans',sans-serif;box-shadow:var(--sh0);}
+.cpsm:hover{border-color:var(--violet);color:var(--violet);background:var(--vsoft);}
+.gblob{position:absolute;border-radius:50%;filter:blur(80px);pointer-events:none;}
+.chk{display:flex;align-items:flex-start;gap:9px;font-size:13.5px;color:var(--ink2);padding:4px 0;line-height:1.5;}
+.chk-ic{width:17px;height:17px;border-radius:50%;background:var(--vsoft);border:1px solid var(--vmid);display:flex;align-items:center;justify-content:center;flex-shrink:0;margin-top:1px;}
+#toast{position:fixed;bottom:22px;left:50%;transform:translateX(-50%) translateY(90px);background:var(--ink);color:#fff;padding:11px 18px;border-radius:var(--r8);font-size:13px;font-weight:600;display:flex;align-items:center;gap:8px;transition:transform .35s cubic-bezier(.34,1.56,.64,1),opacity .28s;opacity:0;z-index:9999;white-space:nowrap;box-shadow:var(--sh3);letter-spacing:-.1px;}
+@keyframes fup{from{opacity:0;transform:translateY(12px)}to{opacity:1;transform:translateY(0)}}
+.fi{animation:fup .35s ease forwards;opacity:0;}
+.fi1{animation-delay:.04s}.fi2{animation-delay:.08s}.fi3{animation-delay:.12s}.fi4{animation-delay:.16s}.fi5{animation-delay:.2s}.fi6{animation-delay:.24s}.fi7{animation-delay:.28s}.fi8{animation-delay:.32s}.fi9{animation-delay:.36s}.fi10{animation-delay:.4s}
+.tip{position:relative;}.tip .tt{position:absolute;bottom:110%;left:50%;transform:translateX(-50%);background:var(--ink);color:#fff;font-size:11px;padding:4px 8px;border-radius:5px;white-space:nowrap;pointer-events:none;opacity:0;transition:opacity .15s;z-index:20;font-weight:600;letter-spacing:-.1px;}
+.tip:hover .tt{opacity:1;}
+.opts-layout{display:grid;grid-template-columns:1fr 340px;gap:28px;align-items:start;}
+@media(max-width:900px){.opts-layout{grid-template-columns:1fr;}}
+@media(max-width:600px){.nav,.stepbar{padding:0 16px;}.wrap{padding:118px 16px 60px;}}
+#p0,#p1,#p2,#p3,#p4,#p5,#p6,#p7{font-family:'DM Sans',sans-serif;color:var(--ink);}
+#p0{font-family:'Inter',sans-serif;background:#FFFFFF;color:#111827;}
+#p1,#p2,#p3,#p4,#p5,#p6,#p7{background:var(--bg);}
+/* NEW ANIMATIONS & STYLES */
+.fade-up { opacity: 0; transform: translateY(30px); transition: opacity 0.8s cubic-bezier(0.16, 1, 0.3, 1), transform 0.8s cubic-bezier(0.16, 1, 0.3, 1); }
+.fade-up.visible { opacity: 1; transform: translateY(0); }
+
+.type-wrap { display: inline-flex; border-right: 3px solid var(--violet); animation: blink-caret 0.75s step-end infinite; color: var(--violet); margin-left: 8px; padding-right: 4px; font-weight: 800; min-width: 120px; }
+@keyframes blink-caret { from, to { border-color: transparent } 50% { border-color: var(--violet); } }
+
+.hero-mockup { animation: float 6s ease-in-out infinite; box-shadow: 0 24px 80px rgba(0,0,0,0.08), 0 4px 12px rgba(0,0,0,0.03); border: 1px solid rgba(255,255,255,0.8); transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1); cursor: pointer; }
+.hero-mockup:hover { transform: translateY(-8px) scale(1.02); box-shadow: 0 32px 90px rgba(46,126,245,0.12); }
+@keyframes float { 0% { transform: translateY(0px); } 50% { transform: translateY(-15px); } 100% { transform: translateY(0px); } }
+
+.bento-card { background: #ffffff; border-radius: 32px; padding: 40px; box-shadow: 0 4px 24px rgba(0,0,0,0.03); border: 1px solid rgba(0,0,0,0.04); transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1); position: relative; display: flex; flex-direction: column; }
+.bento-card:hover { transform: translateY(-4px); box-shadow: 0 12px 40px rgba(46,126,245,0.08); border-color: rgba(46,126,245,0.2); }
+.pill-tag { display: inline-flex; align-items: center; gap: 6px; padding: 6px 14px; background: rgba(46,126,245,0.08); color: var(--violet); border-radius: 20px; font-size: 13px; font-weight: 600; font-family: 'Inter', sans-serif; letter-spacing: -0.01em; width: fit-content; margin-bottom: 24px;}
+.icon-box { width: 56px; height: 56px; border-radius: 16px; display: flex; align-items: center; justify-content: center; margin-bottom: 24px; transition: transform 0.3s; background: rgba(46,126,245,0.06); }
+.bento-card:hover .icon-box { transform: scale(1.1) rotate(-3deg); background: rgba(46,126,245,0.1); }
+
+.step-row { display: flex; align-items: flex-start; gap: 24px; margin-bottom: 40px; }
+.step-num { width: 48px; height: 48px; border-radius: 14px; background: var(--violet); color: white; display: flex; align-items: center; justify-content: center; font-size: 18px; font-weight: 700; flex-shrink: 0; box-shadow: 0 8px 16px rgba(46,126,245,0.25); position: relative; }
+.step-num::after { content: ''; position: absolute; top: 100%; left: 50%; transform: translateX(-50%); width: 2px; height: 40px; background: linear-gradient(to bottom, rgba(46,126,245,0.3), transparent); }
+.step-row:last-child .step-num::after { display: none; }
+
+.tm-card { background: #fff; border-radius: 24px; padding: 32px; border: 1px solid rgba(0,0,0,0.04); transition: transform 0.3s, box-shadow 0.3s; }
+.tm-card:hover { transform: translateY(-4px); box-shadow: 0 12px 32px rgba(0,0,0,0.05); }
+
+.gradient-bg-1 { background: linear-gradient(145deg, #F8FAFC, #EFF6FF); }
+.gradient-bg-2 { background: linear-gradient(145deg, #FFF1F2, #FDF4FF); }
+.gradient-bg-3 { background: linear-gradient(145deg, #F0FDF4, #ECFEFF); }
+</style>
+</head>
+<body>
+
+<!-- ══════════════════════════════════════
+     P0 — HOMEPAGE (LIGHT)
+══════════════════════════════════════ -->
+<div class="page active" id="p0">
+
+  <!-- Nav -->
+  <nav style="position:fixed;top:0;left:0;right:0;z-index:50;background:rgba(255,255,255,0.92);backdrop-filter:blur(12px);border-bottom:1px solid #E8EAF0;height:64px;display:flex;align-items:center;box-shadow:0 1px 8px rgba(0,0,0,.06);">
+    <div style="max-width:1280px;margin:0 auto;width:100%;padding:0 2rem;display:flex;align-items:center;justify-content:space-between;">
+      <a href="#" onclick="return false;" style="font-size:1.25rem;font-weight:800;color:#0D0F1C;letter-spacing:-.03em;text-decoration:none;font-family:'Inter',sans-serif;">Ad<span style="color:#2E7EF5;">Forge</span></a>
+      <nav style="display:flex;align-items:center;gap:2rem;">
+        <a href="#features" style="font-size:.875rem;font-weight:500;color:#6B7280;text-decoration:none;transition:color .2s;font-family:'Inter',sans-serif;" onmouseover="this.style.color='#0D0F1C'" onmouseout="this.style.color='#6B7280'">Features</a>
+        <a href="#templates" style="font-size:.875rem;font-weight:500;color:#6B7280;text-decoration:none;transition:color .2s;font-family:'Inter',sans-serif;" onmouseover="this.style.color='#0D0F1C'" onmouseout="this.style.color='#6B7280'">Templates</a>
+        <a href="#pricing" style="font-size:.875rem;font-weight:500;color:#6B7280;text-decoration:none;transition:color .2s;font-family:'Inter',sans-serif;" onmouseover="this.style.color='#0D0F1C'" onmouseout="this.style.color='#6B7280'">Pricing</a>
+      </nav>
+      <div style="display:flex;align-items:center;gap:1rem;">
+        <button style="padding:.5rem 1rem;font-size:.875rem;font-weight:500;color:#374151;background:none;border:1px solid #E5E7EB;border-radius:.375rem;cursor:pointer;font-family:'Inter',sans-serif;transition:background .2s;" onmouseover="this.style.background='#F9FAFB'" onmouseout="this.style.background='none'">Sign In</button>
+        <button onclick="launchApp()" style="padding:.5rem 1.25rem;font-size:.875rem;font-weight:600;color:white;background:linear-gradient(135deg,#2E7EF5,#2E7EF5);border:none;border-radius:.5rem;cursor:pointer;font-family:'Inter',sans-serif;box-shadow:0 2px 12px rgba(232,80,10,.3);transition:opacity .2s;" onmouseover="this.style.opacity='.88'" onmouseout="this.style.opacity='1'">Start Free</button>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Hero Section -->
+  <section style="position:relative;min-height:95vh;display:flex;align-items:center;overflow:hidden;padding:8rem 0 6rem;background: radial-gradient(circle at top left, #F5F7FA 0%, #FFFFFF 100%);">
+    
+    <!-- Abstract gradient blobs -->
+    <div style="position:absolute;top:-10%;right:-5%;width:600px;height:600px;background:radial-gradient(circle,rgba(46,126,245,0.08),transparent 60%);border-radius:50%;pointer-events:none;"></div>
+    <div style="position:absolute;bottom:0;left:-5%;width:500px;height:500px;background:radial-gradient(circle,rgba(255,97,32,0.05),transparent 60%);border-radius:50%;pointer-events:none;"></div>
+
+    <div class="fade-up" style="max-width:1280px;margin:0 auto;width:100%;padding:0 2rem;position:relative;z-index:1;">
+      <div style="display:grid;grid-template-columns:1.05fr 0.95fr;gap:4rem;align-items:center;">
+        
+        <!-- Left Column -->
+        <div style="display:flex;flex-direction:column;gap:1.75rem;max-width:40rem;">
+          
+          <div class="pill-tag">
+            <span style="width:6px;height:6px;border-radius:50%;background:var(--violet);display:inline-block;animation:pulse 2s infinite;"></span>
+            Brand DNA Intelligence
+          </div>
+
+          <h1 style="font-size:clamp(2.5rem,4.5vw,4.25rem);font-weight:800;line-height:1.1;letter-spacing:-0.03em;color:#0D0F1C;font-family:'Inter',sans-serif;">
+            Turn your brand into a well-written
+            <span class="type-wrap" id="type-text">social post</span>
+          </h1>
+
+          <p style="font-size:1.15rem;color:#6B7280;line-height:1.7;max-width:92%;font-family:'Inter',sans-serif;">
+            AdForge isn't just a generative AI. It analyzes your website's positioning and automatically formats it into high-converting posts, carousels, and blogs in seconds.
+          </p>
+
+          <div style="display:flex;gap:1rem;flex-wrap:wrap;margin-top:1rem;">
+            <button onclick="launchApp()" style="display:inline-flex;align-items:center;justify-content:center;gap:0.5rem;background:var(--violet);color:white;font-weight:700;font-family:'Inter',sans-serif;padding:1rem 2.25rem;border-radius:12px;border:none;cursor:pointer;box-shadow:0 8px 24px rgba(46,126,245,0.25);font-size:1.05rem;transition:all 0.2s;" onmouseover="this.style.transform='translateY(-2px)';this.style.boxShadow='0 12px 32px rgba(46,126,245,0.35)'" onmouseout="this.style.transform='translateY(0)';this.style.boxShadow='0 8px 24px rgba(46,126,245,0.25)'">
+              Try it for free
+            </button>
+            <button style="display:inline-flex;align-items:center;justify-content:center;gap:0.5rem;background:white;color:#374151;font-weight:600;font-family:'Inter',sans-serif;padding:1rem 2.25rem;border-radius:12px;border:1px solid #E5E7EB;cursor:pointer;font-size:1.05rem;transition:all 0.2s;box-shadow:0 2px 8px rgba(0,0,0,0.04);" onmouseover="this.style.background='#F9FAFB';this.style.borderColor='#D1D5DB'" onmouseout="this.style.background='white';this.style.borderColor='#E5E7EB'">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polygon points="10 8 16 12 10 16 10 8"/></svg>
+              Watch Video
+            </button>
+          </div>
+
+          <div style="display:flex;align-items:center;gap:1rem;margin-top:1rem;">
+            <div style="display:flex;">
+              <div style="width:32px;height:32px;border-radius:50%;background:#E0E7FF;border:2px solid white;display:flex;align-items:center;justify-content:center;font-size:12px;font-weight:700;color:#3730A3;margin-left:0;z-index:3;">JD</div>
+              <div style="width:32px;height:32px;border-radius:50%;background:#FCE7F3;border:2px solid white;display:flex;align-items:center;justify-content:center;font-size:12px;font-weight:700;color:#9D174D;margin-left:-10px;z-index:2;">AS</div>
+              <div style="width:32px;height:32px;border-radius:50%;background:#D1FAE5;border:2px solid white;display:flex;align-items:center;justify-content:center;font-size:12px;font-weight:700;color:#065F46;margin-left:-10px;z-index:1;">MK</div>
+            </div>
+            <div style="font-size:0.9rem;color:#6B7280;font-family:'Inter',sans-serif;">
+              <strong>1,200+ founders</strong> saving hours daily
+            </div>
+          </div>
+        </div>
+
+        <!-- Right Column - Animated Mockup -->
+        <div style="position:relative;display:flex;align-items:center;justify-content:center;padding:2rem;">
+          <div class="hero-mockup" style="width:100%;max-width:540px;background:#fff;border-radius:24px;overflow:hidden;backdrop-filter:blur(10px);">
+            <!-- Mockup Header -->
+            <div style="height:48px;background:rgba(249,250,251,0.9);border-bottom:1px solid #E5E7EB;display:flex;align-items:center;padding:0 20px;gap:8px;">
+              <div style="width:12px;height:12px;border-radius:50%;background:#FF5F56;"></div>
+              <div style="width:12px;height:12px;border-radius:50%;background:#FFBD2E;"></div>
+              <div style="width:12px;height:12px;border-radius:50%;background:#27C93F;"></div>
+              <div style="flex:1;text-align:center;">
+                <div style="display:inline-block;padding:4px 12px;background:#F3F4F6;border-radius:6px;font-size:12px;color:#6B7280;font-family:'Inter';font-weight:500;">
+                  <svg style="display:inline;margin-right:4px;vertical-align:text-bottom;" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
+                  adforge.com/analysis
+                </div>
+              </div>
+            </div>
+            <!-- Mockup Body -->
+            <div style="padding:24px;background:white;position:relative;">
+              
+              <div style="display:flex;align-items:center;gap:12px;margin-bottom:20px;">
+                <div style="width:40px;height:40px;border-radius:10px;background:linear-gradient(135deg, #2E7EF5, #1E40AF);display:flex;align-items:center;justify-content:center;">
+                  <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"/><path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"/></svg>
+                </div>
+                <div>
+                  <div style="font-weight:700;font-family:'Inter';color:#111827;font-size:14px;">Context Generated</div>
+                  <div style="font-family:'Inter';color:#6B7280;font-size:12px;">Problem → Solution Framework</div>
+                </div>
+              </div>
+
+              <!-- Animated Text Blocks simulating output -->
+              <div style="background:#F9FAFB;border:1px solid #E5E7EB;border-radius:12px;padding:16px;margin-bottom:12px;">
+                <div style="display:flex;gap:8px;margin-bottom:12px;">
+                  <span style="font-size:16px;">🔥</span>
+                  <div style="font-weight:700;font-family:'Inter';color:#111827;font-size:13px;line-height:1.4;">
+                    Most marketers focus on reach. The best ones obsess over resonance.
+                  </div>
+                </div>
+                <div style="height:6px;background:#E5E7EB;border-radius:4px;width:100%;margin-bottom:8px;"></div>
+                <div style="height:6px;background:#E5E7EB;border-radius:4px;width:80%;margin-bottom:8px;"></div>
+                <div style="height:6px;background:#E5E7EB;border-radius:4px;width:90%;"></div>
+              </div>
+
+              <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px;">
+                <div style="background:#EEF2FF;border:1px solid #E0E7FF;border-radius:12px;padding:16px;text-align:center;">
+                  <div style="font-weight:800;font-family:'Inter';color:#3730A3;font-size:20px;margin-bottom:4px;">6</div>
+                  <div style="font-weight:600;font-family:'Inter';color:#4F46E5;font-size:11px;text-transform:uppercase;">Carousel Slides</div>
+                </div>
+                <div style="background:#ECFDF5;border:1px solid #D1FAE5;border-radius:12px;padding:16px;text-align:center;">
+                  <div style="font-weight:800;font-family:'Inter';color:#065F46;font-size:20px;margin-bottom:4px;">100%</div>
+                  <div style="font-weight:600;font-family:'Inter';color:#10B981;font-size:11px;text-transform:uppercase;">On-Brand</div>
+                </div>
+              </div>
+
+              <!-- Floating badge -->
+              <div style="position:absolute;top:100px;right:-15px;background:white;padding:12px 16px;border-radius:16px;box-shadow:0 10px 25px rgba(0,0,0,0.1);display:flex;align-items:center;gap:10px;border:1px solid #F3F4F6;">
+                <div style="width:28px;height:28px;background:#10B981;border-radius:50%;display:flex;align-items:center;justify-content:center;">
+                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+                </div>
+                <div>
+                  <div style="font-weight:700;font-size:12px;font-family:'Inter';color:#111827;">Ready to post</div>
+                </div>
+              </div>
+
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- How It Works Section -->
+  <section id="how-it-works" style="padding:7rem 0;background:#FFFFFF;border-top:1px solid rgba(0,0,0,0.03);">
+    <div style="max-width:1080px;margin:0 auto;padding:0 2rem;">
+      <div class="fade-up" style="text-align:center;margin-bottom:4rem;">
+        <div class="pill-tag">How it works</div>
+        <h2 style="font-size:clamp(2rem,3vw,2.75rem);font-weight:800;color:#0D0F1C;letter-spacing:-0.03em;font-family:'Inter',sans-serif;">From URL to content in 3 steps</h2>
+      </div>
+
+      <div class="fade-up" style="max-width:800px;margin:0 auto;">
+        <!-- Step 1 -->
+        <div class="step-row">
+          <div class="step-num">1</div>
+          <div style="padding-top:10px;">
+            <h3 style="font-size:1.25rem;font-weight:700;color:#0D0F1C;margin-bottom:0.5rem;font-family:'Inter',sans-serif;">Enter your website URL</h3>
+            <p style="color:#6B7280;line-height:1.6;font-family:'Inter';">Our AI engine scans your domain, reading your homepage, about page, and case studies to extract your positioning and brand DNA automatically.</p>
+          </div>
+        </div>
+        <!-- Step 2 -->
+        <div class="step-row">
+          <div class="step-num" style="background:#8B5CF6;">2</div>
+          <div style="padding-top:10px;">
+            <h3 style="font-size:1.25rem;font-weight:700;color:#0D0F1C;margin-bottom:0.5rem;font-family:'Inter',sans-serif;">Review your brand contexts</h3>
+            <p style="color:#6B7280;line-height:1.6;font-family:'Inter';">We generate 5 distinct angles and frameworks based on your DNA (e.g., Problem-Solution, Founder's Origin). Pick the one that resonates most.</p>
+          </div>
+        </div>
+        <!-- Step 3 -->
+        <div class="step-row">
+          <div class="step-num" style="background:#10B981;">3</div>
+          <div style="padding-top:10px;">
+            <h3 style="font-size:1.25rem;font-weight:700;color:#0D0F1C;margin-bottom:0.5rem;font-family:'Inter',sans-serif;">Generate and schedule</h3>
+            <p style="color:#6B7280;line-height:1.6;font-family:'Inter';">Select your desired format—LinkedIn carousel, Twitter thread, or Blog post. Hit generate, and your 100% on-brand content is ready to publish.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Features (Bento Grid) -->
+  <section id="features" style="padding:7rem 0;background:#F8FAFC;border-top:1px solid rgba(0,0,0,0.03);">
+    <div style="max-width:1280px;margin:0 auto;padding:0 2rem;">
+      <div class="fade-up" style="margin-bottom:4rem;">
+        <div class="pill-tag" style="background:rgba(139,92,246,0.1);color:#7C3AED;">Core Features</div>
+        <h2 style="font-size:clamp(2rem,3vw,2.75rem);font-weight:800;color:#0D0F1C;letter-spacing:-0.03em;font-family:'Inter',sans-serif;max-width:600px;">Everything you need to automate your social presence.</h2>
+      </div>
+
+      <div class="fade-up" style="display:grid;grid-template-columns:repeat(3, 1fr);gap:1.5rem;">
+        
+        <!-- Bento 1 (Large Span) -->
+        <div class="bento-card" style="grid-column: span 2;">
+          <div class="icon-box" style="background:#EFF6FF;color:#2E7EF5;">
+             <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+          </div>
+          <h3 style="font-size:1.5rem;font-weight:700;color:#0D0F1C;margin-bottom:0.75rem;font-family:'Inter',sans-serif;">Deep Brand DNA Extraction</h3>
+          <p style="color:#6B7280;line-height:1.6;font-family:'Inter',sans-serif;max-width:80%;">Unlike generic ChatGPT prompts, our scrape-and-analyze engine pulls the exact vocabulary, tone, and proof points from your live website.</p>
+        </div>
+
+        <!-- Bento 2 -->
+        <div class="bento-card gradient-bg-2">
+          <div class="icon-box" style="background:rgba(219,39,119,0.1);color:#DB2777;">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></svg>
+          </div>
+          <h3 style="font-size:1.25rem;font-weight:700;color:#0D0F1C;margin-bottom:0.75rem;font-family:'Inter',sans-serif;">LinkedIn Sync</h3>
+          <p style="color:#6B7280;line-height:1.6;font-family:'Inter',sans-serif;font-size:0.95rem;">Connect your profile to capture your authentic voice and recent updates automatically.</p>
+        </div>
+
+        <!-- Bento 3 -->
+        <div class="bento-card gradient-bg-3">
+          <div class="icon-box" style="background:rgba(16,185,129,0.1);color:#059669;">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/></svg>
+          </div>
+          <h3 style="font-size:1.25rem;font-weight:700;color:#0D0F1C;margin-bottom:0.75rem;font-family:'Inter',sans-serif;">10+ Templates</h3>
+          <p style="color:#6B7280;line-height:1.6;font-family:'Inter',sans-serif;font-size:0.95rem;">Turn one context into "Myth vs Reality", "Step-by-Step", or "Behind the Scenes" formats.</p>
+        </div>
+
+        <!-- Bento 4 (Large Span) -->
+        <div class="bento-card" style="grid-column: span 2;">
+          <div class="icon-box" style="background:#FFF7ED;color:#EA580C;">
+             <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+          </div>
+          <h3 style="font-size:1.5rem;font-weight:700;color:#0D0F1C;margin-bottom:0.75rem;font-family:'Inter',sans-serif;">Instant Image Prompts & PDFs</h3>
+          <p style="color:#6B7280;line-height:1.6;font-family:'Inter',sans-serif;max-width:80%;">We don't just write text. We generate the perfect Midjourney prompts for your carousel slides and allow 1-click PDF exports for immediate posting.</p>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- Testimonials Section -->
+  <section style="padding:7rem 0;background:#FFFFFF;">
+    <div style="max-width:1280px;margin:0 auto;padding:0 2rem;">
+      <div class="fade-up" style="text-align:center;margin-bottom:4rem;">
+        <h2 style="font-size:clamp(2rem,3vw,2.75rem);font-weight:800;color:#0D0F1C;letter-spacing:-0.03em;font-family:'Inter',sans-serif;">Loved by founders</h2>
+      </div>
+      
+      <div class="fade-up" style="display:grid;grid-template-columns:repeat(auto-fill, minmax(320px, 1fr));gap:1.5rem;">
+        
+        <div class="tm-card">
+          <div style="color:#F59E0B;letter-spacing:2px;font-size:14px;margin-bottom:12px;">★★★★★</div>
+          <h4 style="font-weight:700;font-size:1.1rem;color:#111827;font-family:'Inter';margin-bottom:8px;">Transformed our content</h4>
+          <p style="color:#4B5563;font-size:0.95rem;line-height:1.6;font-family:'Inter';margin-bottom:20px;">"It completely transformed how we create content! The analysis precision is impressive, and output organization is perfect. Highly recommend!"</p>
+          <div style="display:flex;align-items:center;gap:12px;">
+            <div style="width:40px;height:40px;border-radius:50%;background:#E5E7EB;"></div>
+            <div>
+              <div style="font-weight:700;font-size:0.9rem;color:#111827;">Sarah Jenks</div>
+              <div style="font-size:0.8rem;color:#6B7280;">Founder, TechFlow</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="tm-card">
+          <div style="color:#F59E0B;letter-spacing:2px;font-size:14px;margin-bottom:12px;">★★★★★</div>
+          <h4 style="font-weight:700;font-size:1.1rem;color:#111827;font-family:'Inter';margin-bottom:8px;">2 minutes instead of 2 hours</h4>
+          <p style="color:#4B5563;font-size:0.95rem;line-height:1.6;font-family:'Inter';margin-bottom:20px;">"Usually I’d need hours just to draft a decent carousel for LinkedIn. Now it’s just 2 minutes of AdForge, and it sounds exactly like my brand."</p>
+          <div style="display:flex;align-items:center;gap:12px;">
+            <div style="width:40px;height:40px;border-radius:50%;background:#E5E7EB;"></div>
+            <div>
+              <div style="font-weight:700;font-size:0.9rem;color:#111827;">Michael Chen</div>
+              <div style="font-size:0.8rem;color:#6B7280;">B2B Consultant</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="tm-card">
+          <div style="color:#F59E0B;letter-spacing:2px;font-size:14px;margin-bottom:12px;">★★★★★</div>
+          <h4 style="font-weight:700;font-size:1.1rem;color:#111827;font-family:'Inter';margin-bottom:8px;">Essential tool for teams</h4>
+          <p style="color:#4B5563;font-size:0.95rem;line-height:1.6;font-family:'Inter';margin-bottom:20px;">"I use it everyday. It is an essential tool in the toolkit of our marketing team. Extremely powerful at keeping our messaging consistent."</p>
+          <div style="display:flex;align-items:center;gap:12px;">
+            <div style="width:40px;height:40px;border-radius:50%;background:#E5E7EB;"></div>
+            <div>
+              <div style="font-weight:700;font-size:0.9rem;color:#111827;">Elena Rodriguez</div>
+              <div style="font-size:0.8rem;color:#6B7280;">Head of Growth</div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- Bottom CTA -->
+  <section style="padding:4rem 2rem 8rem;background:#FFFFFF;">
+    <div class="fade-up" style="max-width:1080px;margin:0 auto;text-align:center;padding:4rem 2rem;background:linear-gradient(135deg, #1E1B4B, #312E81);border-radius:32px;box-shadow: 0 24px 80px rgba(49,46,129,0.2);position:relative;overflow:hidden;">
+      <div style="position:absolute;top:-50%;left:-20%;width:800px;height:800px;background:radial-gradient(circle,rgba(99,102,241,0.2),transparent 60%);border-radius:50%;"></div>
+      <div style="position:relative;z-index:1;">
+        <h2 style="font-size:clamp(2rem,3vw,3rem);font-weight:800;color:#FFFFFF;letter-spacing:-0.03em;margin-bottom:1.5rem;font-family:'Inter',sans-serif;">Ready to decode your brand?</h2>
+        <p style="color:#C7D2FE;font-size:1.15rem;margin-bottom:2.5rem;font-family:'Inter',sans-serif;max-width:500px;margin-left:auto;margin-right:auto;">No account required to analyze. Just drop your URL and see the magic.</p>
+        <button onclick="launchApp()" style="display:inline-flex;align-items:center;gap:0.75rem;background:#FFFFFF;color:#312E81;font-weight:800;font-family:'Inter',sans-serif;padding:1.25rem 3rem;border-radius:16px;border:none;cursor:pointer;box-shadow:0 8px 32px rgba(0,0,0,0.2);font-size:1.1rem;transition:transform 0.2s;" onmouseover="this.style.transform='translateY(-3px)'" onmouseout="this.style.transform='translateY(0)'">
+          Start for free
+        </button>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer style="border-top:1px solid #E8EAF0;background:#fff;padding:4rem 0 2rem;">
+    <div style="max-width:1280px;margin:0 auto;padding:0 2rem;">
+      <div style="display:grid;grid-template-columns:2fr 1fr 1fr;gap:3rem;margin-bottom:3rem;">
+        <div>
+          <div style="font-size:1.25rem;font-weight:800;color:#0D0F1C;font-family:'Inter',sans-serif;margin-bottom:1rem;">Ad<span style="color:#2E7EF5;">Forge</span></div>
+          <p style="color:#6B7280;font-size:.875rem;line-height:1.6;max-width:22rem;font-family:'Inter',sans-serif;">AI-powered Brand DNA analysis. Extract positioning angles, context strategies, and insights automatically.</p>
+        </div>
+        <div>
+          <h4 style="font-weight:600;color:#0D0F1C;margin-bottom:1rem;font-family:'Inter',sans-serif;font-size:.875rem;">Product</h4>
+          <div style="display:flex;flex-direction:column;gap:.75rem;">
+            <a href="#" style="color:#6B7280;text-decoration:none;font-size:.875rem;font-family:'Inter',sans-serif;transition:color .2s;" onmouseover="this.style.color='#0D0F1C'" onmouseout="this.style.color='#6B7280'">Features</a>
+            <a href="#" style="color:#6B7280;text-decoration:none;font-size:.875rem;font-family:'Inter',sans-serif;transition:color .2s;" onmouseover="this.style.color='#0D0F1C'" onmouseout="this.style.color='#6B7280'">Templates</a>
+            <a href="#" style="color:#6B7280;text-decoration:none;font-size:.875rem;font-family:'Inter',sans-serif;transition:color .2s;" onmouseover="this.style.color='#0D0F1C'" onmouseout="this.style.color='#6B7280'">Pricing</a>
+          </div>
+        </div>
+        <div>
+          <h4 style="font-weight:600;color:#0D0F1C;margin-bottom:1rem;font-family:'Inter',sans-serif;font-size:.875rem;">Resources</h4>
+          <div style="display:flex;flex-direction:column;gap:.75rem;">
+            <a href="#" style="color:#6B7280;text-decoration:none;font-size:.875rem;font-family:'Inter',sans-serif;transition:color .2s;" onmouseover="this.style.color='#0D0F1C'" onmouseout="this.style.color='#6B7280'">Blog</a>
+            <a href="#" style="color:#6B7280;text-decoration:none;font-size:.875rem;font-family:'Inter',sans-serif;transition:color .2s;" onmouseover="this.style.color='#0D0F1C'" onmouseout="this.style.color='#6B7280'">Documentation</a>
+            <a href="#" style="color:#6B7280;text-decoration:none;font-size:.875rem;font-family:'Inter',sans-serif;transition:color .2s;" onmouseover="this.style.color='#0D0F1C'" onmouseout="this.style.color='#6B7280'">Support</a>
+          </div>
+        </div>
+      </div>
+      <div style="padding-top:2rem;border-top:1px solid #E8EAF0;display:flex;align-items:center;justify-content:space-between;">
+        <p style="font-size:.8rem;color:#9CA3AF;font-family:'Inter',sans-serif;">© 2026 AdForge. All rights reserved.</p>
+        <div style="display:flex;gap:1.25rem;">
+          <a href="#" style="color:#9CA3AF;transition:color .2s;" onmouseover="this.style.color='#2E7EF5'" onmouseout="this.style.color='#9CA3AF'">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M23 3a10.9 10.9 0 0 1-3.14 1.53 4.48 4.48 0 0 0-7.86 3v1A10.66 10.66 0 0 1 3 4s-4 9 5 13a11.64 11.64 0 0 1-7 2c9 5 20 0 20-11.5a4.5 4.5 0 0 0-.08-.83A7.72 7.72 0 0 0 23 3z"/></svg>
+          </a>
+          <a href="#" style="color:#9CA3AF;transition:color .2s;" onmouseover="this.style.color='#2E7EF5'" onmouseout="this.style.color='#9CA3AF'">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></svg>
+          </a>
+          <a href="#" style="color:#9CA3AF;transition:color .2s;" onmouseover="this.style.color='#2E7EF5'" onmouseout="this.style.color='#9CA3AF'">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"/></svg>
+          </a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+</div><!-- /p0 -->
+
+
+<!-- ══════════════════════════════════════
+     APP SHELL — LIGHT NAV + STEPBAR (p1–p7)
+══════════════════════════════════════ -->
+<div id="app-shell">
+  <nav class="nav">
+    <a href="#" class="logo" onclick="goHome();return false;">Ad<em>Forge</em></a>
+    <div class="nav-r">
+      <button class="nv nv-home" onclick="goHome()">← Homepage</button>
+      <button class="nv nv-ghost">Sign In</button>
+      <button class="nv nv-solid">Start Free</button>
+    </div>
+  </nav>
+  <div class="stepbar">
+    <div class="stepbar-in">
+      <div class="sp active" id="sp1" onclick="navSp(1)"><div class="sp-n">1</div><span class="sp-lbl">URL</span></div>
+      <div class="sline" id="sl1"></div>
+      <div class="sp" id="sp2" onclick="navSp(2)"><div class="sp-n">2</div><span class="sp-lbl">Analyse</span></div>
+      <div class="sline" id="sl2"></div>
+      <div class="sp" id="sp3" onclick="navSp(3)"><div class="sp-n">3</div><span class="sp-lbl">Results</span></div>
+      <div class="sline" id="sl3"></div>
+      <div class="sp" id="sp4" onclick="navSp(4)"><div class="sp-n">4</div><span class="sp-lbl">Context</span></div>
+      <div class="sline" id="sl4"></div>
+      <div class="sp" id="sp5" onclick="navSp(5)"><div class="sp-n">5</div><span class="sp-lbl">Template &amp; Options</span></div>
+      <div class="sline" id="sl5"></div>
+      <div class="sp" id="sp6" onclick="navSp(6)"><div class="sp-n">6</div><span class="sp-lbl">Generate</span></div>
+      <div class="sline" id="sl6"></div>
+      <div class="sp" id="sp7" onclick="navSp(7)"><div class="sp-n">7</div><span class="sp-lbl">Output</span></div>
+    </div>
+  </div>
+</div>
+
+<!-- ══════════════════════════════════════
+     PAGE 1 — URL INPUT
+══════════════════════════════════════ -->
+<div class="page" id="p1">
+<div class="wrap sm" style="min-height:100vh;display:flex;align-items:center;position:relative;">
+  <div class="gblob" style="width:520px;height:520px;background:radial-gradient(circle,rgba(79,63,237,.1),transparent 70%);top:50%;left:50%;transform:translate(-50%,-50%);z-index:0;"></div>
+  <div style="position:relative;z-index:1;width:100%;padding:40px 0;">
+    <div class="badge"><span class="pulse"></span>AI-Powered Brand Analysis</div>
+    <h1 class="ht">Decode Your <span class="gr">Brand DNA</span></h1>
+    <p class="sub">Enter your URL. We'll generate 5 sharp positioning contexts — then turn the best one into ready-to-post content in your chosen format.</p>
+    <div class="sc" style="padding:28px;">
+      <div style="margin-bottom:16px;">
+        <label class="lbl">Website URL <span style="color:var(--rose);font-size:12px;">*</span></label>
+        <div class="iw">
+          <svg class="ii" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg>
+          <input class="inp" id="urlin" type="url" placeholder="https://yourwebsite.com"/>
+        </div>
+        <p id="urlerr" style="color:var(--rose);font-size:11.5px;margin-top:5px;display:none;">Please enter a valid URL starting with https://</p>
+      </div>
+      <div style="margin-bottom:22px;">
+        <label class="lbl">LinkedIn Profile URL <span class="opt">(Optional)</span></label>
+        <div class="iw">
+          <svg class="ii" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></svg>
+          <input class="inp" id="liin" type="url" placeholder="https://linkedin.com/in/yourhandle"/>
+        </div>
+      </div>
+      <div style="background:var(--surf);border:1.5px solid var(--border);border-radius:var(--r8);padding:14px 16px;margin-bottom:22px;">
+        <p style="font-size:10px;font-weight:700;letter-spacing:.08em;color:var(--ink3);text-transform:uppercase;margin-bottom:10px;">What you'll receive</p>
+        <div class="chk"><div class="chk-ic"><svg width="9" height="9" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round" style="color:var(--violet)"><polyline points="20 6 9 17 4 12"/></svg></div>5 unique brand positioning contexts</div>
+        <div class="chk"><div class="chk-ic"><svg width="9" height="9" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round" style="color:var(--violet)"><polyline points="20 6 9 17 4 12"/></svg></div>Each with a title + ~300-word copy block</div>
+        <div class="chk"><div class="chk-ic"><svg width="9" height="9" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round" style="color:var(--violet)"><polyline points="20 6 9 17 4 12"/></svg></div>Pick template + options → carousel, caption &amp; hashtags</div>
+      </div>
+      <button class="btn btn-v bw" style="padding:13px;" onclick="goAnalyse()">Analyse My Brand →</button>
+      <p style="text-align:center;color:var(--ink3);font-size:11.5px;margin-top:11px;font-weight:500;">No account needed &middot; Free to try</p>
+    </div>
+  </div>
+</div>
+</div>
+
+
+<!-- ══════════════════════════════════════
+     PAGE 2 — ANALYSING
+══════════════════════════════════════ -->
+<div class="page" id="p2">
+<div class="wrap sm" style="min-height:100vh;display:flex;align-items:center;justify-content:center;position:relative;">
+  <div class="gblob" style="width:480px;height:480px;background:radial-gradient(circle,rgba(79,63,237,.09),transparent 70%);top:50%;left:50%;transform:translate(-50%,-50%);"></div>
+  <div style="position:relative;z-index:1;width:100%;text-align:center;">
+    <div style="display:flex;justify-content:center;margin-bottom:22px;"><div class="spin"></div></div>
+    <h2 style="font-size:21px;font-weight:800;letter-spacing:-.4px;margin-bottom:5px;">Analysing Your Brand</h2>
+    <p id="ld-url" style="color:var(--ink3);font-size:13px;font-weight:500;margin-bottom:4px;"></p>
+    <div class="pb"><div class="pbf" id="pb1"></div></div>
+    <div class="sc" style="text-align:left;padding:6px 22px;">
+      <div class="lstep" id="ls1"><div class="lnum">1</div><span>Scraping website content</span></div>
+      <div class="lstep" id="ls2"><div class="lnum">2</div><span>Extracting brand signals</span></div>
+      <div class="lstep" id="ls3"><div class="lnum">3</div><span>Analysing tone &amp; positioning</span></div>
+      <div class="lstep" id="ls4"><div class="lnum">4</div><span>Generating 5 brand contexts</span></div>
+      <div class="lstep" id="ls5"><div class="lnum">5</div><span>Finalising output</span></div>
+    </div>
+  </div>
+</div>
+</div>
+
+
+<!-- ══════════════════════════════════════
+     PAGE 3 — RESULTS
+══════════════════════════════════════ -->
+<div class="page" id="p3">
+<div class="wrap lg">
+  <div style="display:flex;flex-wrap:wrap;align-items:flex-end;justify-content:space-between;gap:12px;margin-bottom:8px;">
+    <div>
+      <button class="btn btn-o" style="padding:5px 11px;font-size:12px;margin-bottom:10px;" onclick="goPg('p1')">← New Analysis</button>
+      <h1 style="font-size:25px;font-weight:800;letter-spacing:-.5px;">Brand DNA Results</h1>
+      <p id="res-url" style="color:var(--ink3);font-size:13px;margin-top:4px;font-weight:500;"></p>
+    </div>
+    <div style="display:flex;gap:8px;flex-wrap:wrap;">
+      <button class="btn btn-o" style="padding:8px 14px;font-size:12.5px;">↓ Export PDF</button>
+      <button class="btn btn-v" style="padding:8px 16px;font-size:12.5px;" onclick="goCtxSel()">Use a Context →</button>
+    </div>
+  </div>
+  <p style="color:var(--ink2);font-size:13.5px;margin-bottom:18px;">Rate each context, then pick one to generate content from.</p>
+  <div style="display:flex;gap:7px;margin-bottom:22px;flex-wrap:wrap;">
+    <button class="ftab on" onclick="fCtx('all',this)">All</button>
+    <button class="ftab" onclick="fCtx(5,this)">⭐ 5 Stars</button>
+    <button class="ftab" onclick="fCtx(4,this)">⭐ 4 Stars</button>
+    <button class="ftab" onclick="fCtx('bm',this)">🔖 Bookmarked</button>
+  </div>
+  <div id="ctx-grid" style="display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:16px;"></div>
+</div>
+</div>
+
+
+<!-- ══════════════════════════════════════
+     PAGE 4 — SELECT CONTEXT
+══════════════════════════════════════ -->
+<div class="page" id="p4">
+<div class="wrap md">
+  <button class="btn btn-o" style="padding:5px 11px;font-size:12px;margin-bottom:20px;" onclick="goPg('p3')">← Back</button>
+  <div class="badge"><span class="pulse"></span>Step 4 of 7</div>
+  <h1 class="ht">Choose Your <span class="gr">Context</span></h1>
+  <p class="sub">Select the positioning angle you want to turn into content.</p>
+  <div id="ctx-sel-grid" style="display:grid;grid-template-columns:repeat(auto-fill,minmax(240px,1fr));gap:12px;margin-bottom:26px;"></div>
+  <div style="display:flex;justify-content:flex-end;">
+    <button class="btn btn-v" id="ctx-next" disabled onclick="goTplOpts()">Pick Template &amp; Options →</button>
+  </div>
+</div>
+</div>
+
+
+<!-- ══════════════════════════════════════
+     PAGE 5 — TEMPLATE + OPTIONS
+══════════════════════════════════════ -->
+<div class="page" id="p5">
+<div class="wrap lg">
+  <button class="btn btn-o" style="padding:5px 11px;font-size:12px;margin-bottom:20px;" onclick="goPg('p4')">← Back</button>
+  <div class="badge"><span class="pulse"></span>Step 5 of 7</div>
+  <h1 class="ht">Template <span class="gr">&amp; Options</span></h1>
+  <p class="sub">Pick a template, then fine-tune the output. All options are optional.</p>
+
+  <div style="background:var(--vsoft);border:1.5px solid var(--vmid);border-radius:var(--r8);padding:10px 16px;margin-bottom:24px;display:flex;align-items:center;gap:10px;">
+    <div style="width:6px;height:6px;border-radius:50%;background:var(--violet);flex-shrink:0;"></div>
+    <div><p style="font-size:9.5px;color:var(--violet);font-weight:700;letter-spacing:.07em;text-transform:uppercase;margin-bottom:1px;">Selected Context</p>
+    <p id="ctx-pill-name" style="font-size:13.5px;font-weight:700;color:var(--ink);"></p></div>
+  </div>
+
+  <div class="opts-layout">
+    <div>
+      <div style="margin-bottom:20px;">
+        <label class="lbl" style="margin-bottom:10px;">Choose a Template <span style="color:var(--rose);font-size:12px;">*</span></label>
+        <div class="tpl-grid" id="tpl-grid"></div>
+      </div>
+      <div class="dynpanel" id="dynpanel">
+        <div class="dynpanel-title" id="dynpanel-title">Template Options</div>
+        <div id="dynpanel-body"></div>
+      </div>
+      <div class="sdiv"></div>
+      <div class="og">
+        <label class="lbl">Tone of Voice <span class="opt">(Optional)</span></label>
+        <div class="tog-wrap">
+          <button class="tog" data-tone="luxury" onclick="selTone(this)">👑 Luxury</button>
+          <button class="tog" data-tone="fun" onclick="selTone(this)">🎉 Fun &amp; Playful</button>
+          <button class="tog" data-tone="authority" onclick="selTone(this)">🎯 Authority</button>
+          <button class="tog" data-tone="bold" onclick="selTone(this)">⚡ Bold &amp; Direct</button>
+          <button class="tog" data-tone="warm" onclick="selTone(this)">🤝 Warm &amp; Human</button>
+          <button class="tog" data-tone="educational" onclick="selTone(this)">📚 Educational</button>
+        </div>
+      </div>
+      <div class="og">
+        <label class="lbl">Emoji Style</label>
+        <div class="tog-wrap">
+          <button class="etog" data-emoji="none" onclick="selEmoji(this)"><span class="esamp">—</span>None</button>
+          <button class="etog on" data-emoji="minimal" onclick="selEmoji(this)"><span class="esamp">✨</span>Minimal</button>
+          <button class="etog" data-emoji="moderate" onclick="selEmoji(this)"><span class="esamp">🔥💡</span>Moderate</button>
+          <button class="etog" data-emoji="heavy" onclick="selEmoji(this)"><span class="esamp">🚀🎯🔥</span>Heavy</button>
+        </div>
+      </div>
+      <div class="og">
+        <label class="lbl">Target Platform <span class="opt">(Optional)</span></label>
+        <div class="tog-wrap">
+          <button class="tog on" data-plat="linkedin" onclick="selPlat(this)">💼 LinkedIn</button>
+          <button class="tog" data-plat="instagram" onclick="selPlat(this)">📸 Instagram</button>
+          <button class="tog" data-plat="twitter" onclick="selPlat(this)">𝕏 Twitter/X</button>
+          <button class="tog" data-plat="facebook" onclick="selPlat(this)">👥 Facebook</button>
+        </div>
+      </div>
+    </div>
+    <div>
+      <div class="sc" style="position:sticky;top:118px;">
+        <p style="font-size:11px;font-weight:700;letter-spacing:.08em;color:var(--ink3);text-transform:uppercase;margin-bottom:16px;">Content Settings</p>
+        <div class="og">
+          <label class="lbl" for="cta-in">Call to Action <span class="opt">(Optional)</span></label>
+          <div class="iw">
+            <svg class="ii" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="M12 5l7 7-7 7"/></svg>
+            <input class="inp" id="cta-in" placeholder="e.g. Book a free call"/>
+          </div>
+        </div>
+        <div class="og">
+          <label class="lbl" for="offer-in">Offer / Hook <span class="opt">(Optional)</span></label>
+          <div class="iw">
+            <svg class="ii" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20.59 13.41l-7.17 7.17a2 2 0 0 1-2.83 0L2 12V2h10l8.59 8.59a2 2 0 0 1 0 2.82z"/><line x1="7" y1="7" x2="7.01" y2="7"/></svg>
+            <input class="inp" id="offer-in" placeholder="e.g. Free brand audit"/>
+          </div>
+        </div>
+        <div class="og">
+          <label class="lbl" for="slide-n">Number of Slides</label>
+          <div style="display:flex;align-items:center;gap:12px;">
+            <input class="inp" id="slide-n" type="number" min="3" max="10" value="6" style="max-width:90px;"/>
+            <span style="font-size:12px;color:var(--ink3);font-weight:500;">3–10 slides</span>
+          </div>
+        </div>
+        <div class="sdiv" style="margin:14px 0;"></div>
+        <button class="btn btn-v bw" style="padding:13px;" id="gen-btn" disabled onclick="startGen()">✦ Generate Content</button>
+        <p style="text-align:center;color:var(--ink3);font-size:11.5px;margin-top:8px;font-weight:500;">Select a template to continue</p>
+      </div>
+    </div>
+  </div>
+</div>
+</div>
+
+
+<!-- ══════════════════════════════════════
+     PAGE 6 — GENERATING
+══════════════════════════════════════ -->
+<div class="page" id="p6">
+<div class="wrap sm" style="min-height:100vh;display:flex;align-items:center;justify-content:center;position:relative;">
+  <div class="gblob" style="width:480px;height:480px;background:radial-gradient(circle,rgba(79,63,237,.09),transparent 70%);top:50%;left:50%;transform:translate(-50%,-50%);"></div>
+  <div style="position:relative;z-index:1;width:100%;text-align:center;">
+    <div style="display:flex;justify-content:center;margin-bottom:22px;"><div class="spin"></div></div>
+    <h2 style="font-size:21px;font-weight:800;letter-spacing:-.4px;margin-bottom:5px;">Generating Your Content</h2>
+    <p id="gen-summary" style="color:var(--ink3);font-size:13px;font-weight:500;margin-bottom:4px;"></p>
+    <div class="pb"><div class="pbf" id="pb2"></div></div>
+    <div class="sc" style="text-align:left;padding:6px 22px;">
+      <div class="lstep" id="gs1"><div class="lnum" style="font-size:13px;">📋</div><span>Processing brand context</span></div>
+      <div class="lstep" id="gs2"><div class="lnum" style="font-size:13px;">🎨</div><span>Structuring carousel slides</span></div>
+      <div class="lstep" id="gs3"><div class="lnum" style="font-size:13px;">✍️</div><span>Writing caption copy</span></div>
+      <div class="lstep" id="gs4"><div class="lnum" style="font-size:13px;">#️⃣</div><span>Generating hashtags</span></div>
+      <div class="lstep" id="gs5"><div class="lnum" style="font-size:13px;">🖼️</div><span>Creating image prompts</span></div>
+      <div class="lstep" id="gs6"><div class="lnum" style="font-size:13px;">✅</div><span>Finalising output</span></div>
+    </div>
+  </div>
+</div>
+</div>
+
+
+<!-- ══════════════════════════════════════
+     PAGE 7 — OUTPUT
+══════════════════════════════════════ -->
+<div class="page" id="p7">
+<div class="wrap lg">
+  <div style="display:flex;flex-wrap:wrap;align-items:flex-end;justify-content:space-between;gap:12px;margin-bottom:8px;">
+    <div>
+      <button class="btn btn-o" style="padding:5px 11px;font-size:12px;margin-bottom:10px;" onclick="goPg('p5')">← Back</button>
+      <h1 style="font-size:25px;font-weight:800;letter-spacing:-.5px;">Your Content is Ready 🎉</h1>
+      <p id="out-meta" style="color:var(--ink3);font-size:13px;margin-top:4px;font-weight:500;"></p>
+    </div>
+    <div style="display:flex;gap:8px;flex-wrap:wrap;">
+      <button class="btn btn-o" style="padding:8px 14px;font-size:12.5px;" onclick="startGen()">↺ Regenerate</button>
+      <button class="btn btn-o" style="padding:8px 14px;font-size:12.5px;" onclick="goCtxSel()">+ New Content</button>
+      <button class="btn btn-v" style="padding:8px 16px;font-size:12.5px;" onclick="cpAll()">⧉ Copy All</button>
+    </div>
+  </div>
+  <div class="sdiv"></div>
+  <div class="osec">
+    <div class="oh">🎠 Carousel Slides <span id="s-count" style="font-size:12px;font-weight:400;color:var(--ink3);"></span></div>
+    <div id="slides-grid" style="display:grid;grid-template-columns:repeat(auto-fill,minmax(170px,1fr));gap:10px;"></div>
+  </div>
+  <div class="osec">
+    <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:14px;">
+      <div class="oh" style="margin-bottom:0;">✍️ Caption</div>
+      <button class="cpsm" onclick="cpSec('cap')">⧉ Copy</button>
+    </div>
+    <div class="capbox" id="out-cap"></div>
+  </div>
+  <div class="osec">
+    <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:14px;">
+      <div class="oh" style="margin-bottom:0;">#️⃣ Hashtags</div>
+      <button class="cpsm" onclick="cpSec('ht')">⧉ Copy</button>
+    </div>
+    <div id="out-ht" style="display:flex;flex-wrap:wrap;"></div>
+  </div>
+  <div class="osec">
+    <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:14px;">
+      <div class="oh" style="margin-bottom:0;">🖼️ Image Prompts</div>
+      <button class="cpsm" onclick="cpSec('pr')">⧉ Copy All</button>
+    </div>
+    <div id="out-pr"></div>
+  </div>
+  <div style="text-align:center;padding:28px 0 0;">
+    <p style="color:var(--ink3);font-size:13.5px;margin-bottom:12px;font-weight:500;">Want a different angle?</p>
+    <button class="btn btn-v" onclick="goCtxSel()">⊕ Use Another Context</button>
+  </div>
+</div>
+</div>
+
+<div id="toast"><span id="t-icon">✓</span><span id="t-msg">Copied!</span></div>
+
+<style>
+@media(max-width:768px){
+  .hero-grid{grid-template-columns:1fr!important;}
+  .hero-grid>div:last-child{display:none;}
+  .hidden-mobile{display:none!important;}
+}
+</style>
+
+<script>
+// ══════════════════════════════════════
+// HOMEPAGE ↔ APP TRANSITION
+// ══════════════════════════════════════
+function launchApp(){
+  document.getElementById('p0').classList.remove('active');
+  document.getElementById('app-shell').classList.add('active');
+  showPage('p1');
+  S.curStep=1;updStepbar(1);
+  window.scrollTo({top:0,behavior:'smooth'});
+}
+
+function goHome(){
+  // Hide all app pages
+  document.querySelectorAll('.page').forEach(p=>p.classList.remove('active'));
+  document.getElementById('app-shell').classList.remove('active');
+  document.getElementById('p0').classList.add('active');
+  window.scrollTo({top:0,behavior:'smooth'});
+}
+
+function showPage(id){
+  document.querySelectorAll('.page').forEach(p=>p.classList.remove('active'));
+  document.getElementById(id).classList.add('active');
+}
+
+// ══════════════════════════════════════
+// STATE
+// ══════════════════════════════════════
+const S={
+  url:'',ctx:[],ratings:{},bm:new Set(),likes:new Set(),
+  selCtx:null,selTpl:null,
+  tone:null,emoji:'minimal',platform:'linkedin',
+  cta:'',offer:'',slideN:6,
+  hookQuestion:'',statFact:'',clientName:'',resultBefore:'',resultAfter:'',
+  stepCount:'5',ownBrand:'',rivalBrand:'',communityTag:'',
+  gen:null,curStep:1
+};
+
+// ══════════════════════════════════════
+// CONTEXTS
+// ══════════════════════════════════════
+const CTXS=[
+  {id:1,title:'Direct Response',body:`Are you struggling to capture high-quality leads that actually convert?\n\nMost businesses pour money into ads and get nothing but vanity metrics in return. The problem isn't your product — it's your messaging.\n\nOur AI-driven platform analyses every visible signal on your website and LinkedIn presence to map exactly who your ideal buyer is, what they fear, and what makes them act.\n\nWe don't guess. We extract. Our engine processes your homepage copy, about page, case studies, and social posts to build a precision persona model — then generates campaigns engineered around that exact psychological profile.\n\nThe result? Campaigns that feel personal at scale. Leads that already believe in what you do before they book a call.`},
+  {id:2,title:"Founder's Origin",body:`I spent 5 years building something nobody wanted.\n\nThe product was good. The team was great. But every campaign felt like screaming into a void. We'd launch, get a spike, then silence.\n\nThen I realised the truth about B2B growth: It's not about being louder, it's about being more precise.\n\nWe were talking to everyone — which meant resonating with no one. Our messaging was generic because we'd never decoded what our brand stood for at a DNA level.\n\nSo I built the tool I wished I had. One that reads your website, parses your LinkedIn, and tells you: here is who you are, here is who you're speaking to, and here is how to close the gap.`},
+  {id:3,title:'The Contrarian View',body:`Most people think you need a massive ad budget to scale your SaaS.\n\nThey're entirely wrong.\n\nThe businesses that scale fastest aren't the ones spending most — they've achieved brand resonance precision. They know exactly who they're for, say it clearly, and every piece of content filters out the wrong people and magnetises the right ones.\n\nHere's the uncomfortable truth: most startups have already written everything they need. It's on their homepage, buried in their about page, scattered across LinkedIn posts from last quarter.\n\nAdForge doesn't generate ideas from thin air. It reads what you've already built, finds the throughline, and crystallises it into five actionable brand contexts.`},
+  {id:4,title:'Social Proof',body:`When Meridian SaaS came to us, they had a 4% trial-to-paid conversion rate.\n\nTheir product solved a real problem. Their support was excellent. But their positioning was creating friction at exactly the wrong moment.\n\nIn 20 minutes, AdForge processed their website and LinkedIn. It surfaced something the team had missed: they were speaking to VP-level buyers with language designed for individual contributors.\n\nThey rewrote their homepage headline and two email sequences based on our output.\n\nSix weeks later: 11.3% trial-to-paid. Zero product changes. We just helped them say the right thing to the right person.`},
+  {id:5,title:'Problem → Solution',body:`You've got a great product. A growing team. A marketing budget. So why does every campaign still feel like a gamble?\n\nHere's what nobody tells early-stage B2B founders: the bottleneck isn't your offer. It's your brand positioning.\n\nRight now, your website speaks one language. Your LinkedIn speaks another. Your ads speak a third. And your prospects — skimming everything in under eight seconds — are hearing noise.\n\nAdForge breaks this cycle. By extracting the positioning intelligence already embedded in your digital presence, we generate five distinct brand contexts — each one a complete messaging framework you can deploy immediately.`}
+];
+
+// ══════════════════════════════════════
+// TEMPLATES
+// ══════════════════════════════════════
+const TPLS=[
+  {id:'curiosity',name:'Curiosity Hook',desc:"Intriguing open question",cls:'tp-cu',
+    dynOpts:[{id:'hookQuestion',lbl:'Opening Hook Question',ph:'e.g. What if your brand was costing you leads?',type:'text'}],
+    prev:`<div style="height:100%;display:flex;flex-direction:column;justify-content:space-between;"><div><div class="mb" style="background:rgba(139,124,245,.25);color:#C4B8FF;">HOOK</div><div class="mh">What if your brand was costing you leads?</div><div class="mp">Most marketers focus on reach.<br/>The best ones obsess over resonance.</div></div><div><div class="ml" style="width:80%;"></div><div class="ml" style="width:55%;"></div></div></div>`},
+  {id:'myth',name:'Myth vs Reality',desc:'Bust a common belief',cls:'tp-my',
+    dynOpts:[{id:'mythStatement',lbl:'The Myth to Bust',ph:'e.g. You need a big ad budget to grow',type:'text'},{id:'realityStatement',lbl:'The Reality',ph:'e.g. You need brand precision, not more spend',type:'text'}],
+    prev:`<div style="height:100%;display:flex;flex-direction:column;justify-content:space-between;"><div><div class="mb" style="background:rgba(252,165,165,.2);color:#FCA5A5;">MYTH</div></div><div style="display:flex;flex-direction:column;gap:4px;"><div style="background:rgba(252,165,165,.12);border-radius:4px;padding:5px 7px;"><div style="font-size:7px;color:#FCA5A5;font-weight:700;margin-bottom:2px;">❌ MYTH</div><div class="ml" style="background:rgba(252,165,165,.3);width:75%;"></div></div><div style="background:rgba(134,239,172,.12);border-radius:4px;padding:5px 7px;"><div style="font-size:7px;color:#86EFAC;font-weight:700;margin-bottom:2px;">✅ REALITY</div><div class="ml" style="background:rgba(134,239,172,.3);width:75%;"></div></div></div></div>`},
+  {id:'problem',name:'Problem → Solution',desc:'Pain, agitation, fix',cls:'tp-pr',
+    dynOpts:[{id:'problemStatement',lbl:'The Core Problem',ph:'e.g. Campaigns that burn budget without converting',type:'text'},{id:'solutionStatement',lbl:'The Solution',ph:'e.g. Brand DNA precision changes everything',type:'text'}],
+    prev:`<div style="height:100%;display:flex;flex-direction:column;justify-content:space-between;"><div><div class="mb" style="background:rgba(252,165,165,.2);color:#FCA5A5;">PROBLEM</div><div class="mp" style="margin-top:3px;">Campaigns that never convert…</div></div><div style="font-size:16px;opacity:.35;text-align:center;">↓</div><div><div class="mb" style="background:rgba(134,239,172,.2);color:#86EFAC;">SOLUTION</div><div class="mp" style="color:rgba(134,239,172,.5);margin-top:2px;">Brand DNA precision</div></div></div>`},
+  {id:'steps',name:'Step-by-Step',desc:'Clear numbered process',cls:'tp-st',
+    dynOpts:[{id:'stepCount',lbl:'Number of Steps',ph:'e.g. 5',type:'number'},{id:'frameworkName',lbl:'Framework Name',ph:'e.g. The Brand Clarity Method',type:'text'}],
+    prev:`<div style="height:100%;display:flex;flex-direction:column;justify-content:space-between;"><div class="mb" style="background:rgba(147,197,253,.2);color:#93C5FD;">FRAMEWORK</div><div style="display:flex;flex-direction:column;gap:4px;margin-top:4px;">${[1,2,3,4,5].map(n=>`<div style="display:flex;align-items:center;gap:4px;"><div style="width:12px;height:12px;border-radius:3px;background:rgba(147,197,253,.2);color:#93C5FD;display:flex;align-items:center;justify-content:center;font-size:7px;font-weight:700;flex-shrink:0;">${n}</div><div class="ml" style="background:rgba(147,197,253,.15);flex:1;margin:0;"></div></div>`).join('')}</div></div>`},
+  {id:'socialproof',name:'Social Proof',desc:'Real result-led story',cls:'tp-sp',
+    dynOpts:[{id:'clientName',lbl:'Client / Company Name',ph:'e.g. Meridian SaaS',type:'text'},{id:'resultBefore',lbl:'Before Result',ph:'e.g. 4% trial-to-paid',type:'text'},{id:'resultAfter',lbl:'After Result',ph:'e.g. 11.3% in 6 weeks',type:'text'}],
+    prev:`<div style="height:100%;display:flex;flex-direction:column;justify-content:space-between;"><div><div class="mb" style="background:rgba(253,230,138,.2);color:#FDE68A;">RESULT</div><div style="font-size:17px;font-weight:800;color:#FDE68A;margin-top:4px;letter-spacing:-.5px;">4% → 11.3%</div><div style="font-size:7px;color:rgba(253,230,138,.4);margin-top:1px;">Trial-to-paid in 6 weeks</div></div><div><div class="ml" style="width:80%;"></div><div class="ml" style="width:50%;"></div></div></div>`},
+  {id:'didyouknow',name:'Did You Know',desc:'Surprising stat or insight',cls:'tp-dy',
+    dynOpts:[{id:'statFact',lbl:'Surprising Stat or Fact',ph:'e.g. 72% of B2B buyers expect personalised messaging',type:'text'}],
+    prev:`<div style="height:100%;display:flex;flex-direction:column;justify-content:space-between;"><div><div class="mb" style="background:rgba(216,180,254,.2);color:#E9D5FF;">DID YOU KNOW?</div><div style="font-size:17px;font-weight:800;color:#E9D5FF;margin-top:5px;letter-spacing:-.5px;">3×</div><div style="font-size:7px;color:rgba(233,213,255,.4);line-height:1.4;">more leads with<br/>clear positioning</div></div><div class="ml" style="width:65%;"></div></div>`},
+  {id:'vision',name:'Vision',desc:'Future-state imagination',cls:'tp-vi',
+    dynOpts:[{id:'visionOutcome',lbl:'The Ideal Outcome / Vision',ph:'e.g. A brand so clear every post attracts the right buyer',type:'text'}],
+    prev:`<div style="height:100%;display:flex;flex-direction:column;justify-content:space-between;"><div><div class="mb" style="background:rgba(139,124,245,.2);color:#C4B8FF;">VISION</div><div style="font-size:9px;font-weight:800;color:#fff;margin-top:5px;line-height:1.3;">Imagine a brand<br/>so clear…</div></div><div><div style="font-size:7px;color:rgba(255,255,255,.3);margin-bottom:5px;">Every post attracts the right person.</div><div style="display:flex;gap:3px;">${[0,1,2].map(i=>`<div style="width:7px;height:7px;border-radius:50%;background:${i===0?'rgba(139,124,245,.7)':'rgba(255,255,255,.1)'};"></div>`).join('')}</div></div></div>`},
+  {id:'behind',name:'Behind the Scenes',desc:'Raw, unfiltered process',cls:'tp-bh',
+    dynOpts:[{id:'processStep',lbl:'Key Process Moment',ph:'e.g. The exact moment we found their positioning gap',type:'text'}],
+    prev:`<div style="height:100%;display:flex;flex-direction:column;justify-content:space-between;"><div><div class="mb" style="background:rgba(252,165,165,.2);color:#FCA5A5;">BTS 🎬</div><div style="font-size:8px;color:rgba(252,165,165,.55);margin-top:4px;line-height:1.4;">How we decode brand DNA<br/>in under 30 minutes ↓</div></div><div><div class="ml" style="background:rgba(252,165,165,.15);width:85%;"></div><div class="ml" style="background:rgba(252,165,165,.08);width:55%;"></div></div></div>`},
+  {id:'comparison',name:'Old vs New',desc:'Side-by-side contrast',cls:'tp-cm',
+    dynOpts:[{id:'ownBrand',lbl:'"New Way" Label',ph:'e.g. Context-led content',type:'text'},{id:'rivalBrand',lbl:'"Old Way" Label',ph:'e.g. Random daily posting',type:'text'}],
+    prev:`<div class="mrow" style="height:100%;"><div class="mcol" style="background:rgba(239,68,68,.1);border:1px solid rgba(239,68,68,.2);"><div style="font-size:7px;color:#FCA5A5;font-weight:700;margin-bottom:4px;">❌ OLD</div><div class="ml" style="background:rgba(239,68,68,.2);"></div><div class="ml" style="background:rgba(239,68,68,.1);width:65%;"></div></div><div class="mcol" style="background:rgba(74,222,128,.1);border:1px solid rgba(74,222,128,.2);"><div style="font-size:7px;color:#86EFAC;font-weight:700;margin-bottom:4px;">✅ NEW</div><div class="ml" style="background:rgba(74,222,128,.25);"></div><div class="ml" style="background:rgba(74,222,128,.12);width:65%;"></div></div></div>`},
+  {id:'community',name:'Community',desc:'Speak directly to your tribe',cls:'tp-co',
+    dynOpts:[{id:'communityTag',lbl:'Who Is This For? (tagline)',ph:'e.g. Founders tired of blending in',type:'text'}],
+    prev:`<div style="height:100%;display:flex;flex-direction:column;justify-content:space-between;"><div><div class="mb" style="background:rgba(253,230,138,.18);color:#FDE68A;">FOR YOU IF…</div><div style="font-size:8px;color:rgba(253,230,138,.6);margin-top:4px;line-height:1.5;">You're building something real<br/>and tired of blending in.</div></div><div style="display:flex;gap:3px;flex-wrap:wrap;">${Array.from({length:6},(_,i)=>`<div style="width:9px;height:9px;border-radius:50%;background:rgba(253,230,138,.${i<3?3:1});border:1px solid rgba(253,230,138,.2);"></div>`).join('')}</div></div>`},
+];
+
+// ══════════════════════════════════════
+// NAVIGATION
+// ══════════════════════════════════════
+const PGMAP={p1:1,p2:2,p3:3,p4:4,p5:5,p6:6,p7:7};
+function goPg(id){
+  showPage(id);
+  S.curStep=PGMAP[id];updStepbar(S.curStep);
+  window.scrollTo({top:0,behavior:'smooth'});
+}
+function updStepbar(step){
+  for(let i=1;i<=7;i++){
+    const sp=document.getElementById('sp'+i),sl=document.getElementById('sl'+i);
+    if(!sp)continue;
+    sp.classList.remove('active','done','reach');
+    if(i===step)sp.classList.add('active');
+    else if(i<step)sp.classList.add('done');
+    else if(canReach(i))sp.classList.add('reach');
+    if(sl)sl.classList.toggle('done',i<step);
+  }
+}
+function canReach(s){
+  if(s<=1)return true;
+  if(s===2)return!!S.url;
+  if(s===3||s===4)return S.ctx.length>0;
+  if(s===5)return S.ctx.length>0&&!!S.selCtx;
+  if(s===6)return S.ctx.length>0&&!!S.selCtx&&!!S.selTpl;
+  if(s===7)return!!S.gen;
+  return false;
+}
+function navSp(s){
+  if(s===S.curStep)return;
+  if(s===2){showToast('Analysis already complete');return;}
+  if(s===6){if(!canReach(6)){showToast('Pick a template first','⚠️','#B45309');return;}startGen();return;}
+  if(!canReach(s)){const m={3:'Run an analysis first',4:'Run an analysis first',5:'Choose a context first',7:'Generate content first'};showToast(m[s]||'Complete earlier steps first','⚠️','#B45309');return;}
+  if(s===3&&S.ctx.length)renderResults(S.ctx);
+  if(s===4)renderCtxSel();
+  if(s===5&&S.selCtx)renderTplOpts();
+  if(s===7&&S.gen)renderOutput();
+  const m={1:'p1',3:'p3',4:'p4',5:'p5',7:'p7'};
+  if(m[s])goPg(m[s]);
+}
+
+// ══════════════════════════════════════
+// PAGE 1 & P0 ANIMATIONS
+// ══════════════════════════════════════
+document.addEventListener('DOMContentLoaded',()=>{
+  document.getElementById('urlin').addEventListener('keydown',e=>{if(e.key==='Enter')goAnalyse();});
+
+  // Fade Up Animation Observer
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('visible');
+        observer.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.1, rootMargin: '0px 0px -50px 0px' });
+  
+  document.querySelectorAll('.fade-up').forEach(el => observer.observe(el));
+
+  // Typing Effect
+  const typeText = document.getElementById('type-text');
+  if(typeText) {
+    const words = ["social post", "clean email", "carousel", "blog article"];
+    let wordIdx = 0;
+    
+    // Animate width for a basic typing effect
+    setInterval(() => {
+      typeText.style.animation = 'none';
+      typeText.offsetHeight; // trigger reflow
+      wordIdx = (wordIdx + 1) % words.length;
+      typeText.textContent = words[wordIdx];
+      typeText.style.animation = 'typing 2.5s steps(40, end), blink-caret .75s step-end infinite';
+    }, 4500);
+  }
+});
+function goAnalyse(){
+  const v=document.getElementById('urlin').value.trim();
+  const err=document.getElementById('urlerr');
+  try{new URL(v);err.style.display='none';}catch{err.style.display='block';document.getElementById('urlin').focus();return;}
+  S.url=v;goPg('p2');runLoad();
+}
+
+// ══════════════════════════════════════
+// PAGE 2
+// ══════════════════════════════════════
+function runLoad(){
+  document.getElementById('ld-url').textContent=S.url;
+  const ids=['ls1','ls2','ls3','ls4','ls5'],pb=document.getElementById('pb1');
+  ids.forEach((id,i)=>{const el=document.getElementById(id);el.classList.remove('act','dn');el.querySelector('.lnum').textContent=i+1;});
+  pb.style.width='0%';
+  ids.forEach((id,i)=>{
+    setTimeout(()=>{
+      if(i>0){const p=document.getElementById(ids[i-1]);p.classList.remove('act');p.classList.add('dn');p.querySelector('.lnum').textContent='✓';}
+      document.getElementById(id).classList.add('act');
+      pb.style.width=((i+1)/ids.length*88)+'%';
+    },500+i*850);
+  });
+  setTimeout(()=>{
+    document.getElementById(ids[4]).classList.remove('act');document.getElementById(ids[4]).classList.add('dn');document.getElementById(ids[4]).querySelector('.lnum').textContent='✓';pb.style.width='100%';
+    S.ctx=CTXS;setTimeout(()=>{goPg('p3');renderResults(S.ctx);},500);
+  },5000);
+}
+
+// ══════════════════════════════════════
+// PAGE 3
+// ══════════════════════════════════════
+function renderResults(arr){
+  document.getElementById('res-url').textContent=S.url;
+  const g=document.getElementById('ctx-grid');g.innerHTML='';
+  if(!arr.length){g.innerHTML='<p style="color:var(--ink3);padding:28px 0;">No contexts match this filter.</p>';return;}
+  arr.forEach((c,i)=>{
+    const r=S.ratings[c.id]||0,bm=S.bm.has(c.id),lk=S.likes.has(c.id);
+    const stars=[1,2,3,4,5].map(n=>`<span class="star${n<=r?' on':''}" onclick="setRating(${c.id},${n})" data-s="${c.id}-${n}">★</span>`).join('');
+    const d=document.createElement('div');d.className=`sc fi fi${Math.min(i+1,10)}`;
+    d.innerHTML=`
+      <div class="ctx-num">0${c.id}</div>
+      <h3 style="font-size:15px;font-weight:700;margin-bottom:9px;letter-spacing:-.25px;">${c.title}</h3>
+      <div class="ctx-body" id="cb${c.id}">${c.body.split('\n\n').map(p=>`<p style="margin-bottom:8px;">${p}</p>`).join('')}</div>
+      <button class="rmb" id="rm${c.id}" onclick="togBody(${c.id})">Read more →</button>
+      <div style="border-top:1px solid var(--border);margin-top:13px;padding-top:13px;display:flex;align-items:center;justify-content:space-between;">
+        <div style="display:flex;gap:1px;">${stars}</div>
+        <div style="display:flex;gap:2px;">
+          <div class="tip"><button class="iabtn${lk?' on':''}" id="lk${c.id}" onclick="togLike(${c.id})"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 9V5a3 3 0 0 0-3-3l-4 9v11h11.28a2 2 0 0 0 2-1.7l1.38-9a2 2 0 0 0-2-2.3zM7 22H4a2 2 0 0 1-2-2v-7a2 2 0 0 1 2-2h3"/></svg></button><span class="tt">Like</span></div>
+          <div class="tip"><button class="iabtn${bm?' on':''}" id="bm${c.id}" onclick="togBm(${c.id})"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M19 21l-7-5-7 5V5a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2z"/></svg></button><span class="tt">Bookmark</span></div>
+          <div class="tip"><button class="iabtn" id="cpc${c.id}" onclick="cpCtx(${c.id})"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg></button><span class="tt">Copy</span></div>
+        </div>
+      </div>
+      <button style="margin-top:11px;width:100%;padding:9px;border-radius:7px;border:1.5px dashed var(--vmid);background:transparent;color:var(--violet);font-size:13px;font-weight:700;cursor:pointer;transition:all .18s;font-family:'DM Sans',sans-serif;" onclick="selCtxGo(${c.id})" onmouseover="this.style.background='var(--vsoft)'" onmouseout="this.style.background='transparent'">Use This Context →</button>`;
+    g.appendChild(d);
+  });
+}
+function togBody(id){const b=document.getElementById('cb'+id),btn=document.getElementById('rm'+id);const e=b.classList.toggle('exp');btn.textContent=e?'Read less ↑':'Read more →';}
+function setRating(id,v){S.ratings[id]=S.ratings[id]===v?0:v;for(let n=1;n<=5;n++){const s=document.querySelector(`[data-s="${id}-${n}"]`);if(s)s.classList.toggle('on',n<=S.ratings[id]);}}
+function togLike(id){const h=S.likes.has(id);h?S.likes.delete(id):S.likes.add(id);document.getElementById('lk'+id)?.classList.toggle('on',!h);}
+function togBm(id){const h=S.bm.has(id);h?S.bm.delete(id):S.bm.add(id);document.getElementById('bm'+id)?.classList.toggle('on',!h);}
+function cpCtx(id){const c=S.ctx.find(x=>x.id===id);if(!c)return;navigator.clipboard.writeText(c.title+'\n\n'+c.body).then(()=>{const b=document.getElementById('cpc'+id);b.style.color='var(--emerald)';setTimeout(()=>b.style.color='',1400);});}
+function fCtx(m,el){document.querySelectorAll('#p3 .ftab').forEach(t=>t.classList.remove('on'));el.classList.add('on');let f=S.ctx;if(m==='bm')f=S.ctx.filter(c=>S.bm.has(c.id));else if(typeof m==='number')f=S.ctx.filter(c=>S.ratings[c.id]===m);renderResults(f);}
+function goCtxSel(){renderCtxSel();goPg('p4');}
+function selCtxGo(id){S.selCtx=id;renderTplOpts();goPg('p5');}
+
+// ══════════════════════════════════════
+// PAGE 4
+// ══════════════════════════════════════
+function renderCtxSel(){
+  const g=document.getElementById('ctx-sel-grid');g.innerHTML='';
+  S.ctx.forEach((c,i)=>{
+    const d=document.createElement('div');
+    d.className=`csc fi fi${Math.min(i+1,5)}${S.selCtx===c.id?' sel':''}`;
+    d.onclick=()=>pickCtx(c.id);
+    const r=S.ratings[c.id];
+    d.innerHTML=`<div class="ck">✓</div><div class="ctx-num" style="margin-bottom:8px;">0${c.id}</div><h3 style="font-size:14px;font-weight:700;margin-bottom:7px;letter-spacing:-.2px;">${c.title}</h3><p style="font-size:12.5px;color:var(--ink2);line-height:1.6;">${c.body.split('\n\n')[0].slice(0,120)}…</p>${r?`<div style="margin-top:9px;font-size:13px;color:#F59E0B;">${'★'.repeat(r)}${'☆'.repeat(5-r)}</div>`:''}`;
+    g.appendChild(d);
+  });
+  upCtxNext();
+}
+function pickCtx(id){S.selCtx=id;document.querySelectorAll('.csc').forEach(c=>{const n=parseInt(c.querySelector('.ctx-num').textContent);c.classList.toggle('sel',n===id);});upCtxNext();}
+function upCtxNext(){document.getElementById('ctx-next').disabled=!S.selCtx;}
+function goTplOpts(){renderTplOpts();goPg('p5');}
+
+// ══════════════════════════════════════
+// PAGE 5
+// ══════════════════════════════════════
+function renderTplOpts(){
+  const c=S.ctx.find(x=>x.id===S.selCtx);
+  if(c)document.getElementById('ctx-pill-name').textContent=c.title;
+  const g=document.getElementById('tpl-grid');g.innerHTML='';
+  TPLS.forEach((t,i)=>{
+    const d=document.createElement('div');
+    d.className=`tc fi fi${Math.min(i+1,10)}${S.selTpl===t.id?' sel':''}`;
+    d.onclick=()=>pickTpl(t.id,d);
+    d.innerHTML=`<div class="ck2">✓</div><div class="tc-prev ${t.cls}">${t.prev}</div><div class="tc-body"><div class="tc-name">${t.name}</div><div class="tc-desc">${t.desc}</div></div>`;
+    g.appendChild(d);
+  });
+  document.querySelectorAll('.tog[data-tone]').forEach(b=>b.classList.toggle('on',b.dataset.tone===S.tone));
+  document.querySelectorAll('.etog').forEach(b=>b.classList.toggle('on',b.dataset.emoji===(S.emoji||'minimal')));
+  document.querySelectorAll('.tog[data-plat]').forEach(b=>b.classList.toggle('on',b.dataset.plat===(S.platform||'linkedin')));
+  if(S.cta)document.getElementById('cta-in').value=S.cta;
+  if(S.offer)document.getElementById('offer-in').value=S.offer;
+  document.getElementById('slide-n').value=S.slideN||6;
+  if(S.selTpl)renderDynPanel(S.selTpl);
+  upGenBtn();
+}
+function pickTpl(id,el){
+  S.selTpl=id;
+  document.querySelectorAll('.tc').forEach(c=>c.classList.remove('sel'));
+  el.classList.add('sel');
+  renderDynPanel(id);
+  upGenBtn();
+}
+function renderDynPanel(tplId){
+  const tpl=TPLS.find(t=>t.id===tplId);
+  if(!tpl||!tpl.dynOpts||tpl.dynOpts.length===0){document.getElementById('dynpanel').classList.remove('show');return;}
+  document.getElementById('dynpanel').classList.add('show');
+  document.getElementById('dynpanel-title').innerHTML=`<span style="display:inline-block;width:3px;height:12px;background:var(--violet);border-radius:2px;margin-right:7px;"></span>${tpl.name} — Template Fields`;
+  const body=document.getElementById('dynpanel-body');body.innerHTML='';
+  tpl.dynOpts.forEach(opt=>{
+    const div=document.createElement('div');div.style.cssText='margin-bottom:14px;';
+    div.innerHTML=`<label class="lbl" style="margin-bottom:5px;" for="dyn-${opt.id}">${opt.lbl} <span class="opt">(Optional)</span></label><input class="inp" id="dyn-${opt.id}" type="${opt.type||'text'}" placeholder="${opt.ph}" value="${S[opt.id]||''}"/>`;
+    body.appendChild(div);
+    div.querySelector('input').addEventListener('input',e=>{S[opt.id]=e.target.value;});
+  });
+}
+function upGenBtn(){
+  const btn=document.getElementById('gen-btn'),note=btn.nextElementSibling;
+  if(S.selTpl){btn.disabled=false;if(note)note.style.display='none';}
+  else{btn.disabled=true;if(note)note.style.display='';}
+}
+function selTone(el){document.querySelectorAll('.tog[data-tone]').forEach(b=>b.classList.remove('on'));el.classList.toggle('on');S.tone=el.classList.contains('on')?el.dataset.tone:null;}
+function selEmoji(el){document.querySelectorAll('.etog').forEach(b=>b.classList.remove('on'));el.classList.add('on');S.emoji=el.dataset.emoji;}
+function selPlat(el){document.querySelectorAll('.tog[data-plat]').forEach(b=>b.classList.remove('on'));el.classList.add('on');S.platform=el.dataset.plat;}
+
+// ══════════════════════════════════════
+// PAGE 6
+// ══════════════════════════════════════
+function startGen(){
+  const c=S.ctx.find(x=>x.id===S.selCtx),t=TPLS.find(x=>x.id===S.selTpl);
+  if(!c||!t){showToast('Choose a context & template first','⚠️','#B45309');return;}
+  S.cta=document.getElementById('cta-in').value.trim();
+  S.offer=document.getElementById('offer-in').value.trim();
+  S.slideN=Math.min(10,Math.max(3,parseInt(document.getElementById('slide-n').value)||6));
+  goPg('p6');
+  document.getElementById('gen-summary').textContent=`${t.name} · ${c.title}${S.tone?' · '+S.tone:''}`;
+  const ids=['gs1','gs2','gs3','gs4','gs5','gs6'],pb=document.getElementById('pb2');
+  ids.forEach(id=>{const el=document.getElementById(id);el.classList.remove('act','dn');});pb.style.width='0%';
+  ids.forEach((id,i)=>{
+    setTimeout(()=>{
+      if(i>0){const p=document.getElementById(ids[i-1]);p.classList.remove('act');p.classList.add('dn');p.querySelector('.lnum').textContent='✓';}
+      document.getElementById(id).classList.add('act');pb.style.width=((i+1)/ids.length*88)+'%';
+    },300+i*560);
+  });
+  setTimeout(()=>{
+    document.getElementById(ids[5]).classList.remove('act');document.getElementById(ids[5]).classList.add('dn');document.getElementById(ids[5]).querySelector('.lnum').textContent='✓';pb.style.width='100%';
+    S.gen=buildContent(c,t);setTimeout(()=>{goPg('p7');renderOutput();},380);
+  },3700);
+}
+
+// ══════════════════════════════════════
+// CONTENT ENGINE
+// ══════════════════════════════════════
+function buildContent(ctx,tpl){
+  const eMap={none:'',minimal:'✨',moderate:'🔥',heavy:'🚀🎯🔥'};
+  const e=eMap[S.emoji||'minimal'];
+  const platCTA={linkedin:'Follow for more positioning insights',instagram:'Save this & share with a founder',twitter:'RT if this hit',facebook:'Share with a founder who needs this'};
+  const cta=S.cta||(platCTA[S.platform]||'Follow for more insights');
+  const offer=S.offer||'';
+  const L=ctx.body.split('\n\n').filter(Boolean);
+  const n=S.slideN||6;
+  const hook=S.hookQuestion||'What if your brand was costing you leads?';
+  const myth=S.mythStatement||'You need a big ad budget to grow';
+  const reality=S.realityStatement||'You need brand precision, not spend';
+  const prob=S.problemStatement||L[0]?.slice(0,120)||'Campaigns that don\'t convert.';
+  const sol=S.solutionStatement||'Brand DNA precision fixes the gap.';
+  const steps=parseInt(S.stepCount)||5;
+  const framework=S.frameworkName||'Brand Clarity Framework';
+  const client=S.clientName||'Meridian SaaS';
+  const before=S.resultBefore||'4% trial-to-paid';
+  const after=S.resultAfter||'11.3% in 6 weeks';
+  const stat=S.statFact||'72% of B2B buyers expect personalised messaging';
+  const vision=S.visionOutcome||'A brand so clear every post attracts the right buyer';
+  const process=S.processStep||'How we decode brand DNA in 30 minutes';
+  const newWay=S.ownBrand||'Context-led content';
+  const oldWay=S.rivalBrand||'Random daily posting';
+  const community=S.communityTag||'Founders tired of blending in';
+  const stepSlides=Array.from({length:Math.min(steps,6)},(_,i)=>{
+    const sN=['Audit your full digital presence','Extract your brand signals','Map positioning gaps','Build your context library','Deploy & iterate','Review & compound'];
+    const sB=['Website, LinkedIn, social — what story are you actually telling?','Tone, vocabulary, proof points, the specific language your buyers use.','Where your message fragments. Where the audience gets confused.','5 distinct angles, each for a different buyer stage.','Test, rate, refine. Turn clarity into content that compounds.','Monthly review. See what\'s working. Double down.'];
+    return{h:`Step ${i+1} — ${sN[i]||'Next Step'}`,b:sB[i]||L[i]?.slice(0,120)||''};
+  });
+  const allSlides={
+    curiosity:[{h:`${e} ${hook}`,b:'Most marketers focus on reach. The best ones obsess over resonance.'},{h:'The hidden problem nobody talks about',b:L[0]?.slice(0,120)||''},{h:'Why your messaging keeps breaking down',b:L[1]?.slice(0,120)||''},{h:'The insight that changes everything',b:L[2]?.slice(0,120)||''},{h:'What precision actually looks like',b:L[3]?.slice(0,120)||''},{h:`${e} The result`,b:`Campaigns that convert. Leads who trust you before booking.${offer?' — '+offer:''}`},{h:'One last thing…',b:"The brands winning aren't louder. They're clearer."},{h:`Save this ${e}`,b:`Your brand already has everything it needs. You just need to hear it.${offer?' — '+offer:''}`}],
+    myth:[{h:`${e} The Myth: "${myth}"`,b:'Most B2B founders believe this. Most B2B founders stay stuck.'},{h:`❌ Myth: ${myth}`,b:'This belief keeps thousands of great companies invisible.'},{h:`✅ Reality: ${reality}`,b:L[0]?.slice(0,120)||''},{h:'Why the myth is so sticky',b:'Because it sounds logical. And because nobody challenges it.'},{h:'The brands that got this right',b:L[2]?.slice(0,120)||''},{h:`${e} What changes when you flip the script`,b:`Know your DNA. Say the right thing. Watch it compound.${offer?' — '+offer:''}`},{h:'The question to ask yourself',b:`"Am I investing in volume or in precision?"${offer?' — '+offer:''}`}],
+    problem:[{h:`${e} The Problem`,b:prob},{h:'Why it keeps happening',b:L[1]?.slice(0,130)||''},{h:'The hidden cost of unclear positioning',b:'Every month without clarity = budget burned on campaigns that miss.'},{h:'What\'s actually causing this',b:L[2]?.slice(0,130)||''},{h:`${e} The Solution`,b:sol},{h:'How it works in practice',b:'Website → signals → positioning gaps → 5 contexts → deploy.'},{h:'What changes with clarity',b:'Campaigns convert. Content compounds. Confidence grows.'},{h:`The outcome ${e}`,b:`Precision positioning. Content that converts.${offer?' — '+offer:''}`}],
+    steps:[{h:`${e} The ${framework}`,b:`${steps} steps to brand positioning clarity. Used on every client.`},...stepSlides,{h:`${e} The compound effect`,b:`Each piece of content builds on the last.${offer?' — '+offer:''}`}].slice(0,8),
+    socialproof:[{h:`${e} ${client} — Before`,b:`${before}. Campaigns that felt like screaming into a void.`},{h:'The diagnosis',b:'Talking to VP-level buyers with language designed for ICs.'},{h:'The 20-minute fix',b:L[2]?.slice(0,120)||''},{h:`${client} — After`,b:`${after}. Zero product changes. Just better positioning.`},{h:'What actually changed?',b:'Their messaging. Who they spoke to. How precisely.'},{h:`${e} The lesson`,b:`It's rarely the product. It's almost always the positioning.${offer?' — '+offer:''}`},{h:'Could this be your story?',b:`Your brand DNA is waiting to be decoded.${offer?' — '+offer:''}`}],
+    didyouknow:[{h:`${e} Did you know?`,b:stat},{h:'Why this number matters',b:'Most B2B websites are speaking to the wrong person on every page.'},{h:'The overlooked insight',b:L[0]?.slice(0,130)||''},{h:'Why most brands miss this',b:L[1]?.slice(0,130)||''},{h:'The smarter approach',b:L[2]?.slice(0,130)||''},{h:`Now you know ${e}`,b:`Act on it.${offer?' — '+offer:''}`},{h:'One more fact',b:'The clearest brands spend the least on acquisition.'},{h:`What will you do differently? ${e}`,b:`Your brand DNA holds the answer.${offer?' — '+offer:''}`}],
+    vision:[{h:`${e} Imagine this`,b:vision},{h:'The future of B2B marketing',b:'Not louder. Not more frequent. More resonant. More precise.'},{h:"What we're building toward",b:L[0]?.slice(0,130)||''},{h:'The world we want to create',b:'Founders who know exactly who they are — and own it.'},{h:'The roadmap',b:L[2]?.slice(0,130)||''},{h:`Join the movement ${e}`,b:`Brand clarity isn't a luxury. It's the strategy.${offer?' — '+offer:''}`},{h:`The future is now ${e}`,b:`Your brand DNA is the foundation everything else builds on.${offer?' — '+offer:''}`}],
+    behind:[{h:`${e} Behind the scenes`,b:process},{h:'First, we pull everything',b:'Website copy, about page, case studies, LinkedIn posts — all of it.'},{h:'Then we find the throughline',b:"What's the consistent promise? The recurring emotion? The unspoken value?"},{h:'We surface the gaps',b:'Where the message fragments. Where the audience gets confused.'},{h:'We generate 5 contexts',b:'Each one a complete framework for a different stage of the funnel.'},{h:`Then we hand it over ${e}`,b:`You rate. You refine. You deploy.${offer?' — '+offer:''}`},{h:'What we\'ve learned',b:'The winning brands aren\'t the loudest. They\'re the most consistent.'},{h:`The result ${e}`,b:`Content that feels personal. Because it\'s built from your actual DNA.${offer?' — '+offer:''}`}],
+    comparison:[{h:`${e} ${oldWay} vs ${newWay}`,b:'Two approaches. Completely different outcomes.'},{h:`❌ Old: ${oldWay}`,b:'Post every day, hope something sticks. Watch engagement flatline.'},{h:`✅ New: ${newWay}`,b:'Every post stems from a positioning angle. Everything compounds.'},{h:'❌ Old: Spray & pray ads',b:'Generic hooks. Broad targeting. High CPL. Low buyer intent.'},{h:`✅ New: Brand DNA precision`,b:L[1]?.slice(0,120)||''},{h:`The 90-day difference ${e}`,b:`Old way: exhaustion. New way: momentum.${offer?' — '+offer:''}`},{h:`Which side are you on? ${e}`,b:`Make the switch.${offer?' — '+offer:''}`}],
+    community:[{h:`${e} This is for you if…`,b:community||"You're building something real and tired of blending in."},{h:'You know your product works',b:"But the market doesn't see it. The gap is in your messaging."},{h:"You've tried the templates",b:'The hooks, the frameworks, the "proven" formulas. Still — silence.'},{h:"Here's what's actually missing",b:L[1]?.slice(0,130)||''},{h:'You deserve brand clarity',b:'Not tactics. A positioning foundation everything builds on.'},{h:`Welcome to AdForge ${e}`,b:`Your brand DNA — finally decoded.${offer?' — '+offer:''}`},{h:'You\'re not alone',b:'Thousands of founders have been here. Clarity is the turning point.'},{h:`Ready? ${e}`,b:`Your brand is already saying something. Let's make sure it's right.${offer?' — '+offer:''}`}],
+  };
+  const pool=allSlides[tpl.id]||allSlides.problem;
+  const slides=pool.slice(0,n).map((s,i)=>({...s,num:i+1,cov:i===0}));
+  const hooks={curiosity:`${hook} (Here's the answer nobody tells you →)`,myth:`The biggest myth about B2B growth — and why it's holding you back.`,problem:`Here's the real reason your campaigns aren't converting (swipe →)`,steps:`The ${framework}: ${steps} steps to brand clarity ↓`,socialproof:`${client} went from ${before} to ${after}. Here's exactly what changed.`,didyouknow:`Did you know? ${stat.slice(0,80)}`,vision:`${vision} — Here's the path to get there.`,behind:`Behind the scenes: ${process.slice(0,80)}`,comparison:`${oldWay} vs ${newWay}. Here's why one wins every time.`,community:`This is for ${community||'founders who are tired of blending in'}. 🧵`};
+  const body=ctx.body.split('\n\n').slice(0,2).join('\n\n');
+  const offerLine=offer?`\n\n${e} ${offer}`:'';
+  const caption=`${hooks[tpl.id]||hooks.problem}\n\n${body.slice(0,300)}…${offerLine}\n\n${cta}\n\nSave this if it resonated.`;
+  const base=['#BrandDNA','#ContentMarketing','#B2BMarketing','#Positioning','#LinkedInContent','#MarketingStrategy'];
+  const tTags={curiosity:['#CuriosityHook','#ContentStrategy'],myth:['#MarketingMyths','#GrowthMarketing'],problem:['#ProblemSolution','#Conversion'],steps:['#HowTo','#Framework'],socialproof:['#CaseStudy','#Results'],didyouknow:['#DidYouKnow','#Insight'],vision:['#Founder','#BuildingInPublic'],behind:['#BehindTheScenes','#Process'],comparison:['#OldVsNew','#Strategy'],community:['#Founders','#Community']};
+  const pTags={linkedin:['#LinkedIn','#B2B'],instagram:['#Instagram','#ContentCreator'],twitter:['#BuildInPublic','#XMarketing'],facebook:['#FacebookMarketing','#SMB']};
+  const hashtags=[...base,...(tTags[tpl.id]||[]),...(pTags[S.platform]||[])];
+  const imgStyle='clean editorial flat illustration, crisp white background, soft indigo/violet accent (#4F3FED), bold modern typography, generous whitespace, professional SaaS, no faces, subtle geometry, 1:1 square ratio';
+  const prompts=slides.slice(0,3).map((s,i)=>({lbl:`Slide ${i+1}: ${s.h}`,txt:`${imgStyle} — concept: "${s.b.slice(0,80)}". Template: ${tpl.name}. Tone: ${S.tone||'professional'}. Headline overlay: "${s.h}". Minimal, ultra-clean.`}));
+  return{slides,caption,hashtags,prompts};
+}
+
+// ══════════════════════════════════════
+// PAGE 7
+// ══════════════════════════════════════
+function renderOutput(){
+  const{slides,caption,hashtags,prompts}=S.gen;
+  const c=S.ctx.find(x=>x.id===S.selCtx),t=TPLS.find(x=>x.id===S.selTpl);
+  document.getElementById('out-meta').textContent=`${t?.name} · ${c?.title}${S.tone?' · '+S.tone.charAt(0).toUpperCase()+S.tone.slice(1):''}${S.platform?' · '+S.platform:''}`;
+  document.getElementById('s-count').textContent=`(${slides.length} slides)`;
+  const sg=document.getElementById('slides-grid');sg.innerHTML='';
+  slides.forEach(s=>{
+    const d=document.createElement('div');d.className=`slide-card${s.cov?' cov':''}`;
+    d.innerHTML=`<div class="sn">${s.num}</div><div><div class="sh">${s.h}</div><div class="sb">${s.b}</div></div><div class="sf">AdForge · ${s.num}/${slides.length}</div>`;
+    sg.appendChild(d);
+  });
+  document.getElementById('out-cap').textContent=caption;
+  const hc=document.getElementById('out-ht');hc.innerHTML='';
+  hashtags.forEach(h=>{const sp=document.createElement('span');sp.className='htag';sp.textContent=h;hc.appendChild(sp);});
+  const pc=document.getElementById('out-pr');pc.innerHTML='';
+  prompts.forEach(p=>{
+    const d=document.createElement('div');d.className='pcard';
+    d.innerHTML=`<div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:7px;"><div class="plbl">${p.lbl}</div><button class="cpsm" onclick="navigator.clipboard.writeText(this.closest('.pcard').querySelector('.ptxt').textContent).then(()=>{this.textContent='✓ Copied';setTimeout(()=>this.textContent='⧉ Copy',1500)})">⧉ Copy</button></div><div class="ptxt">${p.txt}</div>`;
+    pc.appendChild(d);
+  });
+}
+
+// ══════════════════════════════════════
+// UTILS
+// ══════════════════════════════════════
+function cpSec(t){
+  let tx='';
+  if(t==='cap')tx=document.getElementById('out-cap').textContent;
+  else if(t==='ht')tx=[...document.querySelectorAll('#out-ht .htag')].map(h=>h.textContent).join(' ');
+  else if(t==='pr')tx=[...document.querySelectorAll('#out-pr .ptxt')].map(p=>p.textContent).join('\n\n---\n\n');
+  navigator.clipboard.writeText(tx).then(()=>showToast('Copied!'));
+}
+function cpAll(){
+  if(!S.gen)return;
+  const{slides,caption,hashtags,prompts}=S.gen;
+  const st=slides.map(s=>`[Slide ${s.num}]\n${s.h}\n${s.b}`).join('\n\n');
+  const tx=`SLIDES\n\n${st}\n\n---\nCAPTION\n\n${caption}\n\n---\nHASHTAGS\n\n${hashtags.join(' ')}\n\n---\nIMAGE PROMPTS\n\n${prompts.map(p=>p.lbl+':\n'+p.txt).join('\n\n')}`;
+  navigator.clipboard.writeText(tx).then(()=>showToast('All content copied!'));
+}
+function showToast(msg,icon='✓',color='#059669'){
+  const t=document.getElementById('toast');
+  document.getElementById('t-msg').textContent=msg;
+  document.getElementById('t-icon').textContent=icon;
+  document.getElementById('t-icon').style.color=color;
+  t.style.opacity='1';t.style.transform='translateX(-50%) translateY(0)';
+  setTimeout(()=>{t.style.opacity='0';t.style.transform='translateX(-50%) translateY(90px)';},2500);
+}
+</script>
+</body>
+</html>

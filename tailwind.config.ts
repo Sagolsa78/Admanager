@@ -5,35 +5,66 @@ const config: Config = {
     "./pages/**/*.{js,ts,jsx,tsx,mdx}",
     "./components/**/*.{js,ts,jsx,tsx,mdx}",
     "./app/**/*.{js,ts,jsx,tsx,mdx}",
+    "./src/**/*.{js,ts,jsx,tsx,mdx}",
   ],
+
   theme: {
     extend: {
       colors: {
-        background: "#0D0D0D",
-        surface: "#161616",
-        "surface-2": "#1F1F1F",
+        background: "var(--bg)",
+        surface: "var(--surf)",
         primary: {
-          DEFAULT: "#E8500A",
-          hover: "#FF6120",
+          DEFAULT: "#2563EB",
+          light: "#EFF6FF",
+          hover: "#1D4ED8",
         },
         text: {
-          primary: "#F5F5F5",
-          secondary: "#A0A0A0",
+          primary: "#0F172A",
+          secondary: "#64748B",
         },
-        border: "#2A2A2A",
-        success: "#22C55E",
-        warning: "#F59E0B",
-        error: "#EF4444",
-      },
-      boxShadow: {
-        glow: "0 4px 24px rgba(232, 80, 10, 0.08)",
+        border: {
+          DEFAULT: "var(--border)",
+          m: "var(--border-m)",
+        },
+        violet: {
+          DEFAULT: "var(--violet)",
+          hover: "var(--violet-hover)",
+          light: "var(--violet-light)",
+          mid: "var(--violet-mid)"
+        },
+        ink: {
+          DEFAULT: "var(--ink)",
+          2: "var(--ink2)",
+          3: "var(--ink3)"
+        },
+        surf: {
+          DEFAULT: "var(--surf)",
+          2: "#F3F4F6",
+        },
+        emerald: {
+          DEFAULT: "var(--emerald)",
+        },
+        rose: {
+          DEFAULT: "var(--rose)",
+        },
+        amber: {
+          DEFAULT: "#F59E0B",
+        }
       },
       fontFamily: {
-        display: ["var(--font-bricolage-grotesque)", "sans-serif"],
-        sans: ["var(--font-dm-sans)", "sans-serif"],
+        sora: ["var(--font-sora)", "sans-serif"],
+        inter: ["var(--font-inter)", "sans-serif"],
+        mono: ["var(--font-jetbrains-mono)", "monospace"],
+        display: ["Outfit", "sans-serif"],
+        body: ["Inter", "sans-serif"],
+      },
+      borderRadius: {
+        "2xl": "1rem",
+        "3xl": "1.5rem",
       },
     },
   },
   plugins: [],
 };
 export default config;
+
